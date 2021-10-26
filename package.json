@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel",
-    "build": "parcel build && node update-pks-uimarannat.js"
+    "build": "node update-pks-uimarannat.js && parcel build"
   },
   "repository": {
     "type": "git",
