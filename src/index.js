@@ -26,6 +26,9 @@ import {
 } from "ol/style.js";
 import vaylaSource from "./vaylaSource.js";
 import trackedVessels from "./vessels.json"
+import pksUimarannatJSON from "./pks-uimarannat.json"
+import pksUlkoilusaaretJSON from "./pks-ulkoilusaaret.json"
+import pksVenesatamatJSON from "./pks-venesatamat.json"
 
 let geolocation;
 let DEBUG = true;
@@ -193,49 +196,8 @@ function turvalaiteIcon(feature) {
 
 }
 
-function uimarantaIcon(feature) {
-  var newText = feature.get("name");
-  var newLength = newText.length;
-  var charsPerLine = 24;
-  var newEmSize = charsPerLine / newLength;
-  // var textBaseSize = 16;
-  var textBaseSize = 48;
-
-  if (newEmSize < 1) {
-    // Scale it
-    var newFontSize = newEmSize * textBaseSize;
-    // alert(newFontSize);
-    var formattedSize = newFontSize + "px";
-  } else {
-    // It fits, leave it alone
-    var newFontSize = 1;
-    var formattedSize = textBaseSize + "px";
-  }
-
-  const svg =
-    '<svg width="600" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-    '<rect width="600" height="120" style="fill:rgb(255,255,255);stroke-width:0;stroke:rgb(255,255,255);" />' +
-    '<rect x="10" y="10" width="580" height="100" style="fill:rgb(0,80,171);stroke-width:0;stroke:rgb(255,255,255);" />' +
-    '<polygon points="280,120 300,140 320,120" style="fill:white;stroke:white;stroke-width:0" />' +
-    '<text x="49%" y="42%" fill="white" font-size="' +
-    formattedSize +
-    '" font-family="sans-serif" dominant-baseline="central" text-anchor="middle">' +
-    feature.get("name") +
-    "</text> " +
-
-    "</svg>";
-  return new Style({
-    image: new Icon({
-      opacity: 1,
-      src: "data:image/svg+xml;utf8," + svg,
-      scale: 0.25,
-      anchor: [0.5, 1.0],
-    }),
-  });
-}
-
 function ulkoilusaaretIcon(feature) {
-  var newText = feature.get("name").replace("(saari)", "").replace("(ulkosaari)", "");
+  var newText = feature.get("name").replace("(saari)", "").replace("(ulkosaari)", "").split(',')[0];
   var newLength = newText.length;
   var charsPerLine = 24;
   var newEmSize = charsPerLine / newLength;
@@ -674,10 +636,15 @@ const windLayerBak = new VectorLayer({
   },
 });
 
+
+// PKS Palvelukartta
+
 const pksUimarannatLayer = new VectorLayer({
   source: new VectorSource({
-    format: new GeoJSON(),
-    url: "pks-uimarannat.json",
+    features: new GeoJSON({
+      dataProjection: 'EPSG:4326',
+      featureProjection: "EPSG:3857"
+    }).readFeatures(pksUimarannatJSON),
   }),
   visible: false,
   minZoom: 12,
@@ -688,8 +655,10 @@ const pksUimarannatLayer = new VectorLayer({
 
 const pksUlkoilusaaretLayer = new VectorLayer({
   source: new VectorSource({
-    format: new GeoJSON(),
-    url: "pks-ulkoilusaaret.json",
+    features: new GeoJSON({
+      dataProjection: 'EPSG:4326',
+      featureProjection: "EPSG:3857"
+    }).readFeatures(pksUlkoilusaaretJSON),
   }),
   visible: false,
   minZoom: 11,
@@ -700,8 +669,10 @@ const pksUlkoilusaaretLayer = new VectorLayer({
 
 const pksVenesatamatLayer = new VectorLayer({
   source: new VectorSource({
-    format: new GeoJSON(),
-    url: "pks-venesatamat.json",
+    features: new GeoJSON({
+      dataProjection: 'EPSG:4326',
+      featureProjection: "EPSG:3857"
+    }).readFeatures(pksVenesatamatJSON),
   }),
   visible: false,
   minZoom: 11,
