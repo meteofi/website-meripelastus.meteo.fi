@@ -10,10 +10,10 @@ export default class navigointilinjaLayer extends VectorSource {
           format: new GeoJSON(),
           url: function (extent) {
             return (
-              'https://julkinen.vayla.fi/inspirepalvelu/avoin/wfs?' +
+              'https://avoinapi.vaylapilvi.fi/vaylatiedot/wfs?' +
               'version=1.1.0&' +
               'request=GetFeature&' +
-              'typename=avoin:' + options.name + '&' +
+              'typename=vesivaylatiedot:' + options.name + '&' +
               'outputFormat=application/json&' +
               'srsname=EPSG:3857&' +
               'bbox=' + extent.join(',') + ',EPSG:3857'
