@@ -845,19 +845,23 @@ const turvalaiteviatLayer = new VectorLayer({
   minZoom: 11,
   style: function (feature) {
     if (!feature.get("fixed") ) {
+      // Create a more prominent warning symbol
       return new Style({
         image: new CircleStyle({
-          radius: 2,
-          fill: null,
-          stroke: new Stroke({ color: "yellow", width: 2 }),
+          radius: 6,
+          fill: new Fill({ color: 'rgba(255, 165, 0, 0.8)' }), // Orange background
+          stroke: new Stroke({ color: '#ff0000', width: 2 }), // Red border
         }),
         text: new Text({
-          font: '12px Calibri,sans-serif',
-          fill: new Fill({ color: '#f00' }),
+          font: 'bold 11px Arial,sans-serif',
+          fill: new Fill({ color: '#ffffff' }),
           stroke: new Stroke({
-            color: '#000', width: 1
+            color: '#000000', width: 2
           }),
-          text: feature.get("type") + "\nTurvalaite: " + feature.get("aton_type") + ", " + feature.get("aton_name_fi") + "\nVäylä: " + feature.get("fairway_name_fi") + "\n" + feature.get("area_description") 
+          offsetY: 15, // Position text below the marker
+          textAlign: 'center',
+          // Show only essential information: type and device name if available
+          text: feature.get("type") + (feature.get("aton_name_fi") ? "\n" + feature.get("aton_name_fi") : "")
         }),
       })
     } else {
