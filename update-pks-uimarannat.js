@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-const request = require("request");
 const fs = require("fs");
 
 let url =
@@ -8,14 +7,15 @@ let url =
 //  let url =
 //    "https://api.hel.fi/servicemap/v2/unit/?page=1&page_size=200&only=location%2Cname%2Cmunicipality%2Caccessibility_shortcoming_count%2Cservice_nodes%2Ccontract_type&geometry=true&include=service_nodes%2Cservices%2Caccessibility_properties&service_node=2142";
 
-let options = { json: true };
-
-request(url, options, (error, res, body) => {
-  if (error) {
-    return console.log(error);
-  }
-
-  if (!error && res.statusCode == 200) {
+async function updateData() {
+  try {
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const body = await response.json();
     let geojson = {};
     geojson.type = "FeatureCollection";
     geojson.features = [];
@@ -36,5 +36,9 @@ request(url, options, (error, res, body) => {
         "Updated pks-uimarannat.json with total of " + body.count + " units."
       );
     });
+  } catch (error) {
+    console.log(error);
   }
-});
+}
+
+updateData();

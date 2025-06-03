@@ -13,7 +13,7 @@ import GeoJSON from "ol/format/GeoJSON";
 import ImageLayer from 'ol/layer/Image';
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
-import { connect } from 'mqtt';
+import mqtt from 'mqtt';
 import Point from 'ol/geom/Point';
 import { bbox as bboxStrategy } from 'ol/loadingstrategy';
 // Enhanced imports for better map functionality
@@ -45,7 +45,7 @@ let DEBUG = true;
 let positionFeature;
 let accuracyFeature;
 
-const client  = connect('wss://meri.digitraffic.fi:443/mqtt',{username: 'digitraffic', password: 'digitrafficPassword'});
+const client = mqtt.connect('wss://meri.digitraffic.fi:443/mqtt',{username: 'digitraffic', password: 'digitrafficPassword'});
 
 function debug(str) {
   if (DEBUG) {
@@ -363,45 +363,46 @@ function septiIcon(feature) {
 }
 
 function navigointilinjaIcon(feature) {
-  const svg =
-    '<svg width="140" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-    '<text x="50%" y="30" font-size="36px" font-family="sans-serif" font-weight="bold" fill="white" dominant-baseline="central" text-anchor="middle">' +
-    Math.round(( feature.get('tosisuunta') + 180 ) % 360) +
-    '</text>' +
-    '<path d="M 0,57 L 30,77 L 30,67 L 105,67 L 105,47 L 30,47 L 30,37 z " style="fill:rgb(238,90,108);fill-opacity:1;fill-rule:evenodd;stroke:rgb(1,1,1);stroke-width:2;stroke-linecap:round;stroke-linejoin:round" />' +
-    '<path d="M 140,83 L 110,103 L 110,93 L 35,93 L 35,73 L 110,73 L 110,63 z" style="fill:rgb(124,240,91);fill-opacity:1;fill-rule:evenodd;stroke:rgb(1,1,1);stroke-width:2;stroke-linecap:round;stroke-linejoin:round" />' +
-    '<text x="50%" y="110" font-size="36px" font-family="sans-serif" font-weight="bold" fill="white" dominant-baseline="central" text-anchor="middle">' +
-    Math.round(feature.get('tosisuunta')) +
-    '</text>' +
-    '</svg>';
-    const first = feature.getGeometry().getFirstCoordinate();
-    const last = feature.getGeometry().getLastCoordinate();
+  const tosisuunta = feature.get('tosisuunta');
+  const currentZoom = map.getView().getZoom();
+  
+  if (currentZoom > 12) {
+    // High zoom: show detailed icons
+    const backDirection = Math.round((tosisuunta + 180) % 360);
+    const rotation = (tosisuunta - 90) * (Math.PI / 180);
+    
+    const svg = `<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg">
+      <text x="50%" y="25%" font-size="24px" font-weight="bold" fill="white" text-anchor="middle">${backDirection}</text>
+      <path d="M 10,40 L 25,50 L 25,45 L 75,45 L 75,35 L 25,35 L 25,30 z" fill="rgb(238,90,108)" stroke="black" stroke-width="1"/>
+      <path d="M 90,60 L 75,70 L 75,65 L 25,65 L 25,55 L 75,55 L 75,50 z" fill="rgb(124,240,91)" stroke="black" stroke-width="1"/>
+      <text x="50%" y="90%" font-size="24px" font-weight="bold" fill="white" text-anchor="middle">${Math.round(tosisuunta)}</text>
+    </svg>`;
 
-  if (map.getView().getZoom() > 12.999999) {
+    const geometry = feature.getGeometry();
+    const coordinates = geometry.getCoordinates();
+    const centerPoint = coordinates[Math.floor(coordinates.length / 2)];
+    
     return new Style({
-      geometry: new Point([(first[0] + last[0]) / 2, (first[1] + last[1]) / 2]),
+      geometry: new Point(centerPoint),
       image: new Icon({
-        opacity: 0.7,
-        src: "data:image/svg+xml;utf8," + svg,
+        src: "data:image/svg+xml;utf8," + encodeURIComponent(svg),
         scale: 0.4,
-        rotation: (feature.get('tosisuunta') - 90) * (Math.PI / 180),
+        rotation: rotation,
         anchor: [0.5, 0.5],
       }),
-    })
+    });
   } else {
+    // Low zoom: simple text
     return new Style({
       text: new Text({
-        font: '12px Calibri,sans-serif',
+        font: '10px Arial',
         fill: new Fill({ color: '#fff' }),
         stroke: new Stroke({ color: '#000', width: 1 }),
+        text: Math.round(tosisuunta) + "°",
         placement: "line",
-        text: feature.get('tosisuunta') + "° - " + Math.round((feature.get('tosisuunta') + 180) % 360) * 10 / 10 + "°",
-        rotation: (feature.get('tosisuunta') - 90) * (Math.PI / 180),
-
       }),
-    })
+    });
   }
-
 }
 
 function aisIcon(feature) {
@@ -596,7 +597,7 @@ const turvalaiteLayer = new VectorLayer({
   style: function (feature) { return turvalaiteIcon(feature) }
 });
 
-// Safari-friendly style cache for navigointilinja layer
+// Optimized style cache for navigointilinja layer
 const navigointilinjaStyleCache = new Map();
 
 const navigointilinjaLayer = new VectorLayer({
@@ -604,27 +605,32 @@ const navigointilinjaLayer = new VectorLayer({
     name: "navigointilinjat",
   }),
   minZoom: 10,
-  declutter: true,
+  maxZoom: 16,
+  // Balanced performance settings for better initial load and zoom
+  declutter: false,
+  renderBuffer: 250,
+  updateWhileAnimating: true, // Re-enable for smoother zoom
+  updateWhileInteracting: true, // Re-enable for smoother pan
   style: function (feature) {
     const tosisuunta = feature.get('tosisuunta');
     const length = feature.getGeometry().getLength();
     
     if (tosisuunta != null && length > 0.4 * 1853) {
-      // Create a stable cache key using feature properties
-      const geometry = feature.getGeometry();
-      const coordinates = geometry.getCoordinates();
-      const cacheKey = `${tosisuunta}_${Math.round(coordinates[0][0])}_${Math.round(coordinates[0][1])}_${Math.round(coordinates[coordinates.length-1][0])}_${Math.round(coordinates[coordinates.length-1][1])}`;
+      // Simplified but effective caching
+      const featureId = feature.getId() || feature.ol_uid;
+      const currentZoom = Math.round(map.getView().getZoom());
+      const cacheKey = `${featureId}_${currentZoom}`;
       
-      // Use cached style if available
+      // Check cache first, but limit cache size
+      if (navigointilinjaStyleCache.size > 500) {
+        navigointilinjaStyleCache.clear();
+      }
+      
       let style = navigointilinjaStyleCache.get(cacheKey);
       if (!style) {
         style = navigointilinjaIcon(feature);
-        navigointilinjaStyleCache.set(cacheKey, style);
-        
-        // Limit cache size to prevent memory issues
-        if (navigointilinjaStyleCache.size > 1000) {
-          const firstKey = navigointilinjaStyleCache.keys().next().value;
-          navigointilinjaStyleCache.delete(firstKey);
+        if (style) {
+          navigointilinjaStyleCache.set(cacheKey, style);
         }
       }
       return style;
@@ -1077,6 +1083,8 @@ client.on("message", function (topic, payload) {
 
 const map = new Map({
   target: "map",
+  // Add performance optimizations for better rendering
+  pixelRatio: Math.min(window.devicePixelRatio || 1, 2), // Limit high DPI rendering
   layers: [
     darkGrayBaseLayer,
     darkGrayReferenceLayer,
@@ -1122,15 +1130,67 @@ const map = new Map({
   }),
 });
 
-// Add view change listener to manage style cache and reduce Safari flickering
-let lastZoom = map.getView().getZoom();
-map.getView().on('change:resolution', function() {
-  const currentZoom = map.getView().getZoom();
-  // Clear cache when zoom changes significantly to prevent Safari rendering issues
-  if (Math.abs(currentZoom - lastZoom) > 1) {
-    navigointilinjaStyleCache.clear();
-    lastZoom = currentZoom;
+// CRITICAL: Force immediate rendering after map creation
+map.render();
+map.renderSync();
+
+// Ensure map is properly sized and ready
+map.updateSize();
+
+// Simplified render optimization
+let renderTimeout = null;
+
+function scheduleRender() {
+  if (renderTimeout) {
+    clearTimeout(renderTimeout);
   }
+  renderTimeout = setTimeout(() => {
+    map.render();
+    renderTimeout = null;
+  }, 16); // ~60fps
+}
+
+// Handle zoom changes with moderate cache clearing
+map.getView().on('change:resolution', function() {
+  // Clear cache every few zoom levels instead of every zoom
+  const currentZoom = Math.round(map.getView().getZoom());
+  if (currentZoom % 2 === 0) { // Clear cache on even zoom levels
+    navigointilinjaStyleCache.clear();
+  }
+  scheduleRender();
+});
+
+// Force render on move end
+map.on('moveend', function() {
+  scheduleRender();
+});
+
+// Better initial load handling
+map.once('loadstart', function() {
+  console.log('Map loading started');
+});
+
+map.once('loadend', function() {
+  console.log('Map loading ended');
+  scheduleRender();
+});
+
+// Single render complete trigger
+map.once('rendercomplete', function() {
+  console.log('Initial render complete');
+  setTimeout(() => {
+    map.render();
+  }, 100);
+});
+
+// Simplified feature loading handlers
+navigointilinjaLayer.getSource().on('featuresloadstart', function() {
+  console.log('Navigation features loading started');
+});
+
+navigointilinjaLayer.getSource().on('featuresloadend', function() {
+  console.log('Navigation features loaded');
+  scheduleRender();
 });
 
 function onChangeAccuracyGeometry(event) {
@@ -1187,6 +1247,42 @@ function showOnlyLayer(layer) {
 }
 
 const main = () => {
+  console.log('Main function starting - setting up layers');
+  
+  // Set initial layer visibility
+  setAllVisible(false);
+  aisLayer.setVisible(true);
+  vesialuerajoituksetLayer.setVisible(true);
+  vesiliikennemerkitLayer.setVisible(true);
+  navigointilinjaLayer.setVisible(true);
+  turvalaiteLayer.setVisible(true);
+  syvyysLayer.setVisible(true);
+
+  console.log('Layers configured, forcing initial load');
+
+  // Force feature loading for initial viewport with multiple approaches
+  setTimeout(() => {
+    console.log('Forcing feature refresh and render');
+    // Force feature loading by refreshing the source
+    navigointilinjaLayer.getSource().refresh();
+    // Also trigger a view change to force feature loading
+    const view = map.getView();
+    const currentCenter = view.getCenter();
+    const currentZoom = view.getZoom();
+    
+    // Slightly adjust view to trigger feature loading
+    view.setCenter([currentCenter[0] + 1, currentCenter[1] + 1]);
+    view.setCenter(currentCenter); // Reset to original
+    
+    map.render();
+  }, 200);
+
+  // Additional safety render
+  setTimeout(() => {
+    console.log('Safety render after 1 second');
+    map.render();
+  }, 1000);
+
   // GEOLOCATION
   geolocation = new Geolocation({
     trackingOptions: {
