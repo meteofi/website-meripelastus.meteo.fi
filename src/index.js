@@ -5,7 +5,7 @@ import sync from 'ol-hashed';
 import { Map, View } from "ol";
 import Geolocation from 'ol/Geolocation';
 import TileLayer from "ol/layer/Tile";
-import { fromLonLat, transform } from "ol/proj";
+import { fromLonLat, transform, toLonLat } from "ol/proj";
 import XYZ from "ol/source/XYZ";
 import ImageWMS from "ol/source/ImageWMS";
 import TileWMS from "ol/source/TileWMS";
@@ -16,6 +16,11 @@ import VectorSource from "ol/source/Vector";
 import { connect } from 'mqtt';
 import Point from 'ol/geom/Point';
 import { bbox as bboxStrategy } from 'ol/loadingstrategy';
+// Enhanced imports for better map functionality
+import Feature from 'ol/Feature';
+import { defaults as defaultControls, MousePosition, ScaleLine, ZoomToExtent } from 'ol/control';
+import { createStringXY } from 'ol/coordinate';
+import { defaults as defaultInteractions, Select } from 'ol/interaction';
 import {
   Circle as CircleStyle,
   Icon,
@@ -24,16 +29,23 @@ import {
   Style,
   Text,
 } from "ol/style.js";
+import { VesselInfoManager } from './vesselInfoManager.js';
 import vaylaSource from "./vaylaSource.js";
 import trackedVessels from "./vessels.json"
 import pksUimarannatJSON from "./pks-uimarannat.json"
 import pksUlkoilusaaretJSON from "./pks-ulkoilusaaret.json"
 import pksVenesatamatJSON from "./pks-venesatamat.json"
+import pksKohtaamispaikatJSON from "./kohtaamispaikat.json"
+import septiJSON from "./septic.json"
 
+
+const vesselManager = new VesselInfoManager(trackedVessels);
 let geolocation;
 let DEBUG = true;
+let positionFeature;
+let accuracyFeature;
 
-const client  = connect('wss://meri.digitraffic.fi:61619/mqtt',{username: 'digitraffic', password: 'digitrafficPassword'});
+const client  = connect('wss://meri.digitraffic.fi:443/mqtt',{username: 'digitraffic', password: 'digitrafficPassword'});
 
 function debug(str) {
   if (DEBUG) {
@@ -69,34 +81,34 @@ const darkGrayReferenceLayer = new TileLayer({
 function vesiliikennemerkkiIcon(feature) {
   var svg;
   var anchor = [0.0, 1.0];
-  if (feature.get("VLM_LAJI") == 11) {
+  if (feature.get("vlmlajityyppi") == 11) {
     svg =
       '<svg width="120" height="120" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
       '<rect width="120" height="120" style="fill:rgb(255,255,255);stroke-width:30;stroke:rgb(228,0,43)" />' +
       '<text x="50%" y="50%" font-size="70px" font-family="sans-serif" dominant-baseline="central" text-anchor="middle">' +
-      feature.get("RA_ARVO_T") +
+      feature.get("rajoitusarvo") +
       "</text> " +
       "</svg>";
-  } else if (feature.get("VLM_LAJI") == 15) {
+  } else if (feature.get("vlmlajityyppi") == 15) {
     svg =
       '<svg width="120" height="120" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
       '<rect width="120" height="120" style="fill:rgb(255,255,255);stroke-width:30;stroke:rgb(228,0,43)" />' +
       '<polygon points="40,15 60,35 80,15" style="fill:black;stroke:purple;stroke-width:1" />' +
       '<text x="50%" y="50%" font-size="45px" font-family="sans-serif" dominant-baseline="central" text-anchor="middle">' +
-      feature.get("RA_ARVO_T") +
+      feature.get("rajoitusarvo") +
       "</text> " +
       "</svg>";
     anchor = [1.0, 1.0];
-  } else if (feature.get("VLM_LAJI") == 16) {
+  } else if (feature.get("vlmlajityyppi") == 16) {
     svg =
       '<svg width="120" height="120" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
       '<rect width="120" height="120" style="fill:rgb(255,255,255);stroke-width:30;stroke:rgb(228,0,43)" />' +
       '<polygon points="40,105 60,85 80,105" style="fill:black;stroke:purple;stroke-width:1" />' +
       '<text x="50%" y="50%" font-size="45px" font-family="sans-serif" dominant-baseline="central" text-anchor="middle">' +
-      feature.get("RA_ARVO_T") +
+      feature.get("rajoitusarvo") +
       "</text> " +
       "</svg>";
-  } else if (feature.get("VLM_LAJI") == 6) {
+  } else if (feature.get("vlmlajityyppi") == 6) {
     svg =
       '<svg width="120" height="120" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
       '<rect width="120" height="120" style="fill:rgb(255,255,255);stroke-width:30;stroke:rgb(228,0,43)" />' +
@@ -131,54 +143,52 @@ Navigointilaji (NAVL_TYYP)
 99 Ei sovellettavissa 
 */
 
+const turvalaiteIconTemplates = {
+  1: `
+    <svg width="140" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 42.5,30 L 122.5,30 L 97.5,110 L 17.5,110 L 42.5,30 z" style="fill:rgb(238,90,108);fill-opacity:1;fill-rule:evenodd;stroke:rgb(7,7,7);stroke-width:6;stroke-linecap:round;stroke-linejoin:round" />
+    </svg>
+  `,
+  2: `
+    <svg width="140" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 96,9 L 96,96 L 10,96 L 96,9 z" style="fill:rgb(124,240,91);fill-opacity:1;fill-rule:evenodd;stroke:rgb(7,7,7);stroke-width:6;stroke-linecap:round;stroke-linejoin:round" />
+    </svg>
+  `,
+  3: `
+    <svg width="140" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 95,9 L 34,64 L 95,64 L 95,9 z M 73,76 L 12,131 L 73,131 L 73,76 z" style="fill:rgb(243,229,77);fill-opacity:1;fill-rule:evenodd;stroke:rgb(7,7,7);stroke-width:6;stroke-linecap:round;stroke-linejoin:round" />
+    </svg>
+  `,
+  4: `
+    <svg width="140" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 45,131 L 106,76 L 45,76 L 45,131 z M 67,64 L 128,9 L 67,9 L 67,64 z" style="fill:rgb(243,229,77);fill-opacity:1;fill-rule:evenodd;stroke:rgb(1,1,1);stroke-width:6;stroke-linecap:round;stroke-linejoin:round" />
+    </svg>
+  `,
+  5: `
+    <svg width="140" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 70,64 L 131,9 L 70,9 L 70,64 z M 70,76 L 9,131 L 70,131 L 70,76 z" style="fill:rgb(243,229,77);fill-opacity:1;fill-rule:evenodd;stroke:rgb(1,1,1);stroke-width:6;stroke-linecap:round;stroke-linejoin:round" />
+    </svg>
+  `,
+  6: `
+    <svg width="140" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 106.5,6.5 L 45.5,61.5 L 106.5,61.5 L 106.5,6.5 z M 33.5,133.5 L 94.5,78.5 L 33.5,78.5 L 33.5,133.5 z" style="fill:rgb(243,229,77);fill-opacity:1;fill-rule:evenodd;stroke:rgb(1,1,1);stroke-width:6;stroke-linecap:round;stroke-linejoin:round" />
+    </svg>
+  `,
+  9: `
+    <svg width="140" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 56.5,30 L 83.5,30 L 83.5,110 L 56.5,110 L 56.5,30 z" style="fill:rgb(243,229,77);fill-opacity:1;fill-rule:evenodd;stroke:rgb(1,1,1);stroke-width:6;stroke-linecap:round;stroke-linejoin:round" />
+    </svg>
+  `
+};
+
 function turvalaiteIcon(feature) {
-  var svg = null;
-  var anchor = [0.5, 1.0];
-  var scale = 0.18;
-  if (feature.get("NAVL_TYYP") == 1) {
-    // 1 Vasen 
-    svg =
-      '<svg width="140" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-      '<path d="M 42.5,30 L 122.5,30 L 97.5,110 L 17.5,110 L 42.5,30 z" style="fill:rgb(238,90,108);fill-opacity:1;fill-rule:evenodd;stroke:rgb(7,7,7);stroke-width:6;stroke-linecap:round;stroke-linejoin:round" />' +
-      "</svg>";
+  const navl_tyyp = feature.get("navigointilajikoodi");
+  const svg = turvalaiteIconTemplates[navl_tyyp];
+  const anchor = [0.5, 1.0];
+  let scale = 0.18;
+
+  if (navl_tyyp == 1 || navl_tyyp == 2) {
     scale = 0.15;
-  } else if (feature.get("NAVL_TYYP") == 2) {
-    // 2 Oikea
-    svg =
-      '<svg width="140" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-      '<path d="M 96,9 L 96,96 L 10,96 L 96,9 z" style="fill:rgb(124,240,91);fill-opacity:1;fill-rule:evenodd;stroke:rgb(7,7,7);stroke-width:6;stroke-linecap:round;stroke-linejoin:round" />' +
-      "</svg>";
-    scale = 0.15;
-  } else if (feature.get("NAVL_TYYP") == 3) {
-    // 3 Pohjois
-    svg =
-      '<svg width="140" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-      '<path d="M 95,9 L 34,64 L 95,64 L 95,9 z M 73,76 L 12,131 L 73,131 L 73,76 z" style="fill:rgb(243,229,77);fill-opacity:1;fill-rule:evenodd;stroke:rgb(7,7,7);stroke-width:6;stroke-linecap:round;stroke-linejoin:round" />' +
-      "</svg>";
-  } else if (feature.get("NAVL_TYYP") == 4) {
-    // 4 Etelä
-    svg =
-      '<svg width="140" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-      '<path d="M 45,131 L 106,76 L 45,76 L 45,131 z M 67,64 L 128,9 L 67,9 L 67,64 z" style="fill:rgb(243,229,77);fill-opacity:1;fill-rule:evenodd;stroke:rgb(1,1,1);stroke-width:6;stroke-linecap:round;stroke-linejoin:round" />' +
-      "</svg>";
-  } else if (feature.get("NAVL_TYYP") == 5) {
-    // 5 Länsi
-    svg =
-      '<svg width="140" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-      '<path d="M 70,64 L 131,9 L 70,9 L 70,64 z M 70,76 L 9,131 L 70,131 L 70,76 z" style="fill:rgb(243,229,77);fill-opacity:1;fill-rule:evenodd;stroke:rgb(1,1,1);stroke-width:6;stroke-linecap:round;stroke-linejoin:round" />' +
-      "</svg>";
-  } else if (feature.get("NAVL_TYYP") == 6) {
-    // 6 Itä
-    svg =
-      '<svg width="140" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-      '<path d="M 106.5,6.5 L 45.5,61.5 L 106.5,61.5 L 106.5,6.5 z M 33.5,133.5 L 94.5,78.5 L 33.5,78.5 L 33.5,133.5 z" style="fill:rgb(243,229,77);fill-opacity:1;fill-rule:evenodd;stroke:rgb(1,1,1);stroke-width:6;stroke-linecap:round;stroke-linejoin:round" />' +
-      "</svg>";
-  } else if (feature.get("NAVL_TYYP") == 9) {
-    // 9 Erikoismerkki
-    svg =
-      '<svg width="140" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-      '<path d="M 56.5,30 L 83.5,30 L 83.5,110 L 56.5,110 L 56.5,30 z" style="fill:rgb(243,229,77);fill-opacity:1;fill-rule:evenodd;stroke:rgb(1,1,1);stroke-width:6;stroke-linecap:round;stroke-linejoin:round" />' +
-      "</svg>";
   }
 
   if (svg != null) {
@@ -193,7 +203,6 @@ function turvalaiteIcon(feature) {
   } else {
     return null
   }
-
 }
 
 function ulkoilusaaretIcon(feature) {
@@ -275,16 +284,94 @@ function uimarantaIcon(feature) {
   });
 }
 
+function kohtaamispaikatIcon(feature) {
+  debug(feature);
+  var newText = feature.get("Katuosoite");
+  var newLength = newText.length;
+  var charsPerLine = 24;
+  var newEmSize = charsPerLine / newLength;
+  // var textBaseSize = 16;
+  var textBaseSize = 48;
+
+  if (newEmSize < 1) {
+    // Scale it
+    var newFontSize = newEmSize * textBaseSize;
+    // alert(newFontSize);
+    var formattedSize = newFontSize + "px";
+  } else {
+    // It fits, leave it alone
+    var newFontSize = 1;
+    var formattedSize = textBaseSize + "px";
+  }
+
+  const svg =
+    '<svg width="600" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
+    '<rect width="600" height="120" style="fill:rgb(255,255,255);stroke-width:0;stroke:rgb(255,255,255);" />' +
+    '<rect x="10" y="10" width="580" height="100" style="fill:rgb(190,45,70);stroke-width:0;stroke:rgb(255,255,255);" />' +
+    '<polygon points="280,120 300,140 320,120" style="fill:white;stroke:white;stroke-width:0" />' +
+    '<text x="49%" y="42%" fill="white" font-size="' +
+    formattedSize +
+    '" font-family="sans-serif" dominant-baseline="central" text-anchor="middle">' +
+    newText +
+    "</text> " +
+
+    "</svg>";
+  return new Style({
+    image: new Icon({
+      opacity: 1,
+      src: "data:image/svg+xml;utf8," + svg,
+      scale: 0.25,
+      anchor: [0.5, 1.0],
+    }),
+  });
+}
+
+function septiIcon(feature) {
+  var newText = feature.get("stationName") || feature.get("name") || "Septi";
+  var newLength = newText.length;
+  var charsPerLine = 24;
+  var newEmSize = charsPerLine / newLength;
+  var textBaseSize = 48;
+
+  if (newEmSize < 1) {
+    var newFontSize = newEmSize * textBaseSize;
+    var formattedSize = newFontSize + "px";
+  } else {
+    var newFontSize = 1;
+    var formattedSize = textBaseSize + "px";
+  }
+
+  const svg =
+    '<svg width="600" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
+    '<rect width="600" height="120" style="fill:rgb(255,255,255);stroke-width:0;stroke:rgb(255,255,255);" />' +
+    '<rect x="10" y="10" width="580" height="100" style="fill:rgb(139,69,19);stroke-width:0;stroke:rgb(255,255,255);" />' +
+    '<polygon points="280,120 300,140 320,120" style="fill:white;stroke:white;stroke-width:0" />' +
+    '<text x="49%" y="42%" fill="white" font-size="' +
+    formattedSize +
+    '" font-family="sans-serif" dominant-baseline="central" text-anchor="middle">' +
+    newText +
+    "</text> " +
+    "</svg>";
+  return new Style({
+    image: new Icon({
+      opacity: 1,
+      src: "data:image/svg+xml;utf8," + svg,
+      scale: 0.25,
+      anchor: [0.5, 1.0],
+    }),
+  });
+}
+
 function navigointilinjaIcon(feature) {
   const svg =
     '<svg width="140" height="140" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
     '<text x="50%" y="30" font-size="36px" font-family="sans-serif" font-weight="bold" fill="white" dominant-baseline="central" text-anchor="middle">' +
-    Math.round(( feature.get('TOSISUUNTA') + 180 ) % 360) +
+    Math.round(( feature.get('tosisuunta') + 180 ) % 360) +
     '</text>' +
     '<path d="M 0,57 L 30,77 L 30,67 L 105,67 L 105,47 L 30,47 L 30,37 z " style="fill:rgb(238,90,108);fill-opacity:1;fill-rule:evenodd;stroke:rgb(1,1,1);stroke-width:2;stroke-linecap:round;stroke-linejoin:round" />' +
     '<path d="M 140,83 L 110,103 L 110,93 L 35,93 L 35,73 L 110,73 L 110,63 z" style="fill:rgb(124,240,91);fill-opacity:1;fill-rule:evenodd;stroke:rgb(1,1,1);stroke-width:2;stroke-linecap:round;stroke-linejoin:round" />' +
     '<text x="50%" y="110" font-size="36px" font-family="sans-serif" font-weight="bold" fill="white" dominant-baseline="central" text-anchor="middle">' +
-    Math.round(feature.get('TOSISUUNTA')) +
+    Math.round(feature.get('tosisuunta')) +
     '</text>' +
     '</svg>';
     const first = feature.getGeometry().getFirstCoordinate();
@@ -297,7 +384,7 @@ function navigointilinjaIcon(feature) {
         opacity: 0.7,
         src: "data:image/svg+xml;utf8," + svg,
         scale: 0.4,
-        rotation: (feature.get('TOSISUUNTA') - 90) * (Math.PI / 180),
+        rotation: (feature.get('tosisuunta') - 90) * (Math.PI / 180),
         anchor: [0.5, 0.5],
       }),
     })
@@ -308,8 +395,8 @@ function navigointilinjaIcon(feature) {
         fill: new Fill({ color: '#fff' }),
         stroke: new Stroke({ color: '#000', width: 1 }),
         placement: "line",
-        text: feature.get('TOSISUUNTA') + "° - " + Math.round((feature.get('TOSISUUNTA') + 180) % 360) * 10 / 10 + "°",
-        rotation: (feature.get('TOSISUUNTA') - 90) * (Math.PI / 180),
+        text: feature.get('tosisuunta') + "° - " + Math.round((feature.get('tosisuunta') + 180) % 360) * 10 / 10 + "°",
+        rotation: (feature.get('tosisuunta') - 90) * (Math.PI / 180),
 
       }),
     })
@@ -447,7 +534,7 @@ const vesiliikennemerkitLayer = new VectorLayer({
   source: new vaylaSource({ name: "vesiliikennemerkit" }),
   minZoom: 12,
   style: function (feature) {
-    let laji = feature.get("VLM_LAJI");
+    let laji = feature.get("vlmlajityyppi");
     if (laji == 6 || laji == 11) {
       return vesiliikennemerkkiIcon(feature);
     } else {
@@ -460,11 +547,13 @@ const vesialuerajoituksetLayer = new VectorLayer({
   source: new vaylaSource({ name: "rajoitusalue_a" }),
   minZoom: 11,
   style: function (feature) {
-    let laji = feature.get("RAJOITUSTYYPIT");
-    let color = "rgba(0, 0, 255, 0.3)"
-    if (feature.get('NOPEUSRAJOITUS') == 10) {
+    let laji = feature.get("rajoitustyypit");
+    let color = "rgba(0, 0, 255, 0.3)";
+    let speedLimit = feature.get('suuruus');
+    
+    if (speedLimit == 10) {
       color = 'rgba(255, 0, 0, 0.3)'
-    } else if (feature.get('NOPEUSRAJOITUS') <= 20) {
+    } else if (speedLimit <= 20) {
       color = 'rgba(0, 255, 255, 0.3)'
     }
     if ((laji == "01" || laji == "01, 02") ) {
@@ -480,7 +569,7 @@ const vesialuerajoituksetLayer = new VectorLayer({
           stroke: new Stroke({
             color: '#000', width: 1
           }),
-          text: feature.get('NOPEUSRAJOITUS') + "km/h"
+          text: speedLimit ? speedLimit + " km/h" : ""
         }),
       })
     } else {
@@ -507,15 +596,40 @@ const turvalaiteLayer = new VectorLayer({
   style: function (feature) { return turvalaiteIcon(feature) }
 });
 
+// Safari-friendly style cache for navigointilinja layer
+const navigointilinjaStyleCache = new Map();
+
 const navigointilinjaLayer = new VectorLayer({
-  source: new vaylaSource({ name: "navigointilinjat" }),
+  source: new vaylaSource({ 
+    name: "navigointilinjat",
+  }),
   minZoom: 10,
+  declutter: true,
   style: function (feature) {
-    if ((feature.get('TOSISUUNTA') != null) && feature.getGeometry().getLength() > 0.4 * 1853 ) {
-      return navigointilinjaIcon(feature)
-    } else {
-      return null;
+    const tosisuunta = feature.get('tosisuunta');
+    const length = feature.getGeometry().getLength();
+    
+    if (tosisuunta != null && length > 0.4 * 1853) {
+      // Create a stable cache key using feature properties
+      const geometry = feature.getGeometry();
+      const coordinates = geometry.getCoordinates();
+      const cacheKey = `${tosisuunta}_${Math.round(coordinates[0][0])}_${Math.round(coordinates[0][1])}_${Math.round(coordinates[coordinates.length-1][0])}_${Math.round(coordinates[coordinates.length-1][1])}`;
+      
+      // Use cached style if available
+      let style = navigointilinjaStyleCache.get(cacheKey);
+      if (!style) {
+        style = navigointilinjaIcon(feature);
+        navigointilinjaStyleCache.set(cacheKey, style);
+        
+        // Limit cache size to prevent memory issues
+        if (navigointilinjaStyleCache.size > 1000) {
+          const firstKey = navigointilinjaStyleCache.keys().next().value;
+          navigointilinjaStyleCache.delete(firstKey);
+        }
+      }
+      return style;
     }
+    return null;
   },
 });
         
@@ -530,18 +644,6 @@ const navigointilinjaLayer = new VectorLayer({
   //      }),
 
 
-/* const testLayer = new navigointilinjaLayerFoo({
-  minZoom: 8,
-  style: function (feature) {
-    let laji = feature.get("TILA");
-    if ((laji == 1 && feature.get('TOSISUUNTA') != null) && feature.getGeometry().getLength() > 0.4 * 1853 ) {
-      return navigointilinjaIcon(feature)
-    } else {
-      return null;
-    }
-  },
-})
- */
 const navigointilinjaLayerT = new VectorLayer({
   source: new vaylaSource({name: "vaylaalueet"}),
   minZoom: 8,
@@ -618,7 +720,6 @@ const windLayerBak = new VectorLayer({
   }),
   //minZoom: 11,
   style: function (feature) {
-    debug("foo")
     debug(feature.get("ws_10min"))
     let laji = feature.get("ws_10min");
     if ((laji > 1) ) {
@@ -644,12 +745,15 @@ const pksUimarannatLayer = new VectorLayer({
     features: new GeoJSON({
       dataProjection: 'EPSG:4326',
       featureProjection: "EPSG:3857"
-    }).readFeatures(pksUimarannatJSON),
+    }).readFeatures(pksUimarannatJSON).map(feature => {
+      feature.setStyle(uimarantaIcon(feature));
+      return feature;
+    }),
   }),
   visible: false,
   minZoom: 12,
   style: function (feature) {
-    return uimarantaIcon(feature);
+    return feature.getStyle();
   },
 });
 
@@ -658,12 +762,15 @@ const pksUlkoilusaaretLayer = new VectorLayer({
     features: new GeoJSON({
       dataProjection: 'EPSG:4326',
       featureProjection: "EPSG:3857"
-    }).readFeatures(pksUlkoilusaaretJSON),
+    }).readFeatures(pksUlkoilusaaretJSON).map(feature => {
+      feature.setStyle(ulkoilusaaretIcon(feature));
+      return feature;
+    }),
   }),
   visible: false,
   minZoom: 11,
   style: function (feature) {
-    return ulkoilusaaretIcon(feature);
+    return feature.getStyle();
   },
 });
 
@@ -672,12 +779,43 @@ const pksVenesatamatLayer = new VectorLayer({
     features: new GeoJSON({
       dataProjection: 'EPSG:4326',
       featureProjection: "EPSG:3857"
-    }).readFeatures(pksVenesatamatJSON),
+    }).readFeatures(pksVenesatamatJSON).map(feature => {
+      feature.setStyle(venesatamatIcon(feature));
+      return feature;
+    }),
   }),
   visible: false,
   minZoom: 11,
   style: function (feature) {
-    return venesatamatIcon(feature);
+    return feature.getStyle();
+  },
+});
+
+const pksKohtaamispaikatLayer = new VectorLayer({
+  source: new VectorSource({
+    features: new GeoJSON({
+      dataProjection: 'EPSG:4326',
+      featureProjection: "EPSG:3857"
+    }).readFeatures(pksKohtaamispaikatJSON),
+  }),
+  visible: false,
+  minZoom: 11,
+  style: function (feature) {
+    return kohtaamispaikatIcon(feature);
+  },
+});
+
+const septiLayer = new VectorLayer({
+  source: new VectorSource({
+    features: new GeoJSON({
+      dataProjection: 'EPSG:4326',
+      featureProjection: "EPSG:3857"
+    }).readFeatures(septiJSON),
+  }),
+  visible: false,
+  minZoom: 9,
+  style: function (feature) {
+    return septiIcon(feature);
   },
 });
 
@@ -727,8 +865,9 @@ const airTemperatureLayebak = new VectorLayer({
 var lightningLayer = new VectorLayer({
   source: new VectorSource({
     format: new GeoJSON(),
+    visible: false,
     url:
-      "https://geoserver.apps.meteo.fi/geoserver/observation/wms?service=WMS&" +
+      "https://wms.meteo.fi/geoserver/observation/wms?service=WMS&" +
       "version=1.1.0&request=GetMap&layers=observation:lightning" +
       "&format=application%2Fjson%3Btype%3Dgeojson&srs=EPSG:4326" +
       "&bbox=8.349609,54.724719,35.595188,71.145195" +
@@ -804,7 +943,7 @@ var windLayer = new ImageLayer({
   visible: false,
   opacity: 1,
   source: new ImageWMS({
-    url: 'https://geoserver.apps.meteo.fi/geoserver/wms',
+    url: 'https://wms.meteo.fi/geoserver/wms',
     params: { 'LAYERS': 'observation:wind_speed', 'TIME': 'PT15M/PRESENT' },
     attributions: 'FMI',
     //ratio: options.imageRatio,
@@ -818,7 +957,7 @@ var gustLayer = new ImageLayer({
   visible: false,
   opacity: 1,
   source: new ImageWMS({
-    url: 'https://geoserver.apps.meteo.fi/geoserver/wms',
+    url: 'https://wms.meteo.fi/geoserver/wms',
     params: { 'LAYERS': 'observation:wind_speed_of_gust', 'TIME': 'PT15M/PRESENT' },
     attributions: 'FMI',
     //ratio: options.imageRatio,
@@ -832,7 +971,7 @@ var temperatureLayer = new ImageLayer({
   visible: false,
   opacity: 1,
   source: new ImageWMS({
-    url: 'https://geoserver.apps.meteo.fi/geoserver/wms',
+    url: 'https://wms.meteo.fi/geoserver/wms',
     params: { 'LAYERS': 'observation:air_temperature', 'TIME': 'PT15M/PRESENT' },
     attributions: 'FMI',
     //ratio: options.imageRatio,
@@ -846,7 +985,7 @@ var seaheightLayer = new ImageLayer({
   visible: false,
   opacity: 1,
   source: new ImageWMS({
-    url: 'https://geoserver.apps.meteo.fi/geoserver/wms',
+    url: 'https://wms.meteo.fi/geoserver/wms',
     params: { 'LAYERS': 'observation:sea_surface_height', 'TIME': 'PT2H/PRESENT' },
     attributions: 'FMI',
     //ratio: options.imageRatio,
@@ -856,9 +995,37 @@ var seaheightLayer = new ImageLayer({
 });
 
  
+// Create features for geolocation
+positionFeature = new Feature();
+positionFeature.setStyle(
+  new Style({
+    image: new CircleStyle({
+      radius: 6,
+      fill: new Fill({
+        color: '#3399CC',
+      }),
+      stroke: new Stroke({
+        color: '#fff',
+        width: 2,
+      }),
+    }),
+  })
+);
+
+accuracyFeature = new Feature();
+
+// Geolocation layer
+const geolocationLayer = new VectorLayer({
+  source: new VectorSource({
+    features: [accuracyFeature, positionFeature],
+  }),
+  visible: true,
+});
+
 var aisLayer = new VectorLayer({
 	source: new VectorSource(),
 	visible: true,
+  declutter: true,
   style: function (feature) {
       return aisIcon(feature);
   }
@@ -866,7 +1033,20 @@ var aisLayer = new VectorLayer({
 
 Object.keys(trackedVessels).forEach(function (item) {
 	debug("Subscribed vessel " + item + " locations");
-	client.subscribe("vessels/" + item + "/+");
+	client.subscribe("vessels-v2/" + item + "/+");
+});
+
+// Enhanced MQTT connection handling
+client.on("connect", function () {
+  debug("Connected to Digitraffic MQTT");
+});
+
+client.on("error", function (error) {
+  debug("MQTT connection error:", error);
+});
+
+client.on("offline", function () {
+  debug("MQTT connection offline");
 });
 
 function getVesselName(mmsi) {
@@ -876,37 +1056,24 @@ function getVesselName(mmsi) {
 		return mmsi;
 	}
 }
-
+ 
 
 client.on("message", function (topic, payload) {
-	var vessel = {};
-	var metadata = {};
- 
-	if (topic.indexOf('location') !== -1) {
-		vessel = JSON.parse(payload.toString());
-    
-	}	
-	//debug(topic);
-	if (topic.indexOf('metadata') !== -1) {
-		metadata = JSON.parse(payload.toString());
-		trackedVessels[metadata.mmsi].metadata = metadata;
-		return;
-	}	
+
+  vesselManager.handleWebsocketMessage(topic,JSON.parse(payload));
+
 	var format = new GeoJSON({
 		dataProjection: 'EPSG:4326',
 		featureProjection: "EPSG:3857"
 	});
-	trackedVessels[vessel.mmsi].location = vessel;
-	trackedVessels[vessel.mmsi].location.properties.mmsi = vessel.mmsi;
+
 	aisLayer.getSource().clear(true);
 	Object.keys(trackedVessels).forEach(function (item) {
-		if (typeof trackedVessels[item].location !== "undefined") {
-			aisLayer.getSource().addFeature(format.readFeature(trackedVessels[item].location));
+		if ( vesselManager.getGeoJSONForVessel(item) !== null) {
+			aisLayer.getSource().addFeature(format.readFeature(vesselManager.getGeoJSONForVessel(item)));
 		}
 	});
-	//client.end()
 });
-
 
 const map = new Map({
   target: "map",
@@ -921,21 +1088,32 @@ const map = new Map({
     vaylaalueetLayer,
     vaylatLayer,
     navigointilinjaLayer,
-
     lightningLayer,
+    septiLayer,
     turvalaiteLayer,
     vesiliikennemerkitLayer,
     pksUimarannatLayer,
     pksUlkoilusaaretLayer,
     pksVenesatamatLayer,
+    pksKohtaamispaikatLayer,
     turvalaiteviatLayer,
     aisLayer,
     windLayer,
     gustLayer,
     temperatureLayer,
     seaheightLayer,
+    geolocationLayer,
   ],
-  controls: [],
+  controls: defaultControls().extend([
+    new MousePosition({
+      coordinateFormat: createStringXY(4),
+      projection: 'EPSG:4326',
+      className: 'custom-mouse-position',
+      target: 'mouse-position',
+    }),
+    new ScaleLine(),
+  ]),
+  interactions: defaultInteractions(),
   view: new View({
     enableRotation: false,
     center: fromLonLat([24.983, 60.1564]),
@@ -944,9 +1122,25 @@ const map = new Map({
   }),
 });
 
+// Add view change listener to manage style cache and reduce Safari flickering
+let lastZoom = map.getView().getZoom();
+map.getView().on('change:resolution', function() {
+  const currentZoom = map.getView().getZoom();
+  // Clear cache when zoom changes significantly to prevent Safari rendering issues
+  if (Math.abs(currentZoom - lastZoom) > 1) {
+    navigointilinjaStyleCache.clear();
+    lastZoom = currentZoom;
+  }
+});
+
 function onChangeAccuracyGeometry(event) {
   debug('Accuracy geometry changed.');
   accuracyFeature.setGeometry(event.target.getAccuracyGeometry());
+}
+
+function onChangePosition(event) {
+  const coordinates = event.target.getPosition();
+  positionFeature.setGeometry(coordinates ? new Point(coordinates) : null);
 }
 
 function setAllVisible(status) {
@@ -962,10 +1156,34 @@ function setAllVisible(status) {
   navigointilinjaLayer.setVisible(status);
   pksUimarannatLayer.setVisible(status);
   pksVenesatamatLayer.setVisible(status);
+  pksKohtaamispaikatLayer.setVisible(status);
   pksUlkoilusaaretLayer.setVisible(status);
   turvalaiteLayer.setVisible(status);
   turvalaiteviatLayer.setVisible(status);
   encLayer.setVisible(status);
+}
+
+// Layer management functions
+function toggleLayer(layerName, layer) {
+  const isVisible = layer.getVisible();
+  layer.setVisible(!isVisible);
+  debug(`Layer ${layerName} is now ${!isVisible ? 'visible' : 'hidden'}`);
+  
+  // Update button appearance
+  const button = document.getElementById(layerName);
+  if (button) {
+    if (!isVisible) {
+      button.classList.add('active');
+    } else {
+      button.classList.remove('active');
+    }
+  }
+}
+
+function showOnlyLayer(layer) {
+  setAllVisible(false);
+  aisLayer.setVisible(true); // Always keep AIS visible
+  layer.setVisible(true);
 }
 
 const main = () => {
@@ -980,9 +1198,31 @@ const main = () => {
   geolocation.on("error", function (error) {
     debug(error.message);
   });
-  //geolocation.on("change:accuracyGeometry", onChangeAccuracyGeometry);
-  //geolocation.on("change:position", onChangePosition);
-  //geolocation.on("change:speed", onChangeSpeed);
+  geolocation.on("change:accuracyGeometry", onChangeAccuracyGeometry);
+  geolocation.on("change:position", onChangePosition);
+
+  // Add click to feature info
+  map.on('singleclick', handleMapClick);
+
+  // Location button functionality
+  document.getElementById('location-btn').addEventListener('mouseup', function() {
+    if (geolocation.getTracking()) {
+      geolocation.setTracking(false);
+      document.getElementById('location-btn').classList.remove('active');
+    } else {
+      geolocation.setTracking(true);
+      document.getElementById('location-btn').classList.add('active');
+      
+      // Center map on user location when available
+      geolocation.once('change:position', function() {
+        const coordinates = geolocation.getPosition();
+        if (coordinates) {
+          map.getView().setCenter(coordinates);
+          map.getView().setZoom(14);
+        }
+      });
+    }
+  });
 
   document.getElementById('nav').addEventListener('mouseup', function() {
     setAllVisible(false);
@@ -1024,50 +1264,108 @@ const main = () => {
     seaheightLayer.setVisible(true);
   });
 
-  document.getElementById('radar').addEventListener('mouseup', function() {
-    setAllVisible(false);
-    aisLayer.setVisible(true);
-    radarLayer.setVisible(true);
+
+
+  // Keyboard shortcuts
+  document.addEventListener('keydown', function(event) {
+    switch(event.key) {
+      case 'l':
+      case 'L':
+        // Toggle location tracking
+        document.getElementById('location-btn').click();
+        break;
+      case 'n':
+      case 'N':
+        // Show navigation view
+        document.getElementById('nav').click();
+        break;
+      case 'a':
+      case 'A':
+        // Show AIS only
+        document.getElementById('ais').click();
+        break;
+      case 'e':
+      case 'E':
+        // Toggle ENC
+        document.getElementById('enc').click();
+        break;
+      case 'Escape':
+        // Hide all overlays
+        setAllVisible(false);
+        aisLayer.setVisible(true);
+        break;
+    }
   });
 
-  document.getElementById('satellite').addEventListener('mouseup', function() {
-    setAllVisible(false);
-    aisLayer.setVisible(true);
-    satelliteLayer.setVisible(true);
-  });
+addMenuEventListener('vesiliikennemerkit',vesiliikennemerkitLayer);
+addMenuEventListener('radar',radarLayer);
+addMenuEventListener('satellite',satelliteLayer);
+addMenuEventListener('uimarannat',pksUimarannatLayer);
+addMenuEventListener('ulkoilusaaret',pksUlkoilusaaretLayer);
+addMenuEventListener('venesatamat',pksVenesatamatLayer);
+addMenuEventListener('kohtaamispaikat',pksKohtaamispaikatLayer);
+addMenuEventListener('septit',septiLayer);
+addMenuEventListener('enc',encLayer);
+addMenuEventListener('turvalaiteviat',turvalaiteviatLayer);
 
-  document.getElementById('uimarannat').addEventListener('mouseup', function() {
-    setAllVisible(false);
-    aisLayer.setVisible(true);
-    pksUimarannatLayer.setVisible(true);
-  });
-
-  document.getElementById('ulkoilusaaret').addEventListener('mouseup', function() {
-    setAllVisible(false);
-    aisLayer.setVisible(true);
-    pksUlkoilusaaretLayer.setVisible(true);
-  });
-
-  document.getElementById('venesatamat').addEventListener('mouseup', function() {
-    setAllVisible(false);
-    aisLayer.setVisible(true);
-    pksVenesatamatLayer.setVisible(true);
-  });
-
-  document.getElementById('enc').addEventListener('mouseup', function() {
-    setAllVisible(false);
-    aisLayer.setVisible(true);
-    encLayer.setVisible(true);
-  });
-
-  document.getElementById('turvalaiteviat').addEventListener('mouseup', function() {
-    setAllVisible(false);
-    aisLayer.setVisible(true);
-    turvalaiteviatLayer.setVisible(true);
-  });
+  function addMenuEventListener(id, layer) {
+    document.getElementById(id).addEventListener('mouseup', function () {
+      setAllVisible(false);
+      aisLayer.setVisible(true);
+      layer.setVisible(true);
+      debug("Set " + id + " visible");
+    });
+  }
 
   sync(map);
 
 };
-
+if (typeof septiJSON === 'object' && septiJSON !== null) {
+  console.log('Valid JSON');
+} else {
+  console.log('Invalid JSON');
+}
 main();
+
+// Enhanced vessel information display
+function showVesselInfo(feature) {
+  const mmsi = feature.get("mmsi");
+  const vessel = trackedVessels[mmsi];
+  if (vessel && vessel.metadata) {
+    const info = `
+      Vessel: ${vessel.metadata.name}
+      MMSI: ${mmsi}
+      Speed: ${feature.get('sog')} knots
+      Course: ${feature.get('cog')}°
+      Heading: ${feature.get('heading')}°
+    `;
+    console.log(info);
+    // You could show this in a popup or info panel
+  }
+}
+
+// Enhanced click handler for map features
+function handleMapClick(evt) {
+  const pixel = map.getEventPixel(evt.originalEvent);
+  const features = [];
+  
+  map.forEachFeatureAtPixel(pixel, function (feature, layer) {
+    features.push({ feature, layer });
+  });
+  
+  if (features.length > 0) {
+    const { feature, layer } = features[0];
+    const properties = feature.getProperties();
+    
+    // Handle different layer types
+    if (layer === aisLayer) {
+      showVesselInfo(feature);
+    } else if (layer === turvalaiteLayer) {
+      console.log('Safety device:', properties);
+    } else if (layer === vesiliikennemerkitLayer) {
+      console.log('Water traffic sign:', properties);
+    } else {
+      console.log('Feature clicked:', properties);
+    }
+  }
+}

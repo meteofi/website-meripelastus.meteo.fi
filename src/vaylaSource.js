@@ -13,7 +13,7 @@ export default class navigointilinjaLayer extends VectorSource {
               'https://avoinapi.vaylapilvi.fi/vaylatiedot/wfs?' +
               'version=1.1.0&' +
               'request=GetFeature&' +
-              'typename=vesivaylatiedot:' + options.name + '&' +
+              'typename=vesivaylatiedot:' + options.name + '_uusi&' +
               'outputFormat=application/json&' +
               'srsname=EPSG:3857&' +
               'bbox=' + extent.join(',') + ',EPSG:3857'
