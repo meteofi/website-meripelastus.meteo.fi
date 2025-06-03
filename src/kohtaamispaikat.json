@@ -1,0 +1,466 @@
+{
+    "type": "FeatureCollection",
+    "title": "AmbulanssiKohtaamispaikat",
+    "created": "2023-11-20 09:03",
+    "generatedby": "CSVtoGeoJSON and GPX converter v0.1",
+    "madefor": "Helsingin Meripelastusyhdistys, Finnish Lifeboat Institution",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    24.77185,
+                    60.15547
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°09,328' E 024°46,311'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Espoo",
+                "Kaupunginosa": "Haukilahti",
+                "Name": "Mellsten, Haukilahden venesatama",
+                "Katuosoite": "Mellstenintie 12",
+                "Vedensyvyys": "1,5",
+                "AjoohjeMeritse": "Haukilahden venesatamaan johtava 1,5m:n väylän päässä.",
+                "AjoohjeMaitse": "Espoon merenkävijät, Haukilahden venesatama, Mastonosturin laituri",
+                "KohteenURL": "https://www.emk.fi/",
+                "AlunperinMistaListalta": "HMPY 2003",
+                "AlunperinMistaListaltaID": "1",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    25.08116,
+                    60.15616
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°09,370' E 025°04,870'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Helsinki",
+                "Kaupunginosa": "Jollas",
+                "Name": "Matosaaren meripelastusasema",
+                "Katuosoite": "Matosaarentie 22",
+                "Postinro": "00850 Helsinki",
+                "AjoohjeMeritse": "Matosaaren L-puolella",
+                "AjoohjeMaitse": "Matosaaren meripelastusasema, Matosaarentie eteläpäässä",
+                "KohteenURL": "https://meripelastus.fi/helsinki/",
+                "AlunperinMistaListalta": "HMPY 2003",
+                "AlunperinMistaListaltaID": "3",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    25.14067,
+                    60.19903
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°11,942' E 025°08,440'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Helsinki",
+                "Kaupunginosa": "Vuosaari",
+                "Name": "Kalkkihiekantorin liikennelaituri (ent. Sasekan laituri)",
+                "Katuosoite": "Kalkkihiekantori 1",
+                "AjoohjeMeritse": "Aurinkolahden L-päässä oleva laituri jossa luiska. Vuosaaren venekerhon laiturien I-puolella.",
+                "AjoohjeMaitse": "Liikennelaituri, (Kalkkihiekantori 1) Kalkkihiekantien ja Hiekkajaalanrannan risteyksessä.",
+                "AlunperinMistaListalta": "HMPY 2003",
+                "AlunperinMistaListaltaID": "4",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    25.29414,
+                    60.25558
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°15,335' E 025°17,648'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Sipoo",
+                "Kaupunginosa": "Gumbostrand",
+                "Name": "Gumbostrand Liikennelaituri",
+                "Katuosoite": "Gumbontie 215",
+                "AjoohjeMeritse": "Gumbostrandiin johtavan 2,0m:n väylän päässä, paloaseman L-puolella",
+                "AjoohjeMaitse": "Gumbostrandin liikennelaituri, Gumbontie 215 kohdalla",
+                "AlunperinMistaListalta": "HMPY 2003",
+                "AlunperinMistaListaltaID": "5",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    25.3917,
+                    60.25273
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°15,164' E 025°23,502'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Sipoo",
+                "Kaupunginosa": "Kalkkiranta",
+                "Name": "Kalkkiranta Liikennelaituri",
+                "Katuosoite": "Kalkkirannantie",
+                "AjoohjeMeritse": "Kalkkirantaan johtavan 6,1m:n väylstä haarautuvan 3,0m:n väylän päässä.",
+                "AjoohjeMaitse": "Kalkkirannan liikennelaituri, Kalkkirannantien eteläpäässä",
+                "AlunperinMistaListalta": "HMPY 2003",
+                "AlunperinMistaListaltaID": "6",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    24.85066,
+                    60.16233
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°09,740' E 024°51,040'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Helsinki",
+                "Kaupunginosa": "Koivusaari",
+                "Name": "Koivusaari IP - Vaskilahti",
+                "Katuosoite": "Vaskisalmenkuja 8",
+                "AjoohjeMeritse": "Vaskilahti, lahden L-puolella",
+                "AlunperinMistaListalta": "HelPel 2021",
+                "AlunperinMistaListaltaID": "1",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    24.90266,
+                    60.16116
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°09,670' E 024°54,160'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Helsinki",
+                "Kaupunginosa": "Ruoholahti",
+                "Name": "Tammasaarenlaituri",
+                "Katuosoite": "Tammasaarenlaituri 7",
+                "AjoohjeMaitse": "Kaapelitehtaan LO-nurkalla",
+                "AlunperinMistaListalta": "HelPel 2021",
+                "AlunperinMistaListaltaID": "2",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    24.92716,
+                    60.149
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°08,940' E 024°55,630'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Helsinki",
+                "Kaupunginosa": "Hernesaari",
+                "Name": "Hernesaaren ranta",
+                "Katuosoite": "Hernesaarenranta 6",
+                "AlunperinMistaListalta": "HelPel 2021",
+                "AlunperinMistaListaltaID": "3",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    24.96133,
+                    60.15966
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°09,580' E 024°57,680'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Helsinki",
+                "Kaupunginosa": "Kaivopuisto",
+                "Name": "Klippan",
+                "Katuosoite": "Ehrenströmintie 16",
+                "AlunperinMistaListalta": "HelPel 2021",
+                "AlunperinMistaListaltaID": "4",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    24.98533,
+                    60.1955
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°11,730' E 024°59,120'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Helsinki",
+                "Kaupunginosa": "Hermanni",
+                "Name": "Hermanninranta",
+                "Katuosoite": "Verkkosaarenkuja",
+                "AlunperinMistaListalta": "HelPel 2021",
+                "AlunperinMistaListaltaID": "5",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    25.02616,
+                    60.18766
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°11,260' E 025°01,570'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Helsinki",
+                "Kaupunginosa": "Herttoniemi",
+                "Name": "Herttoniemenranta",
+                "Katuosoite": "Simppukarinkatu",
+                "AlunperinMistaListalta": "HelPel 2021",
+                "AlunperinMistaListaltaID": "6",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    25.03566,
+                    60.14883
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°08,930' E 025°02,140'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Helsinki",
+                "Kaupunginosa": "Santahamina",
+                "Name": "Santahamina ÖTV",
+                "Katuosoite": "Vesitasontie 5",
+                "AlunperinMistaListalta": "HelPel 2021",
+                "AlunperinMistaListaltaID": "7",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    25.06733,
+                    60.17916
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°10,750' E 025°04,040'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Helsinki",
+                "Kaupunginosa": "Laajasalo",
+                "Name": "Reposalmi",
+                "Katuosoite": "Reposalmentie 2",
+                "AlunperinMistaListalta": "HelPel 2021",
+                "AlunperinMistaListaltaID": "9",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    25.099,
+                    60.20633
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°12,380' E 025°05,940'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Helsinki",
+                "Kaupunginosa": "Puotila",
+                "Name": "Vartiokylänlahti",
+                "Katuosoite": "Meripellontie 9",
+                "AlunperinMistaListalta": "HelPel 2021",
+                "AlunperinMistaListaltaID": "10",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    25.14666,
+                    60.19966
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°11,980' E 025°08,800'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Helsinki",
+                "Kaupunginosa": "Vuosaari",
+                "Name": "Aurinkoranta",
+                "Katuosoite": "Hiekkalaituri 1",
+                "AlunperinMistaListalta": "HelPel 2021",
+                "AlunperinMistaListaltaID": "11",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    25.17783,
+                    60.20766
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°12,460' E 025°10,670'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Helsinki",
+                "Kaupunginosa": "Vuosaari",
+                "Name": "Vuosaarenlahti",
+                "Katuosoite": "Laiturikuja 2",
+                "AlunperinMistaListalta": "HelPel 2021",
+                "AlunperinMistaListaltaID": "12",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    25.23866,
+                    60.25
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°15,000' E 025°14,320'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Helsinki",
+                "Kaupunginosa": "Karhusaari",
+                "Name": "Karhusaari",
+                "Katuosoite": "Karhusaarentie 34",
+                "AlunperinMistaListalta": "HelPel 2021",
+                "AlunperinMistaListaltaID": "13",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    24.88716,
+                    60.1551
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°09,306' E 024°53,230'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Helsinki",
+                "Kaupunginosa": "Lauttasaari",
+                "Name": "Pajalahden satama",
+                "Katuosoite": "Vattuniemenranta 5",
+                "AjoohjeMaitse": "eteläpuoli, huoltolaituri ravintola Telakan vieressä",
+                "AlunperinMistaListalta": "EMPY 2012",
+                "AlunperinMistaListaltaID": "24",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "coordinates": [
+                    24.84763,
+                    60.16305
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "WGS-84": "N 60°09,783' E 024°50,858'",
+                "Category": "AmbulanssiKohtaamispaikka",
+                "Kaupunki": "Helsinki",
+                "Kaupunginosa": "Koivusaari",
+                "Name": "Koivusaari LP -Venesatama NJK",
+                "NameSwe": "Björkholmen",
+                "Katuosoite": "Vaskisalmenkuja 9",
+                "AjoohjeMeritse": "Koivusaaren L-puoli. Hanasaarta vastapäätä",
+                "AjoohjeMaitse": "Koivusaaren venesatama NJK, Mastonosturin laituri",
+                "AlunperinMistaListalta": "EMPY 2012",
+                "AlunperinMistaListaltaID": "14",
+                "marker-color": "#ff0000",
+                "marker-size": "medium",
+                "marker-symbol": "hospital"
+            }
+        }
+    ]
+}

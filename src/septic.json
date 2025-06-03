@@ -1,0 +1,6009 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.5783333333,
+                    27.7366666667
+                ]
+            },
+            "properties": {
+                "septicId": 1,
+                "harbourId": 103,
+                "stationName": "Ukkosaari",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/1",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.456795,
+                    27.723463
+                ]
+            },
+            "properties": {
+                "septicId": 2,
+                "harbourId": 0,
+                "stationName": "Santio (Virolahti)",
+                "stationDescription": "Kelluva, huollosta vastaa PSS ry",
+                "source": "Ilmoitus 29.11.2021",
+                "url": "https:\/\/septit.net\/2",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.505547,
+                    27.481704
+                ]
+            },
+            "properties": {
+                "septicId": 3,
+                "harbourId": 110,
+                "stationName": "Klamila",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/3",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.449144,
+                    27.225033
+                ]
+            },
+            "properties": {
+                "septicId": 4,
+                "harbourId": 128,
+                "stationName": "Nuokot",
+                "stationDescription": "Kelluva, huollosta vastaa PSS ry",
+                "source": "",
+                "url": "https:\/\/septit.net\/4",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.560127,
+                    27.182182
+                ]
+            },
+            "properties": {
+                "septicId": 6,
+                "harbourId": 137,
+                "stationName": "Tervasaari (Hamina)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/6",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.456234,
+                    26.953733
+                ]
+            },
+            "properties": {
+                "septicId": 9,
+                "harbourId": 149,
+                "stationName": "Sapokanlahti (Kotka)",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys",
+                "source": "Marina Cafe Laituri www 28.8.2021",
+                "url": "https:\/\/septit.net\/9",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.421109,
+                    26.989653
+                ]
+            },
+            "properties": {
+                "septicId": 10,
+                "harbourId": 0,
+                "stationName": "Lehm\u00e4saari",
+                "stationDescription": "Kelluva, huollosta vastaa PSS ry",
+                "source": "",
+                "url": "https:\/\/septit.net\/10",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.435,
+                    26.8633333333
+                ]
+            },
+            "properties": {
+                "septicId": 12,
+                "harbourId": 0,
+                "stationName": "Santalahti",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/12",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.475442,
+                    26.749231
+                ]
+            },
+            "properties": {
+                "septicId": 13,
+                "harbourId": 169,
+                "stationName": "L\u00f6k\u00f6re",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/13",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.4316666667,
+                    26.6516666667
+                ]
+            },
+            "properties": {
+                "septicId": 14,
+                "harbourId": 178,
+                "stationName": "Keih\u00e4ssalmi",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/14",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.3716666667,
+                    26.3366666667
+                ]
+            },
+            "properties": {
+                "septicId": 15,
+                "harbourId": 191,
+                "stationName": "Kirmosund",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/15",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.451821,
+                    26.237605
+                ]
+            },
+            "properties": {
+                "septicId": 17,
+                "harbourId": 201,
+                "stationName": "Laivasilta (Loviisa)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/17",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.23442133903771,
+                    25.870496034622196
+                ]
+            },
+            "properties": {
+                "septicId": 18,
+                "harbourId": 232,
+                "stationName": "Pellinki",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/18",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.3566666667,
+                    25.6416666667
+                ]
+            },
+            "properties": {
+                "septicId": 19,
+                "harbourId": 247,
+                "stationName": "Hamari (Porvoo)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/19",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.3866666667,
+                    25.6633333333
+                ]
+            },
+            "properties": {
+                "septicId": 20,
+                "harbourId": 250,
+                "stationName": "Porvoo",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/20",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.309618,
+                    25.591375
+                ]
+            },
+            "properties": {
+                "septicId": 21,
+                "harbourId": 0,
+                "stationName": "Em\u00e4salo, Gulf (Porvoo)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/21",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.252824,
+                    25.391464
+                ]
+            },
+            "properties": {
+                "septicId": 22,
+                "harbourId": 0,
+                "stationName": "Sipoo, Kalkkiranta",
+                "stationDescription": "",
+                "source": "Lis\u00e4tty k\u00e4ytt\u00e4j\u00e4havainnon perusteella 1.10.2021",
+                "url": "https:\/\/septit.net\/22",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.173452,
+                    25.347626
+                ]
+            },
+            "properties": {
+                "septicId": 23,
+                "harbourId": 265,
+                "stationName": "Kaunissaari",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/23",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.25,
+                    25.2383333333
+                ]
+            },
+            "properties": {
+                "septicId": 24,
+                "harbourId": 280,
+                "stationName": "Karhusaari",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/24",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.20234630376776,
+                    25.161910057067875
+                ]
+            },
+            "properties": {
+                "septicId": 25,
+                "harbourId": 0,
+                "stationName": "Mustalahden venesatama (Helsinki)",
+                "stationDescription": "",
+                "source": "Helsingin kaupungin www-sivut 30.5.2023",
+                "url": "https:\/\/septit.net\/25",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.198902,
+                    25.140581
+                ]
+            },
+            "properties": {
+                "septicId": 26,
+                "harbourId": 0,
+                "stationName": "Kalkkihiekantori, Pikku Kallahti (Helsinki)",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys.",
+                "source": "Helsingin kaupungin www-sivut 30.5.2023",
+                "url": "https:\/\/septit.net\/26",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.15514931970844,
+                    24.887262582778934
+                ]
+            },
+            "properties": {
+                "septicId": 27,
+                "harbourId": 0,
+                "stationName": "Pajalahden satama (Helsinki)",
+                "stationDescription": "",
+                "source": "Helsingin kaupungin www-sivut 30.5.2023",
+                "url": "https:\/\/septit.net\/27",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.20760814226484,
+                    25.177831649780273
+                ]
+            },
+            "properties": {
+                "septicId": 28,
+                "harbourId": 0,
+                "stationName": "Porslahti, Vuosaari (Helsinki)",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys.",
+                "source": "Helsingin kaupungin www-sivut 30.5.2023",
+                "url": "https:\/\/septit.net\/28",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.206275,
+                    25.0989
+                ]
+            },
+            "properties": {
+                "septicId": 29,
+                "harbourId": 298,
+                "stationName": "Vartiokyl\u00e4nlahti, Puotila (Helsinki)",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys.",
+                "source": "Helsingin kaupungin www-sivut 30.5.2023",
+                "url": "https:\/\/septit.net\/29",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.15933,
+                    24.906639
+                ]
+            },
+            "properties": {
+                "septicId": 31,
+                "harbourId": 0,
+                "stationName": "Saukonpaasi, J\u00e4tk\u00e4saari (Helsinki)",
+                "stationDescription": "",
+                "source": "Helsingin kaupungin www-sivut 27.8.2021",
+                "url": "https:\/\/septit.net\/31",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.197388,
+                    25.067679
+                ]
+            },
+            "properties": {
+                "septicId": 32,
+                "harbourId": 0,
+                "stationName": "Str\u00f6msinlahti (Helsinki)",
+                "stationDescription": "K\u00e4ytt\u00e4j\u00e4n raportin perusteella asema on lukittu (kes\u00e4kuu 2023). Asiaa on kysytty Helsingin kaupungilta, odotamme vastausta.",
+                "source": "Helsingin kaupungin www-sivut 27.8.2021",
+                "url": "https:\/\/septit.net\/32",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.173981,
+                    24.963094
+                ]
+            },
+            "properties": {
+                "septicId": 33,
+                "harbourId": 0,
+                "stationName": "Pohjoisranta (Helsinki)",
+                "stationDescription": "",
+                "source": "Helsingin kaupungin www-sivut 27.8.2021",
+                "url": "https:\/\/septit.net\/33",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.182747,
+                    25.046414
+                ]
+            },
+            "properties": {
+                "septicId": 34,
+                "harbourId": 0,
+                "stationName": "Yliskyl\u00e4 (Helsinki)",
+                "stationDescription": "",
+                "source": "Helsingin kaupungin www-sivut 27.8.2021",
+                "url": "https:\/\/septit.net\/34",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.18,
+                    25.0233333333
+                ]
+            },
+            "properties": {
+                "septicId": 36,
+                "harbourId": 307,
+                "stationName": "Pyysaari (Helsinki)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/36",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.17,
+                    24.9633333333
+                ]
+            },
+            "properties": {
+                "septicId": 37,
+                "harbourId": 325,
+                "stationName": "Katajanokka (Helsinki)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/37",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.165378,
+                    24.898603
+                ]
+            },
+            "properties": {
+                "septicId": 38,
+                "harbourId": 0,
+                "stationName": "Salmisaari (Helsinki)",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys.",
+                "source": "Helsingin kaupungin www-sivut 30.5.2023",
+                "url": "https:\/\/septit.net\/38",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.146192,
+                    24.983216
+                ]
+            },
+            "properties": {
+                "septicId": 40,
+                "harbourId": 339,
+                "stationName": "Suomenlinna (Helsinki)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/40",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.153339,
+                    24.946121
+                ]
+            },
+            "properties": {
+                "septicId": 41,
+                "harbourId": 345,
+                "stationName": "Liuskaluoto, HSS (Helsinki)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/41",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.140629,
+                    24.916831
+                ]
+            },
+            "properties": {
+                "septicId": 42,
+                "harbourId": 350,
+                "stationName": "Pihlajasaari (Helsinki)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/42",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.15001929294295,
+                    24.89175444567082
+                ]
+            },
+            "properties": {
+                "septicId": 43,
+                "harbourId": 356,
+                "stationName": "Lauttasaari, HSK (Helsinki)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/43",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.1766666667,
+                    24.9133333333
+                ]
+            },
+            "properties": {
+                "septicId": 44,
+                "harbourId": 0,
+                "stationName": "Taivallahti (Helsinki)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/44",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.203018074823234,
+                    24.829477071762085
+                ]
+            },
+            "properties": {
+                "septicId": 45,
+                "harbourId": 0,
+                "stationName": "Laajalahti (Espoo)",
+                "stationDescription": "",
+                "source": "Espoon kaupungin www-sivut 9.9.2021, tarkempi sijainti p\u00e4ivitetty 17.4.2023",
+                "url": "https:\/\/septit.net\/45",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.173191,
+                    24.815449
+                ]
+            },
+            "properties": {
+                "septicId": 46,
+                "harbourId": 362,
+                "stationName": "Otsolahti (Espoo)",
+                "stationDescription": "",
+                "source": "Espoon kaupungin www-sivut 9.9.2021",
+                "url": "https:\/\/septit.net\/46",
+                "isAdminStation": true
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.15545365488861,
+                    24.77198660373688
+                ]
+            },
+            "properties": {
+                "septicId": 47,
+                "harbourId": 369,
+                "stationName": "Haukilahti (Espoo)",
+                "stationDescription": "",
+                "source": "P\u00e4ivitetty k\u00e4ytt\u00e4j\u00e4havainnon perusteella 14.4.2023",
+                "url": "https:\/\/septit.net\/47",
+                "isAdminStation": true
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.14572421308858,
+                    24.720000028610233
+                ]
+            },
+            "properties": {
+                "septicId": 48,
+                "harbourId": 0,
+                "stationName": "Suomenoja yhteysaluslaituri (Espoo)",
+                "stationDescription": "Suvisaariston yhteysaluslaiturin yhteydess\u00e4. Syvyys yli 2 metri\u00e4.",
+                "source": "Espoon kaupungin www-sivut 27.8.2021, tietoja t\u00e4ydennetty ilmoituksella 29.11.2021.",
+                "url": "https:\/\/septit.net\/48",
+                "isAdminStation": true
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.14743855529881,
+                    24.75565195083618
+                ]
+            },
+            "properties": {
+                "septicId": 49,
+                "harbourId": 0,
+                "stationName": "Nokkala (Espoo)",
+                "stationDescription": "",
+                "source": "Sijainti korjattu 22.4.2023",
+                "url": "https:\/\/septit.net\/49",
+                "isAdminStation": true
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.135057,
+                    24.647806
+                ]
+            },
+            "properties": {
+                "septicId": 51,
+                "harbourId": 0,
+                "stationName": "Soukka (Espoo)",
+                "stationDescription": "",
+                "source": "Espoon kaupungin www-sivut 27.8.2021",
+                "url": "https:\/\/septit.net\/51",
+                "isAdminStation": true
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.14205489999464,
+                    24.73731637001038
+                ]
+            },
+            "properties": {
+                "septicId": 52,
+                "harbourId": 372,
+                "stationName": "Nuottaniemi (Espoo)",
+                "stationDescription": "Septintyhjennukselle oma laituri, syvyys yli 2 m. Vesipiste.",
+                "source": "Espoon kaupungin www-sivut 27.8.2021, tarkempi sijainti ja syvyystieto 29.11.2021.",
+                "url": "https:\/\/septit.net\/52",
+                "isAdminStation": true
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.135,
+                    24.7283333333
+                ]
+            },
+            "properties": {
+                "septicId": 53,
+                "harbourId": 375,
+                "stationName": "Svin\u00f6skata (Espoo)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/53",
+                "isAdminStation": true
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.156638933471285,
+                    24.62143421173096
+                ]
+            },
+            "properties": {
+                "septicId": 54,
+                "harbourId": 0,
+                "stationName": "Kivenlahti (Espoo)",
+                "stationDescription": "",
+                "source": "Sijainti korjattu k\u00e4ytt\u00e4j\u00e4n havainnon perusteella 17.4.2023",
+                "url": "https:\/\/septit.net\/54",
+                "isAdminStation": true
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.0433333333,
+                    24.0066666667
+                ]
+            },
+            "properties": {
+                "septicId": 56,
+                "harbourId": 413,
+                "stationName": "Inkoo",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/56",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.978154255625164,
+                    23.912193775177002
+                ]
+            },
+            "properties": {
+                "septicId": 57,
+                "harbourId": 419,
+                "stationName": "Elisaari",
+                "stationDescription": "Syvyys yli 2 metri\u00e4.",
+                "source": "Ilmoitus 29.11.2021",
+                "url": "https:\/\/septit.net\/57",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.9783333333,
+                    23.8816666667
+                ]
+            },
+            "properties": {
+                "septicId": 58,
+                "harbourId": 422,
+                "stationName": "Bar\u00f6sund, Orslandet",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/58",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.9783333333,
+                    23.4283333333
+                ]
+            },
+            "properties": {
+                "septicId": 59,
+                "harbourId": 453,
+                "stationName": "Tammisaari",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/59",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.8643333333,
+                    23.3583333333
+                ]
+            },
+            "properties": {
+                "septicId": 60,
+                "harbourId": 492,
+                "stationName": "Byxholmen",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/60",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.90121730613357,
+                    23.408271074295044
+                ]
+            },
+            "properties": {
+                "septicId": 61,
+                "harbourId": 495,
+                "stationName": "Sommar\u00f6",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/61",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.90860919320751,
+                    23.296036720275882
+                ]
+            },
+            "properties": {
+                "septicId": 62,
+                "harbourId": 501,
+                "stationName": "Predium",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/62",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.8183333333,
+                    22.9683333333
+                ]
+            },
+            "properties": {
+                "septicId": 63,
+                "harbourId": 516,
+                "stationName": "Hanko, It\u00e4satama",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/63",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.8433333333,
+                    22.9466666667
+                ]
+            },
+            "properties": {
+                "septicId": 64,
+                "harbourId": 525,
+                "stationName": "Hangonkyl\u00e4",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/64",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.09474716437676,
+                    22.8638631105423
+                ]
+            },
+            "properties": {
+                "septicId": 65,
+                "harbourId": 543,
+                "stationName": "F\u00f6rby",
+                "stationDescription": "",
+                "source": "Sijainti korjattu sataman verkkosivujen perusteella 3.8.2023.",
+                "url": "https:\/\/septit.net\/65",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.220255,
+                    22.901688
+                ]
+            },
+            "properties": {
+                "septicId": 66,
+                "harbourId": 552,
+                "stationName": "Matilda",
+                "stationDescription": "",
+                "source": "Seapoint www 27.8.2021",
+                "url": "https:\/\/septit.net\/66",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.8633333333,
+                    22.4216666667
+                ]
+            },
+            "properties": {
+                "septicId": 67,
+                "harbourId": 579,
+                "stationName": "Rosala, N\u00f6tholm",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/67",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.9216666667,
+                    22.41
+                ]
+            },
+            "properties": {
+                "septicId": 68,
+                "harbourId": 591,
+                "stationName": "Kasn\u00e4s",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/68",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.042496428696815,
+                    22.669011354446415
+                ]
+            },
+            "properties": {
+                "septicId": 69,
+                "harbourId": 601,
+                "stationName": "Kalkholmen",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/69",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.018816,
+                    22.510128
+                ]
+            },
+            "properties": {
+                "septicId": 70,
+                "harbourId": 602,
+                "stationName": "Taalintehdas, huoltoasema",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/70",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.811245214176395,
+                    22.335387468338016
+                ]
+            },
+            "properties": {
+                "septicId": 71,
+                "harbourId": 606,
+                "stationName": "\u00d6r\u00f6",
+                "stationDescription": "Kelluva, huollosta vastaa PSS ry",
+                "source": "Sijainti tarkistettu roopekartat.fi 12.12.2021",
+                "url": "https:\/\/septit.net\/71",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.9616666667,
+                    22.3616666667
+                ]
+            },
+            "properties": {
+                "septicId": 73,
+                "harbourId": 620,
+                "stationName": "H\u00f6gs\u00e5ra, Keisarinsatama",
+                "stationDescription": "Kelluva, huollosta vastaa PSS ry",
+                "source": "",
+                "url": "https:\/\/septit.net\/73",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.03,
+                    22.2833333333
+                ]
+            },
+            "properties": {
+                "septicId": 74,
+                "harbourId": 626,
+                "stationName": "Helsingholm",
+                "stationDescription": "Kelluva, huollosta vastaa PSS ry",
+                "source": "",
+                "url": "https:\/\/septit.net\/74",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.2966666667,
+                    22.3016666667
+                ]
+            },
+            "properties": {
+                "septicId": 75,
+                "harbourId": 644,
+                "stationName": "Parainen, Kalkholm",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/75",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.395,
+                    22.3783333333
+                ]
+            },
+            "properties": {
+                "septicId": 76,
+                "harbourId": 670,
+                "stationName": "Hovirinta",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/76",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.375,
+                    22.125
+                ]
+            },
+            "properties": {
+                "septicId": 77,
+                "harbourId": 678,
+                "stationName": "Satava (k\u00e4rry)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/77",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.440030997851935,
+                    22.244975566864014
+                ]
+            },
+            "properties": {
+                "septicId": 78,
+                "harbourId": 688,
+                "stationName": "Aurajoki (Turku)",
+                "stationDescription": "Turun vierasvenesataman yhteydess\u00e4",
+                "source": "",
+                "url": "https:\/\/septit.net\/78",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.425321,
+                    22.157536
+                ]
+            },
+            "properties": {
+                "septicId": 79,
+                "harbourId": 696,
+                "stationName": "Ruissalo, TPS",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/79",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.424974,
+                    22.230449
+                ]
+            },
+            "properties": {
+                "septicId": 80,
+                "harbourId": 0,
+                "stationName": "Turku, Lauttaranta",
+                "stationDescription": "Septitankin tyhjennysasema A-laiturilla 30.9. saakka",
+                "source": "Turun kaupungin www-sivut 27.8.2021",
+                "url": "https:\/\/septit.net\/80",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.987753,
+                    23.03075
+                ]
+            },
+            "properties": {
+                "septicId": 81,
+                "harbourId": 537,
+                "stationName": "Bromarv",
+                "stationDescription": "",
+                "source": "Seapoint www 27.8.2021",
+                "url": "https:\/\/septit.net\/81",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.499617,
+                    21.616201
+                ]
+            },
+            "properties": {
+                "septicId": 82,
+                "harbourId": 886,
+                "stationName": "Hakkenp\u00e4\u00e4",
+                "stationDescription": "",
+                "source": "Seapoint www 27.8.2021",
+                "url": "https:\/\/septit.net\/82",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.461259,
+                    22.118821
+                ]
+            },
+            "properties": {
+                "septicId": 83,
+                "harbourId": 710,
+                "stationName": "Raisio, Hahdenniemi",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/83",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.469404,
+                    22.012289
+                ]
+            },
+            "properties": {
+                "septicId": 84,
+                "harbourId": 714,
+                "stationName": "Vanhakaupunki (Naantali)",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys.",
+                "source": "Naantalin kaupungin www-sivut 29.11.2021",
+                "url": "https:\/\/septit.net\/84",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.378241,
+                    21.948999
+                ]
+            },
+            "properties": {
+                "septicId": 86,
+                "harbourId": 726,
+                "stationName": "Rym\u00e4ttyl\u00e4, Kirkkolahti",
+                "stationDescription": "",
+                "source": "Naantalin kaupungin www-sivut 29.11.2021",
+                "url": "https:\/\/septit.net\/86",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.345421,
+                    21.956788
+                ]
+            },
+            "properties": {
+                "septicId": 87,
+                "harbourId": 730,
+                "stationName": "R\u00f6\u00f6l\u00e4",
+                "stationDescription": "",
+                "source": "Naantalin kaupungin www-sivut 29.11.2021",
+                "url": "https:\/\/septit.net\/87",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.2516666667,
+                    22.1083333333
+                ]
+            },
+            "properties": {
+                "septicId": 88,
+                "harbourId": 738,
+                "stationName": "Storm\u00e4l\u00f6, Airisto",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/88",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.19436930419626,
+                    21.911491155624393
+                ]
+            },
+            "properties": {
+                "septicId": 89,
+                "harbourId": 746,
+                "stationName": "Nauvo, Kyrkbacken",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/89",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.132668782625394,
+                    21.971851587295536
+                ]
+            },
+            "properties": {
+                "septicId": 90,
+                "harbourId": 754,
+                "stationName": "Kirjais",
+                "stationDescription": "Kelluva, huollosta vastaa PSS ry",
+                "source": "",
+                "url": "https:\/\/septit.net\/90",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.0733333333,
+                    22.0416666667
+                ]
+            },
+            "properties": {
+                "septicId": 91,
+                "harbourId": 766,
+                "stationName": "Birssk\u00e4r\/ Stensk\u00e4r",
+                "stationDescription": "Kelluva, huollosta vastaa PSS ry",
+                "source": "",
+                "url": "https:\/\/septit.net\/91",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.859602,
+                    21.969049
+                ]
+            },
+            "properties": {
+                "septicId": 92,
+                "harbourId": 782,
+                "stationName": "Borst\u00f6",
+                "stationDescription": "Kelluva, huollosta vastaa PSS ry",
+                "source": "roopekartat.fi 16.12.2021",
+                "url": "https:\/\/septit.net\/92",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.9514,
+                    21.744089
+                ]
+            },
+            "properties": {
+                "septicId": 93,
+                "harbourId": 794,
+                "stationName": "N\u00f6t\u00f6",
+                "stationDescription": "Kelluva, huollosta vastaa PSS ry",
+                "source": "",
+                "url": "https:\/\/septit.net\/93",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.8271666667,
+                    21.585
+                ]
+            },
+            "properties": {
+                "septicId": 94,
+                "harbourId": 802,
+                "stationName": "Jurmo",
+                "stationDescription": "Huollosta vastaa PSS ry",
+                "source": "",
+                "url": "https:\/\/septit.net\/94",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.9083333333,
+                    21.68
+                ]
+            },
+            "properties": {
+                "septicId": 95,
+                "harbourId": 806,
+                "stationName": "Bj\u00f6rk\u00f6, Byviken",
+                "stationDescription": "Kelluva, huollosta vastaa PSS ry",
+                "source": "",
+                "url": "https:\/\/septit.net\/95",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.110675,
+                    21.599904
+                ]
+            },
+            "properties": {
+                "septicId": 96,
+                "harbourId": 838,
+                "stationName": "Korpostr\u00f6m",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/96",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.33,
+                    21.695
+                ]
+            },
+            "properties": {
+                "septicId": 97,
+                "harbourId": 858,
+                "stationName": "P\u00e4hkin\u00e4inen",
+                "stationDescription": "Kelluva, huollosta vastaa PSS ry",
+                "source": "",
+                "url": "https:\/\/septit.net\/97",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.4033333333,
+                    21.8066666667
+                ]
+            },
+            "properties": {
+                "septicId": 98,
+                "harbourId": 866,
+                "stationName": "Ajolanranta",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/98",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.4833333333,
+                    21.8716666667
+                ]
+            },
+            "properties": {
+                "septicId": 99,
+                "harbourId": 870,
+                "stationName": "Merimasku",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/99",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.615,
+                    21.18
+                ]
+            },
+            "properties": {
+                "septicId": 101,
+                "harbourId": 920,
+                "stationName": "Katanp\u00e4\u00e4",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/101",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.533565,
+                    21.36902
+                ]
+            },
+            "properties": {
+                "septicId": 102,
+                "harbourId": 934,
+                "stationName": "Lootholma",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/102",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.495,
+                    21.44
+                ]
+            },
+            "properties": {
+                "septicId": 103,
+                "harbourId": 938,
+                "stationName": "Parattula",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/103",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.397512,
+                    21.390198
+                ]
+            },
+            "properties": {
+                "septicId": 105,
+                "harbourId": 958,
+                "stationName": "Ini\u00f6, Norrby",
+                "stationDescription": "",
+                "source": "Seapoint www 27.8.2021",
+                "url": "https:\/\/septit.net\/105",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.227070140558745,
+                    21.382312774658207
+                ]
+            },
+            "properties": {
+                "septicId": 106,
+                "harbourId": 970,
+                "stationName": "N\u00e4sby, Houtsk\u00e4r",
+                "stationDescription": "",
+                "source": "K\u00e4ytt\u00e4j\u00e4n ilmoitus 21.6.2022",
+                "url": "https:\/\/septit.net\/106",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.17387403282385,
+                    21.557825803756717
+                ]
+            },
+            "properties": {
+                "septicId": 107,
+                "harbourId": 990,
+                "stationName": "Verkan",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/107",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.7933333333,
+                    21.3983333333
+                ]
+            },
+            "properties": {
+                "septicId": 108,
+                "harbourId": 1060,
+                "stationName": "Sorvakko, Salmeri",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/108",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.79564119250033,
+                    21.393363475799564
+                ]
+            },
+            "properties": {
+                "septicId": 109,
+                "harbourId": 1068,
+                "stationName": "Suukari",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/109",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.14,
+                    21.4733333333
+                ]
+            },
+            "properties": {
+                "septicId": 111,
+                "harbourId": 1333,
+                "stationName": "Syv\u00e4raumanlahti",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/111",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.3416666667,
+                    21.565
+                ]
+            },
+            "properties": {
+                "septicId": 112,
+                "harbourId": 1350,
+                "stationName": "Laitakari",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/112",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.616323,
+                    21.438671
+                ]
+            },
+            "properties": {
+                "septicId": 113,
+                "harbourId": 1362,
+                "stationName": "Pori, Reposaari",
+                "stationDescription": "",
+                "source": "Porin kaupungin www-sivut 27.8.2021",
+                "url": "https:\/\/septit.net\/113",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.49067,
+                    21.794075
+                ]
+            },
+            "properties": {
+                "septicId": 114,
+                "harbourId": 1367,
+                "stationName": "Pori, Etel\u00e4ranta",
+                "stationDescription": "",
+                "source": "Porin kaupungin www-sivut 27.8.2021",
+                "url": "https:\/\/septit.net\/114",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.851209,
+                    21.480031
+                ]
+            },
+            "properties": {
+                "septicId": 115,
+                "harbourId": 1396,
+                "stationName": "Merikarvia, Krookan satama",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/115",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.038184,
+                    21.30631
+                ]
+            },
+            "properties": {
+                "septicId": 116,
+                "harbourId": 1408,
+                "stationName": "Kilhamn",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/116",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.272136,
+                    21.3833
+                ]
+            },
+            "properties": {
+                "septicId": 117,
+                "harbourId": 1432,
+                "stationName": "Kristiinankaupunki",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/117",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.38475,
+                    21.219964
+                ]
+            },
+            "properties": {
+                "septicId": 118,
+                "harbourId": 1440,
+                "stationName": "Kaskinen",
+                "stationDescription": "",
+                "source": "Kaskisen kaupungin www-sivut 27.8.2021, sijainti p\u00e4ivitetty 28.11.2021.",
+                "url": "https:\/\/septit.net\/118",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.6083333333,
+                    21.2033333333
+                ]
+            },
+            "properties": {
+                "septicId": 119,
+                "harbourId": 1456,
+                "stationName": "Fager\u00f6",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/119",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.9468605142016,
+                    21.178936958312992
+                ]
+            },
+            "properties": {
+                "septicId": 120,
+                "harbourId": 1480,
+                "stationName": "Berg\u00f6",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/120",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.06081,
+                    20.80494
+                ]
+            },
+            "properties": {
+                "septicId": 121,
+                "harbourId": 1492,
+                "stationName": "R\u00f6nnsk\u00e4ren, F\u00e4lisk\u00e4ret",
+                "stationDescription": "Kelluva",
+                "source": "",
+                "url": "https:\/\/septit.net\/121",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.096176,
+                    21.585453
+                ]
+            },
+            "properties": {
+                "septicId": 122,
+                "harbourId": 1536,
+                "stationName": "Vaskiluoto, WSF",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/122",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.104816,
+                    21.587169
+                ]
+            },
+            "properties": {
+                "septicId": 123,
+                "harbourId": 1544,
+                "stationName": "Palosaari",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/123",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.20738866212028,
+                    21.463251113891605
+                ]
+            },
+            "properties": {
+                "septicId": 124,
+                "harbourId": 1588,
+                "stationName": "Raippaluoto",
+                "stationDescription": "Laiturilla.",
+                "source": "Sijainti p\u00e4ivitetty ilmoituksen perusteella 8.12.2021.",
+                "url": "https:\/\/septit.net\/124",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.23857,
+                    22.03999
+                ]
+            },
+            "properties": {
+                "septicId": 126,
+                "harbourId": 1620,
+                "stationName": "Nabben",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/126",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.2683333333,
+                    22.2383333333
+                ]
+            },
+            "properties": {
+                "septicId": 127,
+                "harbourId": 1632,
+                "stationName": "H\u00e4lln\u00e4s",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/127",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.689633,
+                    22.689933
+                ]
+            },
+            "properties": {
+                "septicId": 128,
+                "harbourId": 1700,
+                "stationName": "Pietarsaari, SSJ",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/128",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.800278,
+                    22.679923
+                ]
+            },
+            "properties": {
+                "septicId": 129,
+                "harbourId": 0,
+                "stationName": "Sonamo",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/129",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.8366666667,
+                    23.0433333333
+                ]
+            },
+            "properties": {
+                "septicId": 130,
+                "harbourId": 1760,
+                "stationName": "Ykspihlaja, Potti, KMVK",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/130",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.86445,
+                    23.113271
+                ]
+            },
+            "properties": {
+                "septicId": 131,
+                "harbourId": 1768,
+                "stationName": "Mustakari,GSF",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/131",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.857507,
+                    23.116018
+                ]
+            },
+            "properties": {
+                "septicId": 132,
+                "harbourId": 1770,
+                "stationName": "Ry\u00f6v\u00e4rinkari",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/132",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    64.0683333333,
+                    23.6433333333
+                ]
+            },
+            "properties": {
+                "septicId": 133,
+                "harbourId": 1788,
+                "stationName": "Sautinkari",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/133",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    64.685108,
+                    24.462175
+                ]
+            },
+            "properties": {
+                "septicId": 134,
+                "harbourId": 1868,
+                "stationName": "Ulkofantti, Ter\u00e4ssatama",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/134",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    65.04,
+                    24.5533333333
+                ]
+            },
+            "properties": {
+                "septicId": 135,
+                "harbourId": 1900,
+                "stationName": "Marjaniemi",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/135",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    65.01458,
+                    25.438306
+                ]
+            },
+            "properties": {
+                "septicId": 136,
+                "harbourId": 1912,
+                "stationName": "Oulu, Hietasaari",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/136",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    65.0216666667,
+                    25.4416666667
+                ]
+            },
+            "properties": {
+                "septicId": 137,
+                "harbourId": 1916,
+                "stationName": "Oulu, P\u00f6llisaari",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/137",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    65.061782,
+                    25.40745
+                ]
+            },
+            "properties": {
+                "septicId": 138,
+                "harbourId": 0,
+                "stationName": "Oulu, Rajahauta",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys",
+                "source": "Oulun kaupungin www-sivut 28.8.2021",
+                "url": "https:\/\/septit.net\/138",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    65.111916,
+                    25.325096
+                ]
+            },
+            "properties": {
+                "septicId": 139,
+                "harbourId": 1920,
+                "stationName": "Kiviniemi",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/139",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    65.324293,
+                    25.323626
+                ]
+            },
+            "properties": {
+                "septicId": 140,
+                "harbourId": 1930,
+                "stationName": "Ranta-Kestil\u00e4",
+                "stationDescription": "",
+                "source": "Iin kaupungin www-sivut 28.8.2021",
+                "url": "https:\/\/septit.net\/140",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    65.5533333333,
+                    25.1166666667
+                ]
+            },
+            "properties": {
+                "septicId": 141,
+                "harbourId": 1938,
+                "stationName": "Vatunginnokka",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/141",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    65.7283333333,
+                    24.555
+                ]
+            },
+            "properties": {
+                "septicId": 142,
+                "harbourId": 1964,
+                "stationName": "Kemi (Ul\u00e9nin satama)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/142",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    65.730591,
+                    24.551375
+                ]
+            },
+            "properties": {
+                "septicId": 143,
+                "harbourId": 0,
+                "stationName": "Kemi (Sis\u00e4satama)",
+                "stationDescription": "",
+                "source": "Kemin kaupungin www-sivut 28.8.2021",
+                "url": "https:\/\/septit.net\/143",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    65.76566096183072,
+                    24.22647356987
+                ]
+            },
+            "properties": {
+                "septicId": 144,
+                "harbourId": 1991,
+                "stationName": "Koivuluodonletto",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/144",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.3166666667,
+                    20.9966666667
+                ]
+            },
+            "properties": {
+                "septicId": 145,
+                "harbourId": 1000,
+                "stationName": "Lappo",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/145",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.257105898520436,
+                    20.73729515075684
+                ]
+            },
+            "properties": {
+                "septicId": 146,
+                "harbourId": 1115,
+                "stationName": "Remmarhamn",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/146",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.95,
+                    20.9233333333
+                ]
+            },
+            "properties": {
+                "septicId": 147,
+                "harbourId": 1135,
+                "stationName": "Hels\u00f6",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/147",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.94,
+                    20.8833333333
+                ]
+            },
+            "properties": {
+                "septicId": 148,
+                "harbourId": 1140,
+                "stationName": "Sandvik",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/148",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.92000582870088,
+                    20.910866260528568
+                ]
+            },
+            "properties": {
+                "septicId": 149,
+                "harbourId": 1145,
+                "stationName": "Karlby",
+                "stationDescription": "",
+                "source": "Sijainti p\u00e4ivitetty k\u00e4ytt\u00e4j\u00e4havainnon perusteella 3.7.2023.",
+                "url": "https:\/\/septit.net\/149",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.03,
+                    20.3833333333
+                ]
+            },
+            "properties": {
+                "septicId": 150,
+                "harbourId": 1155,
+                "stationName": "Degerby, Lotsudden",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/150",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.0316666667,
+                    20.3866666667
+                ]
+            },
+            "properties": {
+                "septicId": 151,
+                "harbourId": 1160,
+                "stationName": "Degerby",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/151",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.109905547374865,
+                    20.683039426803592
+                ]
+            },
+            "properties": {
+                "septicId": 152,
+                "harbourId": 1165,
+                "stationName": "Sottungalandet",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/152",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.375,
+                    20.0866666667
+                ]
+            },
+            "properties": {
+                "septicId": 153,
+                "harbourId": 1180,
+                "stationName": "Hamnsundet",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/153",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.98614618374681,
+                    20.103006362915043
+                ]
+            },
+            "properties": {
+                "septicId": 154,
+                "harbourId": 1205,
+                "stationName": "R\u00f6dhamn",
+                "stationDescription": "Kelluva.",
+                "source": "Sijainti korjattu k\u00e4ytt\u00e4j\u00e4havainnon perusteella 2.7.2023.",
+                "url": "https:\/\/septit.net\/154",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.08,
+                    19.935
+                ]
+            },
+            "properties": {
+                "septicId": 155,
+                "harbourId": 1215,
+                "stationName": "Korrvik",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/155",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.0983333333,
+                    19.9233333333
+                ]
+            },
+            "properties": {
+                "septicId": 156,
+                "harbourId": 1220,
+                "stationName": "Maarianhamina, V\u00e4sterhamn",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/156",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.08983369944958,
+                    19.95775938034058
+                ]
+            },
+            "properties": {
+                "septicId": 157,
+                "harbourId": 1225,
+                "stationName": "\u00d6stra Yttern\u00e4s",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/157",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.09862766868192,
+                    19.94801759719849
+                ]
+            },
+            "properties": {
+                "septicId": 158,
+                "harbourId": 1230,
+                "stationName": "Maarianhamina, \u00d6sterhamn",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/158",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.1050611849355,
+                    19.946333169937137
+                ]
+            },
+            "properties": {
+                "septicId": 159,
+                "harbourId": 1232,
+                "stationName": "Mariehamn, Sj\u00f6kvarteret",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/159",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.24,
+                    20.0083333333
+                ]
+            },
+            "properties": {
+                "septicId": 160,
+                "harbourId": 0,
+                "stationName": "Godby",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/160",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.22879089496732,
+                    20.079488754272464
+                ]
+            },
+            "properties": {
+                "septicId": 161,
+                "harbourId": 1250,
+                "stationName": "Kastelholm",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/161",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.2216666667,
+                    19.6833333333
+                ]
+            },
+            "properties": {
+                "septicId": 162,
+                "harbourId": 1270,
+                "stationName": "\u00d6ra",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/162",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.2333333333,
+                    19.54
+                ]
+            },
+            "properties": {
+                "septicId": 163,
+                "harbourId": 1275,
+                "stationName": "K\u00e4ringsund",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/163",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.50499,
+                    23.747174
+                ]
+            },
+            "properties": {
+                "septicId": 164,
+                "harbourId": 2000,
+                "stationName": "Kortelahti (Tampere)",
+                "stationDescription": "",
+                "source": "Tampereen kaupungin www-sivut 12.9.2021",
+                "url": "https:\/\/septit.net\/164",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.509796,
+                    23.774285
+                ]
+            },
+            "properties": {
+                "septicId": 165,
+                "harbourId": 2010,
+                "stationName": "Naistenlahti (Tampere)",
+                "stationDescription": "",
+                "source": "Tampereen kaupungin www-sivut 12.9.2021",
+                "url": "https:\/\/septit.net\/165",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.507692,
+                    23.710159
+                ]
+            },
+            "properties": {
+                "septicId": 166,
+                "harbourId": 0,
+                "stationName": "Santalahti (Tampere)",
+                "stationDescription": "",
+                "source": "Tampereen kaupungin www-sivut 12.9.2021",
+                "url": "https:\/\/septit.net\/166",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.532825,
+                    23.681722
+                ]
+            },
+            "properties": {
+                "septicId": 167,
+                "harbourId": 0,
+                "stationName": "Perki\u00f6nlahti (Tampere)",
+                "stationDescription": "",
+                "source": "Tampereen kaupungin www-sivut 12.9.2021",
+                "url": "https:\/\/septit.net\/167",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.531943,
+                    23.718195
+                ]
+            },
+            "properties": {
+                "septicId": 168,
+                "harbourId": 2030,
+                "stationName": "J\u00e4nissaari (Tampere)",
+                "stationDescription": "",
+                "source": "Tampereen kaupungin www-sivut 12.9.2021",
+                "url": "https:\/\/septit.net\/168",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.521789,
+                    23.929301
+                ]
+            },
+            "properties": {
+                "septicId": 169,
+                "harbourId": 0,
+                "stationName": "Tasanne (Tampere)",
+                "stationDescription": "",
+                "source": "Tampereen kaupungin www-sivut 12.9.2021",
+                "url": "https:\/\/septit.net\/169",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.62179,
+                    23.680075
+                ]
+            },
+            "properties": {
+                "septicId": 170,
+                "harbourId": 2046,
+                "stationName": "Pimeesalmi",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys. Pumput vierasvenelaiturilla.",
+                "source": "Pimeesalmen telakan www-sivut 12.9.2021",
+                "url": "https:\/\/septit.net\/170",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.8766666667,
+                    23.7341666667
+                ]
+            },
+            "properties": {
+                "septicId": 171,
+                "harbourId": 2092,
+                "stationName": "Kuru, Laivaranta",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/171",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.9883333333,
+                    24.0783333333
+                ]
+            },
+            "properties": {
+                "septicId": 172,
+                "harbourId": 2130,
+                "stationName": "Ruovesi, Laivaranta",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/172",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.01426927278528,
+                    24.494447708129883
+                ]
+            },
+            "properties": {
+                "septicId": 173,
+                "harbourId": 2140,
+                "stationName": "Vilppulankoski",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/173",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.150499746914505,
+                    24.126899242401123
+                ]
+            },
+            "properties": {
+                "septicId": 174,
+                "harbourId": 2146,
+                "stationName": "Pohjaslahti",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/174",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.23939678438623,
+                    23.751481175422672
+                ]
+            },
+            "properties": {
+                "septicId": 175,
+                "harbourId": 2180,
+                "stationName": "Virrat, Laivaranta",
+                "stationDescription": "Polttoainelaiturin yhteydess\u00e4.",
+                "source": "",
+                "url": "https:\/\/septit.net\/175",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.525498,
+                    23.70487
+                ]
+            },
+            "properties": {
+                "septicId": 176,
+                "harbourId": 0,
+                "stationName": "Halkoniemi (Tampere)",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys",
+                "source": "Tampereen kaupungin www-sivut 12.9.2021",
+                "url": "https:\/\/septit.net\/176",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.492636,
+                    23.759125
+                ]
+            },
+            "properties": {
+                "septicId": 177,
+                "harbourId": 0,
+                "stationName": "Ratina (Tampere)",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys",
+                "source": "Tampereen kaupungin www-sivut 12.9.2021",
+                "url": "https:\/\/septit.net\/177",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.475859,
+                    23.728822
+                ]
+            },
+            "properties": {
+                "septicId": 178,
+                "harbourId": 0,
+                "stationName": "H\u00e4rm\u00e4l\u00e4nsaari (Tampere)",
+                "stationDescription": "",
+                "source": "Tampereen kaupungin www-sivut 12.9.2021",
+                "url": "https:\/\/septit.net\/178",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.487431,
+                    23.758965
+                ]
+            },
+            "properties": {
+                "septicId": 179,
+                "harbourId": 0,
+                "stationName": "Soutukeskus (Tampere)",
+                "stationDescription": "",
+                "source": "Tampereen kaupungin www-sivut 12.9.2021",
+                "url": "https:\/\/septit.net\/179",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.191199,
+                    23.907688
+                ]
+            },
+            "properties": {
+                "septicId": 180,
+                "harbourId": 2270,
+                "stationName": "Toijala, vieraslaituri",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/180",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.31419229205086,
+                    23.747055530548096
+                ]
+            },
+            "properties": {
+                "septicId": 181,
+                "harbourId": 2253,
+                "stationName": "Lemp\u00e4\u00e4l\u00e4, Myllyranta",
+                "stationDescription": "",
+                "source": "Lemp\u00e4\u00e4l\u00e4n kaupungin www-sivut 11.9.2021",
+                "url": "https:\/\/septit.net\/181",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.0633333333,
+                    24.3916666667
+                ]
+            },
+            "properties": {
+                "septicId": 182,
+                "harbourId": 2325,
+                "stationName": "Mierola, vieraslaituri",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/182",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.999261,
+                    24.470415
+                ]
+            },
+            "properties": {
+                "septicId": 183,
+                "harbourId": 2350,
+                "stationName": "H\u00e4meenlinna, Laivaranta",
+                "stationDescription": "Septitankin tyhjennys- ja vesipiste on lukittu mobiililukolla. Ohjeet mobiililukon avaamiseen l\u00f6ytyy septitankin tyhjennyspisteen ovesta. Puhelu mobiililukkoon on maksutonta. Puhelinnumerot tallennetaan j\u00e4rjestelm\u00e4\u00e4n v\u00e4\u00e4rink\u00e4yt\u00f6sten varalta. Kaapin saa auki my\u00f6s Rantakasinolta lainattavalla avaimella, joka palautetaan Rantakasinolle v\u00e4litt\u00f6m\u00e4sti k\u00e4yt\u00f6n j\u00e4lkeen.",
+                "source": "H\u00e4meenlinnan kaupungin www-sivut 11.9.2021",
+                "url": "https:\/\/septit.net\/183",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.986796,
+                    24.465845
+                ]
+            },
+            "properties": {
+                "septicId": 184,
+                "harbourId": 2360,
+                "stationName": "Virvelin ranta",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/184",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.270057,
+                    24.038998
+                ]
+            },
+            "properties": {
+                "septicId": 185,
+                "harbourId": 2405,
+                "stationName": "Valkeakoski, Kirkonranta",
+                "stationDescription": "",
+                "source": "Valkeakosken kaupungin www-sivut 11.9.2021",
+                "url": "https:\/\/septit.net\/185",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.332181,
+                    24.266771
+                ]
+            },
+            "properties": {
+                "septicId": 186,
+                "harbourId": 2423,
+                "stationName": "P\u00e4lk\u00e4ne, Varamaa",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/186",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.3533333333,
+                    24.4766666667
+                ]
+            },
+            "properties": {
+                "septicId": 187,
+                "harbourId": 2510,
+                "stationName": "Kankahuvenlahti (P)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/187",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.439609,
+                    24.134989
+                ]
+            },
+            "properties": {
+                "septicId": 188,
+                "harbourId": 2530,
+                "stationName": "Kangasala, Mobilia",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/188",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.5083333333,
+                    24.6283333333
+                ]
+            },
+            "properties": {
+                "septicId": 189,
+                "harbourId": 2550,
+                "stationName": "Kuhmalahti, Suironsalmi",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/189",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.6166666667,
+                    24.5083333333
+                ]
+            },
+            "properties": {
+                "septicId": 190,
+                "harbourId": 2555,
+                "stationName": "R\u00f6nni, palvelusatama",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/190",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.99,
+                    25.6416666667
+                ]
+            },
+            "properties": {
+                "septicId": 192,
+                "harbourId": 3115,
+                "stationName": "Teivaa (Lahti)",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys",
+                "source": "Lahden kaupungin www-sivu 30.9.2021",
+                "url": "https:\/\/septit.net\/192",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.9933333333,
+                    25.6466666667
+                ]
+            },
+            "properties": {
+                "septicId": 193,
+                "harbourId": 3120,
+                "stationName": "Vesij\u00e4rvi (Lahti)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/193",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.009324,
+                    25.649471
+                ]
+            },
+            "properties": {
+                "septicId": 194,
+                "harbourId": 3130,
+                "stationName": "Niemi (Lahti)",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys",
+                "source": "Lahden kaupungin www-sivu 30.9.2021",
+                "url": "https:\/\/septit.net\/194",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.02,
+                    25.5666666667
+                ]
+            },
+            "properties": {
+                "septicId": 195,
+                "harbourId": 3145,
+                "stationName": "Hollola, Messil\u00e4",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/195",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.17976,
+                    25.546947
+                ]
+            },
+            "properties": {
+                "septicId": 196,
+                "harbourId": 3175,
+                "stationName": "Asikkala, V\u00e4\u00e4ksy Kanavalahti",
+                "stationDescription": "",
+                "source": "Majakkapaviliongin vierasvenesataman www-sivut 30.9.2021",
+                "url": "https:\/\/septit.net\/196",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.362924000004945,
+                    25.29756546020508
+                ]
+            },
+            "properties": {
+                "septicId": 197,
+                "harbourId": 3250,
+                "stationName": "Padasjoki, Laivaranta",
+                "stationDescription": "",
+                "source": "Kiuasniemi marinan www-sivut 30.9.2021",
+                "url": "https:\/\/septit.net\/197",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.5616666667,
+                    25.1883333333
+                ]
+            },
+            "properties": {
+                "septicId": 198,
+                "harbourId": 3285,
+                "stationName": "Kuhmoinen, vierassatama",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/198",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.49183242751778,
+                    25.578832626342777
+                ]
+            },
+            "properties": {
+                "septicId": 199,
+                "harbourId": 3330,
+                "stationName": "Sysm\u00e4, Ilola, Suopelto",
+                "stationDescription": "",
+                "source": "Ilola Innin www-sivut 30.9.2021",
+                "url": "https:\/\/septit.net\/199",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.498724,
+                    25.690563
+                ]
+            },
+            "properties": {
+                "septicId": 200,
+                "harbourId": 0,
+                "stationName": "Sysm\u00e4, Kirkonkyl\u00e4n satama",
+                "stationDescription": "",
+                "source": "Sysm\u00e4n kaupungin www-sivut 30.9.2021",
+                "url": "https:\/\/septit.net\/200",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.815,
+                    25.2583333333
+                ]
+            },
+            "properties": {
+                "septicId": 201,
+                "harbourId": 3400,
+                "stationName": "J\u00e4ms\u00e4, Hulkkionlahti",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/201",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.8233333333,
+                    25.4633333333
+                ]
+            },
+            "properties": {
+                "septicId": 202,
+                "harbourId": 3420,
+                "stationName": "Vaheri",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/202",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.013816,
+                    25.556881
+                ]
+            },
+            "properties": {
+                "septicId": 203,
+                "harbourId": 3475,
+                "stationName": "Jyv\u00e4skyl\u00e4, Korpilahti",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys",
+                "source": "Jyv\u00e4skyl\u00e4n kaupungin www-sivut 30.9.2021",
+                "url": "https:\/\/septit.net\/203",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.14,
+                    25.7783333333
+                ]
+            },
+            "properties": {
+                "septicId": 204,
+                "harbourId": 3527,
+                "stationName": "Jyv\u00e4skyl\u00e4, S\u00e4yn\u00e4tsalo, Saunaranta",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys",
+                "source": "",
+                "url": "https:\/\/septit.net\/204",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.235434,
+                    25.758315
+                ]
+            },
+            "properties": {
+                "septicId": 205,
+                "harbourId": 3560,
+                "stationName": "Jyv\u00e4skyl\u00e4, Lutakko",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys",
+                "source": "Jyv\u00e4skyl\u00e4n kaupungin www-sivut 30.9.2021",
+                "url": "https:\/\/septit.net\/205",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.224999,
+                    25.811579
+                ]
+            },
+            "properties": {
+                "septicId": 206,
+                "harbourId": 0,
+                "stationName": "Jyv\u00e4skyl\u00e4, Kuokkala",
+                "stationDescription": "",
+                "source": "Jyv\u00e4skyl\u00e4n kaupungin www-sivut 30.9.2021",
+                "url": "https:\/\/septit.net\/206",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.41076601939595,
+                    25.962629914283756
+                ]
+            },
+            "properties": {
+                "septicId": 208,
+                "harbourId": 3601,
+                "stationName": "Laukaa, Sararanta",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/208",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.56919155905445,
+                    25.861537456512455
+                ]
+            },
+            "properties": {
+                "septicId": 209,
+                "harbourId": 0,
+                "stationName": "Suolahden vierassatama (\u00c4\u00e4nekoski)",
+                "stationDescription": "",
+                "source": "\u00c4\u00e4nekosken kaupungin www-sivut 30.5.2023",
+                "url": "https:\/\/septit.net\/209",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.61868434933728,
+                    25.73373556137085
+                ]
+            },
+            "properties": {
+                "septicId": 210,
+                "harbourId": 3630,
+                "stationName": "\u00c4\u00e4nekoski, Mustaniemi",
+                "stationDescription": "",
+                "source": "Sijainti tarkistettu 26.5.2022 k\u00e4ytt\u00e4j\u00e4n ilmoituksen perusteella.",
+                "url": "https:\/\/septit.net\/210",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.66107915874875,
+                    26.043884754180908
+                ]
+            },
+            "properties": {
+                "septicId": 211,
+                "harbourId": 3669,
+                "stationName": "Sumiainen, Rupulahti",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/211",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.074119932811016,
+                    25.86586117744446
+                ]
+            },
+            "properties": {
+                "septicId": 212,
+                "harbourId": 3725,
+                "stationName": "Viitasaari",
+                "stationDescription": "",
+                "source": "Sijainti tarkistettu 30.5.2023",
+                "url": "https:\/\/septit.net\/212",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.9583333333,
+                    26.7616666667
+                ]
+            },
+            "properties": {
+                "septicId": 213,
+                "harbourId": 3940,
+                "stationName": "Tervo, Lekunniemi",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/213",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.18064203625197,
+                    26.355965137481693
+                ]
+            },
+            "properties": {
+                "septicId": 214,
+                "harbourId": 3992,
+                "stationName": "Keitele, vieraslaituri",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/214",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.2308852528202,
+                    26.74780905246735
+                ]
+            },
+            "properties": {
+                "septicId": 215,
+                "harbourId": 3976,
+                "stationName": "Pielavesi, vierassatama",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/215",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.06504968674428,
+                    28.186862468719486
+                ]
+            },
+            "properties": {
+                "septicId": 216,
+                "harbourId": 4030,
+                "stationName": "Linnoitusniemi (Lappeenranta)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/216",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.1416666667,
+                    28.495
+                ]
+            },
+            "properties": {
+                "septicId": 217,
+                "harbourId": 4053,
+                "stationName": "Joutseno, Likosenlahti",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/217",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.19493113391694,
+                    28.55977535247803
+                ]
+            },
+            "properties": {
+                "septicId": 218,
+                "harbourId": 4057,
+                "stationName": "Joutseno, Satamosaari",
+                "stationDescription": "Kelluva",
+                "source": "",
+                "url": "https:\/\/septit.net\/218",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.2116666667,
+                    28.715
+                ]
+            },
+            "properties": {
+                "septicId": 219,
+                "harbourId": 4080,
+                "stationName": "Imatra, Lammassaari (P)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/219",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.2116666667,
+                    28.7216666667
+                ]
+            },
+            "properties": {
+                "septicId": 220,
+                "harbourId": 4081,
+                "stationName": "Imatra, laivalaituri",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/220",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.23,
+                    28.09
+                ]
+            },
+            "properties": {
+                "septicId": 221,
+                "harbourId": 4123,
+                "stationName": "Taipalsaari, Saimaanranta",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/221",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.3516666667,
+                    28.11
+                ]
+            },
+            "properties": {
+                "septicId": 223,
+                "harbourId": 4140,
+                "stationName": "Taipalsaari, Ruuhonsaari",
+                "stationDescription": "Kelluva",
+                "source": "",
+                "url": "https:\/\/septit.net\/223",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.27,
+                    27.7033333333
+                ]
+            },
+            "properties": {
+                "septicId": 224,
+                "harbourId": 4190,
+                "stationName": "Partakoski",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/224",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.5016666667,
+                    27.2633333333
+                ]
+            },
+            "properties": {
+                "septicId": 225,
+                "harbourId": 4220,
+                "stationName": "Ristiina, Kirkonranta",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/225",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.68749851781973,
+                    27.282083630561832
+                ]
+            },
+            "properties": {
+                "septicId": 227,
+                "harbourId": 4259,
+                "stationName": "Mikkeli",
+                "stationDescription": "",
+                "source": "Sijainti tarkistettu 30.5.2023",
+                "url": "https:\/\/septit.net\/227",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.5833333333,
+                    27.6533333333
+                ]
+            },
+            "properties": {
+                "septicId": 228,
+                "harbourId": 4284,
+                "stationName": "Mikkeli, Anttola (P)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/228",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.61,
+                    27.8916666667
+                ]
+            },
+            "properties": {
+                "septicId": 229,
+                "harbourId": 4335,
+                "stationName": "Karihiekka (kelluva)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/229",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.52187643552651,
+                    28.17480325698853
+                ]
+            },
+            "properties": {
+                "septicId": 230,
+                "harbourId": 4407,
+                "stationName": "Puumala, Puumalansalmi (P)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/230",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.785,
+                    28.3816666667
+                ]
+            },
+            "properties": {
+                "septicId": 231,
+                "harbourId": 4485,
+                "stationName": "Sulkava, Kulkemus (P)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/231",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.8666666667,
+                    28.9016666667
+                ]
+            },
+            "properties": {
+                "septicId": 232,
+                "harbourId": 0,
+                "stationName": "Kyr\u00f6nsalmi",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/232",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.86738138241454,
+                    28.873046636581424
+                ]
+            },
+            "properties": {
+                "septicId": 234,
+                "harbourId": 4529,
+                "stationName": "Haislahti",
+                "stationDescription": "",
+                "source": "Seapoint www 27.8.2021, sijaintia tarkennettu 30.5.2023",
+                "url": "https:\/\/septit.net\/234",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.80288983623878,
+                    29.29635286331177
+                ]
+            },
+            "properties": {
+                "septicId": 235,
+                "harbourId": 4596,
+                "stationName": "Punkaharju, Tuunaansaari",
+                "stationDescription": "",
+                "source": "Sijainti tarkistettu 30.5.2023",
+                "url": "https:\/\/septit.net\/235",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.76023891771071,
+                    29.379136562347416
+                ]
+            },
+            "properties": {
+                "septicId": 236,
+                "harbourId": 4620,
+                "stationName": "Punkaharju, Nobelinniemi",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/236",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.907658310239285,
+                    29.28638577461243
+                ]
+            },
+            "properties": {
+                "septicId": 237,
+                "harbourId": 4644,
+                "stationName": "Kerim\u00e4ki, Kirkkoranta",
+                "stationDescription": "",
+                "source": "Sijainti tarkistettu 30.5.2023",
+                "url": "https:\/\/septit.net\/237",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.9016666667,
+                    29.6716666667
+                ]
+            },
+            "properties": {
+                "septicId": 238,
+                "harbourId": 4672,
+                "stationName": "Kes\u00e4lahti, Ruokkee",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/238",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.89,
+                    29.785
+                ]
+            },
+            "properties": {
+                "septicId": 239,
+                "harbourId": 4680,
+                "stationName": "Kes\u00e4lahti, Savilahti",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/239",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.87060872452219,
+                    28.886747360229496
+                ]
+            },
+            "properties": {
+                "septicId": 240,
+                "harbourId": 4704,
+                "stationName": "Savonlinna, Kasinosaari",
+                "stationDescription": "",
+                "source": "Sijainti tarkistettu 30.5.2023",
+                "url": "https:\/\/septit.net\/240",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.0666666667,
+                    28.3066666667
+                ]
+            },
+            "properties": {
+                "septicId": 241,
+                "harbourId": 4737,
+                "stationName": "Rantasalmi, kirkonkyl\u00e4",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/241",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.115,
+                    28.6066666667
+                ]
+            },
+            "properties": {
+                "septicId": 242,
+                "harbourId": 4748,
+                "stationName": "Savonlinna, Oravi",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/242",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.12,
+                    28.3116666667
+                ]
+            },
+            "properties": {
+                "septicId": 243,
+                "harbourId": 4773,
+                "stationName": "Rantasalmi, Porosalmi (kelluva)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/243",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.305,
+                    27.915
+                ]
+            },
+            "properties": {
+                "septicId": 244,
+                "harbourId": 4822,
+                "stationName": "Varkaus, Taipale",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/244",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.4883333333,
+                    27.7733333333
+                ]
+            },
+            "properties": {
+                "septicId": 245,
+                "harbourId": 4846,
+                "stationName": "Lepp\u00e4virta, Kalmalahti (P)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/245",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.49,
+                    27.8033333333
+                ]
+            },
+            "properties": {
+                "septicId": 246,
+                "harbourId": 4851,
+                "stationName": "Lepp\u00e4virta,Vanha laivalaituri",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/246",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.8866666667,
+                    27.6833333333
+                ]
+            },
+            "properties": {
+                "septicId": 247,
+                "harbourId": 4931,
+                "stationName": "Kuopio, Kuopionlahti",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/247",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.895,
+                    27.6966666667
+                ]
+            },
+            "properties": {
+                "septicId": 249,
+                "harbourId": 4937,
+                "stationName": "Kuopio, Maljalahti (P)",
+                "stationDescription": "",
+                "source": "Kuopion kaupungin www-sivut 5.4.2022",
+                "url": "https:\/\/septit.net\/249",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.9033333333,
+                    27.7283333333
+                ]
+            },
+            "properties": {
+                "septicId": 250,
+                "harbourId": 0,
+                "stationName": "Kuopio, Pirttiniemi",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/250",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.15857005656811,
+                    27.29160010814667
+                ]
+            },
+            "properties": {
+                "septicId": 251,
+                "harbourId": 5007,
+                "stationName": "Maaninka",
+                "stationDescription": "",
+                "source": "Kuopion kaupungin www-sivut 5.4.2022",
+                "url": "https:\/\/septit.net\/251",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.5916666667,
+                    27.1633333333
+                ]
+            },
+            "properties": {
+                "septicId": 252,
+                "harbourId": 5040,
+                "stationName": "Koljonvirta",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/252",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.5546209732201,
+                    27.184381484985355
+                ]
+            },
+            "properties": {
+                "septicId": 253,
+                "harbourId": 5035,
+                "stationName": "Iisalmi",
+                "stationDescription": "",
+                "source": "Sijainti tarkistettu 30.5.2023",
+                "url": "https:\/\/septit.net\/253",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.01,
+                    27.7833333333
+                ]
+            },
+            "properties": {
+                "septicId": 254,
+                "harbourId": 5117,
+                "stationName": "Rissala",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/254",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.0016666667,
+                    28.2366666667
+                ]
+            },
+            "properties": {
+                "septicId": 255,
+                "harbourId": 5133,
+                "stationName": "Juankoski, Muuruvesi",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/255",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.07,
+                    28.3316666667
+                ]
+            },
+            "properties": {
+                "septicId": 256,
+                "harbourId": 5145,
+                "stationName": "Juankoski, Niskakoski",
+                "stationDescription": "",
+                "source": "Kuopion kaupungin www-sivut 5.4.2022",
+                "url": "https:\/\/septit.net\/256",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.2062279613422,
+                    28.09453010559082
+                ]
+            },
+            "properties": {
+                "septicId": 257,
+                "harbourId": 5169,
+                "stationName": "Nilsi\u00e4",
+                "stationDescription": "",
+                "source": "Kuopion kaupungin www-sivut 5.4.2022",
+                "url": "https:\/\/septit.net\/257",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.7633333333,
+                    28.0166666667
+                ]
+            },
+            "properties": {
+                "septicId": 259,
+                "harbourId": 5251,
+                "stationName": "Kuopio, Vehmersalmen kirkonkyl\u00e4",
+                "stationDescription": "",
+                "source": "Kuopion kaupungin www-sivut 4.5.2022",
+                "url": "https:\/\/septit.net\/259",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.56,
+                    28.7883333333
+                ]
+            },
+            "properties": {
+                "septicId": 260,
+                "harbourId": 5311,
+                "stationName": "Hein\u00e4vesi, Juurikkasalmi",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/260",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.8016666667,
+                    28.5
+                ]
+            },
+            "properties": {
+                "septicId": 261,
+                "harbourId": 5335,
+                "stationName": "Tuusniemi",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/261",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.5133333333,
+                    28.6416666667
+                ]
+            },
+            "properties": {
+                "septicId": 262,
+                "harbourId": 5376,
+                "stationName": "Hein\u00e4vesi, Karvio",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/262",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.4383333333,
+                    28.6383333333
+                ]
+            },
+            "properties": {
+                "septicId": 263,
+                "harbourId": 5388,
+                "stationName": "Hein\u00e4vesi, Kermanranta",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/263",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.3933333333,
+                    28.7483333333
+                ]
+            },
+            "properties": {
+                "septicId": 264,
+                "harbourId": 5408,
+                "stationName": "Hein\u00e4vesi, Kermankoski",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/264",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.1697095925169,
+                    29.21127319335938
+                ]
+            },
+            "properties": {
+                "septicId": 265,
+                "harbourId": 5500,
+                "stationName": "Savonranta, kirkonkyl\u00e4",
+                "stationDescription": "",
+                "source": "Sijainti tarkistettu 30.5.2023",
+                "url": "https:\/\/septit.net\/265",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.096434884153034,
+                    29.87558662891388
+                ]
+            },
+            "properties": {
+                "septicId": 266,
+                "harbourId": 5524,
+                "stationName": "Kitee, Myllyniemi",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/266",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.52601196618682,
+                    29.388620853424076
+                ]
+            },
+            "properties": {
+                "septicId": 267,
+                "harbourId": 5546,
+                "stationName": "Liperi, Kirkkoranta",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/267",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.33247667211073,
+                    29.632047414779667
+                ]
+            },
+            "properties": {
+                "septicId": 268,
+                "harbourId": 5573,
+                "stationName": "R\u00e4\u00e4kkyl\u00e4, Paksuniemi",
+                "stationDescription": "",
+                "source": "Sijainti tarkistettu 30.5.2023",
+                "url": "https:\/\/septit.net\/268",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.43661518405156,
+                    29.631317853927616
+                ]
+            },
+            "properties": {
+                "septicId": 269,
+                "harbourId": 5626,
+                "stationName": "Liperi, Saaristo",
+                "stationDescription": "",
+                "source": "Sijainti tarkistettu 30.5.2023",
+                "url": "https:\/\/septit.net\/269",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.590873939422515,
+                    29.738482832908634
+                ]
+            },
+            "properties": {
+                "septicId": 270,
+                "harbourId": 5647,
+                "stationName": "Joensuu, Hasanniemi (P)",
+                "stationDescription": "",
+                "source": "Sijainti tarkistettu 30.5.2023",
+                "url": "https:\/\/septit.net\/270",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.59607417246196,
+                    29.76230084896088
+                ]
+            },
+            "properties": {
+                "septicId": 271,
+                "harbourId": 5650,
+                "stationName": "Joensuu, matkustajasatama",
+                "stationDescription": "",
+                "source": "Sijainti tarkistettu 30.5.2023",
+                "url": "https:\/\/septit.net\/271",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.11192300567237,
+                    29.809132218360904
+                ]
+            },
+            "properties": {
+                "septicId": 272,
+                "harbourId": 5752,
+                "stationName": "Lieksa, Koli",
+                "stationDescription": "",
+                "source": "Sijainti tarkistettu 30.5.2023",
+                "url": "https:\/\/septit.net\/272",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.308273471444025,
+                    30.012829899787906
+                ]
+            },
+            "properties": {
+                "septicId": 273,
+                "harbourId": 5797,
+                "stationName": "Kaupunginniemi (Lieksa)",
+                "stationDescription": "",
+                "source": "Sijainti tarkistettu 30.5.2023",
+                "url": "https:\/\/septit.net\/273",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.22660116492037,
+                    29.344224929809574
+                ]
+            },
+            "properties": {
+                "septicId": 274,
+                "harbourId": 5831,
+                "stationName": "Juuka, Piitteri",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/274",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.7783333333,
+                    29.5616666667
+                ]
+            },
+            "properties": {
+                "septicId": 275,
+                "harbourId": 0,
+                "stationName": "H\u00f6yti\u00e4inen",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/275",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.751159841185284,
+                    29.836120605468754
+                ]
+            },
+            "properties": {
+                "septicId": 276,
+                "harbourId": 5998,
+                "stationName": "Kontiolahti",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/276",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    64.45638479273119,
+                    26.80870056152344
+                ]
+            },
+            "properties": {
+                "septicId": 277,
+                "harbourId": 0,
+                "stationName": "Ruununt\u00f6rm\u00e4n satama (Vaala)",
+                "stationDescription": "",
+                "source": "S\u00e4hk\u00f6posti Vaalan kunnalta 31.5.2023",
+                "url": "https:\/\/septit.net\/277",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    64.3967430562783,
+                    27.129621505737305
+                ]
+            },
+            "properties": {
+                "septicId": 278,
+                "harbourId": 5100,
+                "stationName": "Martinlahti (Vaala)",
+                "stationDescription": "",
+                "source": "S\u00e4hk\u00f6posti Vaalan kunnalta 31.5.2023",
+                "url": "https:\/\/septit.net\/278",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    64.26580340552138,
+                    27.514400482177738
+                ]
+            },
+            "properties": {
+                "septicId": 279,
+                "harbourId": 5144,
+                "stationName": "Koutalahti (Kajaani)",
+                "stationDescription": "",
+                "source": "Kajaanin kaupungin www-sivut 30.5.2023",
+                "url": "https:\/\/septit.net\/279",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    64.23090606846024,
+                    27.725844383239746
+                ]
+            },
+            "properties": {
+                "septicId": 280,
+                "harbourId": 5166,
+                "stationName": "Kalkkisilta (Kajaani)",
+                "stationDescription": "",
+                "source": "Kajaanin kaupungin www-sivut 30.5.2023",
+                "url": "https:\/\/septit.net\/280",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    64.29819306751622,
+                    27.654862403869632
+                ]
+            },
+            "properties": {
+                "septicId": 281,
+                "harbourId": 5167,
+                "stationName": "Paltaniemi (Kajaani)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/281",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    64.39938934422463,
+                    27.858312811402158
+                ]
+            },
+            "properties": {
+                "septicId": 282,
+                "harbourId": 5186,
+                "stationName": "Metelinniemi (Paltamo)",
+                "stationDescription": "Metelin vierasvenesataman laiturilla sijaitseva septitankki, pumpataan kunnan j\u00e4tevesiverkostoon. Yll\u00e4pit\u00e4j\u00e4 Paltamon kunta.",
+                "source": "S\u00e4hk\u00f6posti Paltamon kunnalta 31.5.2023",
+                "url": "https:\/\/septit.net\/282",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.727475655668876,
+                    26.693419218063358
+                ]
+            },
+            "properties": {
+                "septicId": 283,
+                "harbourId": 0,
+                "stationName": "Vintinniemi",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/283",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.65377659374292,
+                    27.065495252609253
+                ]
+            },
+            "properties": {
+                "septicId": 284,
+                "harbourId": 7555,
+                "stationName": "Otava",
+                "stationDescription": "",
+                "source": "Sijainti tarkistettu 30.5.2023",
+                "url": "https:\/\/septit.net\/284",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.987572080951736,
+                    26.646518111228946
+                ]
+            },
+            "properties": {
+                "septicId": 285,
+                "harbourId": 7630,
+                "stationName": "Kangasniemi",
+                "stationDescription": "My\u00f6s pilssiveden ker\u00e4ilys\u00e4ili\u00f6.",
+                "source": "Kangasniemen kaupungin www-sivut 30.5.2023",
+                "url": "https:\/\/septit.net\/285",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.249214621117304,
+                    24.052752256393433
+                ]
+            },
+            "properties": {
+                "septicId": 286,
+                "harbourId": 0,
+                "stationName": "Aurlahti (Lohja)",
+                "stationDescription": "",
+                "source": "Sijainti korjattu k\u00e4ytt\u00e4j\u00e4havainnon perusteella 26.6.2023.",
+                "url": "https:\/\/septit.net\/286",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.255309,
+                    24.697094
+                ]
+            },
+            "properties": {
+                "septicId": 287,
+                "harbourId": 0,
+                "stationName": "Ahtola",
+                "stationDescription": "",
+                "source": "Keuruun kaupungin verkkosivut 18.11.2021",
+                "url": "https:\/\/septit.net\/287",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.783865088077185,
+                    25.420985667966832
+                ]
+            },
+            "properties": {
+                "septicId": 288,
+                "harbourId": 0,
+                "stationName": "Pajulahti (J\u00e4ms\u00e4)",
+                "stationDescription": "Tyhjennysasema laiturilla, ei pilssivesityhjennyst\u00e4",
+                "source": "",
+                "url": "https:\/\/septit.net\/288",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.79467793153014,
+                    25.70234855125166
+                ]
+            },
+            "properties": {
+                "septicId": 289,
+                "harbourId": 0,
+                "stationName": "Luhanka",
+                "stationDescription": "Tyhjennysasema laiturilla, ei pilssivesityhjennyst\u00e4",
+                "source": "Ilmoitus 29.11.2021",
+                "url": "https:\/\/septit.net\/289",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.494331229828326,
+                    25.588402748107914
+                ]
+            },
+            "properties": {
+                "septicId": 290,
+                "harbourId": 0,
+                "stationName": "Suopelto (Sysm\u00e4)",
+                "stationDescription": "Nesteen veneasemalla sek\u00e4 septi- ett\u00e4 pilssivesi-imurit",
+                "source": "Ilmoitus 29.11.2021",
+                "url": "https:\/\/septit.net\/290",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.238924997051264,
+                    21.9701502351108
+                ]
+            },
+            "properties": {
+                "septicId": 291,
+                "harbourId": 743,
+                "stationName": "Seili",
+                "stationDescription": "Kelluva, huollosta vastaa PSS ry",
+                "source": "Ilmoitus 29.11.2021",
+                "url": "https:\/\/septit.net\/291",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.090609,
+                    22.081618
+                ]
+            },
+            "properties": {
+                "septicId": 292,
+                "harbourId": 758,
+                "stationName": "Gullkrona",
+                "stationDescription": "Kelluva tyhjennysasema.",
+                "source": "Ilmoitus 29.11.2021",
+                "url": "https:\/\/septit.net\/292",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.460746,
+                    26.95141
+                ]
+            },
+            "properties": {
+                "septicId": 293,
+                "harbourId": 0,
+                "stationName": "Sapokka (Kotka)",
+                "stationDescription": "",
+                "source": "Ilmoitus 29.11.2021",
+                "url": "https:\/\/septit.net\/293",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.4697218204554,
+                    26.941735357423518
+                ]
+            },
+            "properties": {
+                "septicId": 294,
+                "harbourId": 0,
+                "stationName": "Kantasatama it\u00e4inen (Kotka)",
+                "stationDescription": "Ei pilssiveden tyhjennyst\u00e4.",
+                "source": "Ilmoitus 29.11.2021",
+                "url": "https:\/\/septit.net\/294",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.98384380460366,
+                    24.44131851196289
+                ]
+            },
+            "properties": {
+                "septicId": 295,
+                "harbourId": 0,
+                "stationName": "L\u00e4hteel\u00e4",
+                "stationDescription": "Septityhjennys on kivilaiturilla veneluiskan vieress\u00e4. Syvyys noin 1,5 metri\u00e4.",
+                "source": "Ilmoitus 29.11.2021",
+                "url": "https:\/\/septit.net\/295",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    65.8077758913728,
+                    24.154027104377747
+                ]
+            },
+            "properties": {
+                "septicId": 296,
+                "harbourId": 1995,
+                "stationName": "Toranda, Hell\u00e4l\u00e4 (Tornio)",
+                "stationDescription": "Laiturilla. Yll\u00e4pit\u00e4j\u00e4 Toranda vierasvenesatama.",
+                "source": "Ilmoitus 29.11.2021",
+                "url": "https:\/\/septit.net\/296",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.14540376537844,
+                    24.713991880416874
+                ]
+            },
+            "properties": {
+                "septicId": 297,
+                "harbourId": 0,
+                "stationName": "Suomenoja l\u00e4ntinen (Espoo)",
+                "stationDescription": "Syvyys noin 2 metri\u00e4.",
+                "source": "Ilmoitus 29.11.2021",
+                "url": "https:\/\/septit.net\/297",
+                "isAdminStation": true
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.482405,
+                    22.028012
+                ]
+            },
+            "properties": {
+                "septicId": 299,
+                "harbourId": 0,
+                "stationName": "Taimo (Naantali)",
+                "stationDescription": "Maissa \u00f6ljyisen veden ker\u00e4yspiste.",
+                "source": "Ilmoitus 29.11.2021, Naantalin kaupungin www-sivut 29.11.2021",
+                "url": "https:\/\/septit.net\/299",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.475136,
+                    22.004033
+                ]
+            },
+            "properties": {
+                "septicId": 301,
+                "harbourId": 0,
+                "stationName": "Kailo (Naantali)",
+                "stationDescription": "Imutyhjennysasema Muumimaailman kyljess\u00e4.",
+                "source": "Naantalin kaupungin www-sivut 29.11.2021",
+                "url": "https:\/\/septit.net\/301",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.460326,
+                    21.915879
+                ]
+            },
+            "properties": {
+                "septicId": 303,
+                "harbourId": 0,
+                "stationName": "S\u00e4rk\u00e4nsalmi (Naantali)",
+                "stationDescription": "",
+                "source": "Naantalin kaupungin www-sivut 29.11.2021",
+                "url": "https:\/\/septit.net\/303",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.458472,
+                    21.937197
+                ]
+            },
+            "properties": {
+                "septicId": 304,
+                "harbourId": 720,
+                "stationName": "Kultaranta (Naantali)",
+                "stationDescription": "",
+                "source": "Ilmoitus 29.11.2021",
+                "url": "https:\/\/septit.net\/304",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.201553,
+                    26.024605
+                ]
+            },
+            "properties": {
+                "septicId": 305,
+                "harbourId": 3050,
+                "stationName": "Vierasvenesatama (Heinola)",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys.",
+                "source": "Ilmoitus 30.11.2021",
+                "url": "https:\/\/septit.net\/305",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.901074657831316,
+                    24.097523689270023
+                ]
+            },
+            "properties": {
+                "septicId": 306,
+                "harbourId": 2110,
+                "stationName": "Telakanranta, J\u00e4minkipohja (Ruovesi)",
+                "stationDescription": "Kelluva tyhjennysasema.",
+                "source": "Ilmoitus 30.11.2021",
+                "url": "https:\/\/septit.net\/306",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.174722,
+                    25.579176
+                ]
+            },
+            "properties": {
+                "septicId": 307,
+                "harbourId": 0,
+                "stationName": "Kuotaa (Asikkala)",
+                "stationDescription": "Kuotaan venesatama.",
+                "source": "Asikkalan kaupungin www-sivut 1.12.2021",
+                "url": "https:\/\/septit.net\/307",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.75837998149077,
+                    26.695543527603153
+                ]
+            },
+            "properties": {
+                "septicId": 308,
+                "harbourId": 3852,
+                "stationName": "Kerkonkoski (Rautalampi)",
+                "stationDescription": "",
+                "source": "Ilmoitus 1.12.2021",
+                "url": "https:\/\/septit.net\/308",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    59.947081,
+                    21.623411
+                ]
+            },
+            "properties": {
+                "septicId": 309,
+                "harbourId": 0,
+                "stationName": "Asp\u00f6",
+                "stationDescription": "Kelluva asema, yll\u00e4pit\u00e4j\u00e4 Pid\u00e4 Saaristo Siistin\u00e4 ry.",
+                "source": "Ilmoitus 12.12.2021",
+                "url": "https:\/\/septit.net\/309",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.16494002460534,
+                    25.062807798385624
+                ]
+            },
+            "properties": {
+                "septicId": 311,
+                "harbourId": 0,
+                "stationName": "Sarvasto, Jollas (Helsinki)",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys.",
+                "source": "Ilmoitus 8.1.2022, t\u00e4ydennetty 30.5.2023 Helsingin kaupungin www-sivut",
+                "url": "https:\/\/septit.net\/311",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.151118,
+                    24.965401
+                ]
+            },
+            "properties": {
+                "septicId": 312,
+                "harbourId": 342,
+                "stationName": "S\u00e4rkk\u00e4 (Helsinki)",
+                "stationDescription": "",
+                "source": "Helsingin kaupungin www-sivut 8.1.2022",
+                "url": "https:\/\/septit.net\/312",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.573298,
+                    28.147337
+                ]
+            },
+            "properties": {
+                "septicId": 313,
+                "harbourId": 4408,
+                "stationName": "Sahanlahti, Puumala",
+                "stationDescription": "",
+                "source": "Sahanlahti Resortin www-sivut 14.1.2022",
+                "url": "https:\/\/septit.net\/313",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.01875942386187,
+                    22.512273788452152
+                ]
+            },
+            "properties": {
+                "septicId": 314,
+                "harbourId": 602,
+                "stationName": "Taalintehdas, kauppalaituri",
+                "stationDescription": "Laituriin merkitty syvyystieto: 5 metri\u00e4",
+                "source": "Syvyystieto p\u00e4ivitetty k\u00e4ytt\u00e4j\u00e4n ilmoituksen perusteella 31.7.2023",
+                "url": "https:\/\/septit.net\/314",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.874247882398265,
+                    27.66476431399076
+                ]
+            },
+            "properties": {
+                "septicId": 315,
+                "harbourId": 0,
+                "stationName": "Kuopio, Bellanranta",
+                "stationDescription": "St1:n veneaseman yhteydess\u00e4.",
+                "source": "K\u00e4ytt\u00e4j\u00e4n ilmoitus 4.5.2022",
+                "url": "https:\/\/septit.net\/315",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.65317656488306,
+                    26.66575642302633
+                ]
+            },
+            "properties": {
+                "septicId": 316,
+                "harbourId": 0,
+                "stationName": "Kierinniemi",
+                "stationDescription": "",
+                "source": "Lis\u00e4tty k\u00e4ytt\u00e4j\u00e4n vihjeen perusteella 29.5.2022 (https:\/\/visitrautalampi.fi\/fi_FI\/satamat\/kierinniemi)",
+                "url": "https:\/\/septit.net\/316",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.38715428050004,
+                    22.181847095489506
+                ]
+            },
+            "properties": {
+                "septicId": 317,
+                "harbourId": 0,
+                "stationName": "S-Marin",
+                "stationDescription": "Laiturilla",
+                "source": "Ilmoitus 12.6.2022",
+                "url": "https:\/\/septit.net\/317",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.516185857657796,
+                    21.076304912567142
+                ]
+            },
+            "properties": {
+                "septicId": 318,
+                "harbourId": 1025,
+                "stationName": "Jurmo",
+                "stationDescription": "Laiturissa oleva pumppu, ei pilssivedelle.",
+                "source": "Ilmoitus 12.6.2022",
+                "url": "https:\/\/septit.net\/318",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.137554994187944,
+                    21.369845867156982
+                ]
+            },
+            "properties": {
+                "septicId": 319,
+                "harbourId": 1318,
+                "stationName": "Kuuskajaskari",
+                "stationDescription": "Kiinte\u00e4sti saaren it\u00e4p\u00e4\u00e4n laiturissa (kelluva laituri). Ei pilssivesi\u00e4.",
+                "source": "Ilmoitus 12.6.2022",
+                "url": "https:\/\/septit.net\/319",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.143571812687085,
+                    24.834133386611942
+                ]
+            },
+            "properties": {
+                "septicId": 320,
+                "harbourId": 0,
+                "stationName": "K\u00e4\u00e4rmesaari",
+                "stationDescription": "Kelluva asema, yll\u00e4pit\u00e4j\u00e4 Pid\u00e4 Saaristo Siistin\u00e4 ry",
+                "source": "K\u00e4ytt\u00e4j\u00e4n ilmoitus 13.6.2022",
+                "url": "https:\/\/septit.net\/320",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.287941089833616,
+                    25.319151878356934
+                ]
+            },
+            "properties": {
+                "septicId": 321,
+                "harbourId": 0,
+                "stationName": "Sipoo, Joensuun tila",
+                "stationDescription": "Joensuun Tilan satamassa kahvilan edess\u00e4 olevassa lastauslaiturissa.",
+                "source": "Ilmoitus 24.7.2022",
+                "url": "https:\/\/septit.net\/321",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.94552759407975,
+                    26.59372687339783
+                ]
+            },
+            "properties": {
+                "septicId": 322,
+                "harbourId": 0,
+                "stationName": "Virtakivi",
+                "stationDescription": "Virtakiven vierasvenesatamassa. My\u00f6s pilssiveden tyhjennys.",
+                "source": "K\u00e4ytt\u00e4j\u00e4n havainto",
+                "url": "https:\/\/septit.net\/322",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.43395841323472,
+                    22.233388423919678
+                ]
+            },
+            "properties": {
+                "septicId": 324,
+                "harbourId": 0,
+                "stationName": "Turku, Telakkaranta",
+                "stationDescription": "",
+                "source": "Turun kaupunki 10.1.2023",
+                "url": "https:\/\/septit.net\/324",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.46207060117515,
+                    23.53198230527596
+                ]
+            },
+            "properties": {
+                "septicId": 325,
+                "harbourId": 0,
+                "stationName": "Vihola (Nokia)",
+                "stationDescription": "Laiturilla.",
+                "source": "K\u00e4ytt\u00e4j\u00e4n ilmoitus 29.1.2023",
+                "url": "https:\/\/septit.net\/325",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.34236193539701,
+                    22.917888164520264
+                ]
+            },
+            "properties": {
+                "septicId": 326,
+                "harbourId": 0,
+                "stationName": "Sylv\u00e4\u00e4n satama, Vammala",
+                "stationDescription": "Vain j\u00e4teveden tyhjennys. Yll\u00e4pit\u00e4j\u00e4n\u00e4 Sastamalan kaupunki.",
+                "source": "",
+                "url": "https:\/\/septit.net\/326",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.420070628667524,
+                    22.252485752105713
+                ]
+            },
+            "properties": {
+                "septicId": 327,
+                "harbourId": 0,
+                "stationName": "Uittamon venesatama",
+                "stationDescription": "Septiasema suljetaan syksyisin 1.10.",
+                "source": "Turun kaupungin www-sivut 29.5.2023",
+                "url": "https:\/\/septit.net\/327",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.4933,
+                    26.9773
+                ]
+            },
+            "properties": {
+                "septicId": 328,
+                "harbourId": 0,
+                "stationName": "Suuliska",
+                "stationDescription": "",
+                "source": "Roopekartta.fi 30.5.2023",
+                "url": "https:\/\/septit.net\/328",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.590903309885505,
+                    27.656106948852543
+                ]
+            },
+            "properties": {
+                "septicId": 329,
+                "harbourId": 0,
+                "stationName": "Lotjansaari",
+                "stationDescription": "My\u00f6s pilssiveden tyhjennys.",
+                "source": "K\u00e4ytt\u00e4j\u00e4n ilmoitus 30.5.2023",
+                "url": "https:\/\/septit.net\/329",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.37488426932582,
+                    22.073239088058475
+                ]
+            },
+            "properties": {
+                "septicId": 330,
+                "harbourId": 728,
+                "stationName": "Veps\u00e4 (Turku)",
+                "stationDescription": "",
+                "source": "",
+                "url": "https:\/\/septit.net\/330",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.332253311570945,
+                    21.893992424011234
+                ]
+            },
+            "properties": {
+                "septicId": 331,
+                "harbourId": 0,
+                "stationName": "Maisaari (Turku)",
+                "stationDescription": "",
+                "source": "K\u00e4ytt\u00e4j\u00e4n ilmoitus 23.6.2023",
+                "url": "https:\/\/septit.net\/331",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.30365146072225,
+                    20.74329793453217
+                ]
+            },
+            "properties": {
+                "septicId": 333,
+                "harbourId": 1105,
+                "stationName": "B\u00e4r\u00f6\/Gamla Laxen",
+                "stationDescription": "Siirrett\u00e4v\u00e4 k\u00e4rry laiturilla.",
+                "source": "Satamanpit\u00e4j\u00e4n ilmoitus 4.7.2023",
+                "url": "https:\/\/septit.net\/333",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.34453672055393,
+                    26.776396036148075
+                ]
+            },
+            "properties": {
+                "septicId": 335,
+                "harbourId": 172,
+                "stationName": "Kaunissaari (Pyht\u00e4\u00e4)",
+                "stationDescription": "",
+                "source": "K\u00e4ytt\u00e4j\u00e4n ilmoitus 14.7.2023",
+                "url": "https:\/\/septit.net\/335",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.30622038254154,
+                    21.09254837036133
+                ]
+            },
+            "properties": {
+                "septicId": 336,
+                "harbourId": 1572,
+                "stationName": "Klobbskat",
+                "stationDescription": "",
+                "source": "vierassatamat.fi 31.8.2023",
+                "url": "https:\/\/septit.net\/336",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.66659223955895,
+                    27.049959897995
+                ]
+            },
+            "properties": {
+                "septicId": 337,
+                "harbourId": 3868,
+                "stationName": "Iisvesi (Suonenjoki)",
+                "stationDescription": "",
+                "source": "Vierassatamat.fi 31.8.2023",
+                "url": "https:\/\/septit.net\/337",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.54190380512794,
+                    29.129540920257572
+                ]
+            },
+            "properties": {
+                "septicId": 338,
+                "harbourId": 5883,
+                "stationName": "Nurmes",
+                "stationDescription": "K\u00e4yt\u00f6ss\u00e4 15.5.-15.9.",
+                "source": "Nurmeksen kaupungin www-sivut 31.8.2023",
+                "url": "https:\/\/septit.net\/338",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.523457164463146,
+                    28.17280769348145
+                ]
+            },
+            "properties": {
+                "septicId": 339,
+                "harbourId": 0,
+                "stationName": "Luotsiasema (Puumala)",
+                "stationDescription": "",
+                "source": "Puumalan www-sivut 2.9.2023",
+                "url": "https:\/\/septit.net\/339",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.291761572728,
+                    28.808265924453735
+                ]
+            },
+            "properties": {
+                "septicId": 340,
+                "harbourId": 0,
+                "stationName": "Rasila (Ruokolahti)",
+                "stationDescription": "",
+                "source": "Ruokolahden www-sivut 2.9.2023",
+                "url": "https:\/\/septit.net\/340",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.08625825874857,
+                    28.335628509521488
+                ]
+            },
+            "properties": {
+                "septicId": 341,
+                "harbourId": 0,
+                "stationName": "Mustalahti (Rantasalmi)",
+                "stationDescription": "",
+                "source": "Rantasalmen www-sivut 2.9.2023",
+                "url": "https:\/\/septit.net\/341",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    62.624994650023595,
+                    26.346631050109867
+                ]
+            },
+            "properties": {
+                "septicId": 342,
+                "harbourId": 0,
+                "stationName": "H\u00e4yryl\u00e4nranta (Konnevesi)",
+                "stationDescription": "",
+                "source": "H\u00e4yryl\u00e4nrannan www-sivut 2.9.2023",
+                "url": "https:\/\/septit.net\/342",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.91455517192089,
+                    24.636143445968628
+                ]
+            },
+            "properties": {
+                "septicId": 343,
+                "harbourId": 2370,
+                "stationName": "Ahilammi, Turenki (Janakkala)",
+                "stationDescription": "Septintyhjennyslautta.",
+                "source": "Janakkalan venekerhon www-sivut 2.9.2023",
+                "url": "https:\/\/septit.net\/343",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    63.066488785235315,
+                    27.680804729461673
+                ]
+            },
+            "properties": {
+                "septicId": 344,
+                "harbourId": 5118,
+                "stationName": "Siilinj\u00e4rvi",
+                "stationDescription": "",
+                "source": "Siilinj\u00e4rven kunnan www-sivut 2.9.2023",
+                "url": "https:\/\/septit.net\/344",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    60.982741671465064,
+                    24.487441778182987
+                ]
+            },
+            "properties": {
+                "septicId": 345,
+                "harbourId": 2362,
+                "stationName": "Sotkanranta (H\u00e4meenlinna)",
+                "stationDescription": "",
+                "source": "Sotkan sataman www-sivut 4.9.2023",
+                "url": "https:\/\/septit.net\/345",
+                "isAdminStation": false
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    61.47277758459873,
+                    23.620777130126957
+                ]
+            },
+            "properties": {
+                "septicId": 346,
+                "harbourId": 2236,
+                "stationName": "Turri (Pirkkala)",
+                "stationDescription": "",
+                "source": "Pirkkalan pursiseuran www-sivut 5.9.2023",
+                "url": "https:\/\/septit.net\/346",
+                "isAdminStation": false
+            }
+        }
+    ]
+}
