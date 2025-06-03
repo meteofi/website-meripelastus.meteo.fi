@@ -5,7 +5,8 @@
   "source": "src/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel src/index.html",
+    "start": "parcel src/index.html --no-autoinstall --port 1234",
+    "dev": "parcel src/index.html --no-autoinstall --port 1234",
     "build": "parcel build"
   },
   "repository": {

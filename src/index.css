@@ -17,3 +17,58 @@ html, body {
   background-color: var(--dark-background-color);
   cursor: crosshair;
 }
+
+/* Mouse position display */
+.mouse-position {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-family: monospace;
+  border-radius: 3px;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* Active location button styling */
+.nav-link.active {
+  color: #00ff00 !important;
+  font-weight: bold;
+}
+
+/* Scale line styling */
+.ol-scale-line {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 3px;
+  bottom: 40px;
+  left: 10px;
+  position: absolute;
+}
+
+.ol-scale-line-inner {
+  border: 2px solid white;
+  border-top: none;
+  color: white;
+  font-size: 12px;
+  margin: 5px;
+}
+
+/* Custom control styling */
+.ol-control {
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 3px;
+}
+
+.ol-control button {
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  color: black;
+  font-size: 14px;
+}
+
+.ol-control button:hover {
+  background: white;
+}

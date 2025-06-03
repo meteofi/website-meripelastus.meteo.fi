@@ -31,6 +31,9 @@
             <li class="nav-item">
               <a class="nav-link" id="ais">AIS</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" id="location-btn">📍 SIJAINTI</a>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMeneWeather" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 SÄÄ
@@ -51,14 +54,39 @@
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <li><a class="dropdown-item" id="uimarannat">Uimarannat</a></li>
                 <li><a class="dropdown-item" id="venesatamat">Venesatamat</a></li>
+                <li><a class="dropdown-item" id="kohtaamispaikat">Kohtaamispaikat</a></li>
                 <li><a class="dropdown-item" id="ulkoilusaaret">Ulkoilusaaret</a></li>
                 <li><a class="dropdown-item" id="turvalaiteviat">Turvalaiteviat</a></li>
+                <li><a class="dropdown-item" id="septit">Septit</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                VÄYLÄ
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" id="vesiliikennemerkit">Vesiliikennemerkit</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownHelp" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                OHJE
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownHelp">
+                <li><a class="dropdown-item disabled">Pikanäppäimet:</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item disabled">L - Sijainti</a></li>
+                <li><a class="dropdown-item disabled">N - Navigointi</a></li>
+                <li><a class="dropdown-item disabled">A - AIS</a></li>
+                <li><a class="dropdown-item disabled">E - ENC</a></li>
+                <li><a class="dropdown-item disabled">ESC - Piilota tasot</a></li>
               </ul>
             </li>
           </ul>
         </div>
       </div>
     </nav>
+    <div id="mouse-position" class="mouse-position"></div>
     <div id="map"></div>
     <script src="index.js" type="module"></script>
   </body>
