@@ -14,80 +14,185 @@
     
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">MERIPELASTUS</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" id="nav">NAV</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="enc">ENC</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="ais">AIS</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" id="location-btn">📍 SIJAINTI</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMeneWeather" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                SÄÄ
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuWeatherk">
-                <li><a class="dropdown-item" id="satellite">Satelliitti</a></li>
-                <li><a class="dropdown-item" id="radar">Säätutka</a></li>
-                <li><a class="dropdown-item" id="wind">Keskituuli</a></li>
-                <li><a class="dropdown-item" id="gust">Tuulenpuuska</a></li>
-                <li><a class="dropdown-item" id="temperature">Ilmanlämpötila</a></li>
-                <li><a class="dropdown-item" id="sea_surface_height">Merivedenkorkeus</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                POI
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" id="uimarannat">Uimarannat</a></li>
-                <li><a class="dropdown-item" id="venesatamat">Venesatamat</a></li>
-                <li><a class="dropdown-item" id="kohtaamispaikat">Kohtaamispaikat</a></li>
-                <li><a class="dropdown-item" id="ulkoilusaaret">Ulkoilusaaret</a></li>
-                <li><a class="dropdown-item" id="turvalaiteviat">Turvalaiteviat</a></li>
-                <li><a class="dropdown-item" id="septit">Septit</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                VÄYLÄ
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" id="vesiliikennemerkit">Vesiliikennemerkit</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownHelp" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                OHJE
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdownHelp">
-                <li><a class="dropdown-item disabled">Pikanäppäimet:</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item disabled">L - Sijainti</a></li>
-                <li><a class="dropdown-item disabled">N - Navigointi</a></li>
-                <li><a class="dropdown-item disabled">A - AIS</a></li>
-                <li><a class="dropdown-item disabled">E - ENC</a></li>
-                <li><a class="dropdown-item disabled">ESC - Piilota tasot</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
+    <!-- Top Header Bar -->
+    <header class="app-header">
+      <div class="header-brand">
+        <h1>MERIPELASTUS</h1>
       </div>
-    </nav>
+      <div class="header-controls">
+        <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu">
+          <span class="hamburger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+        <button id="location-btn" class="header-btn location-btn" title="Sijainti (L)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Side Panel Menu -->
+    <aside class="side-panel" id="side-panel">
+      <div class="panel-content">
+        <!-- Quick Actions -->
+        <section class="panel-section">
+          <h3>Pikavalinnat</h3>
+          <div class="quick-actions">
+            <button class="action-btn active" id="nav" data-layer="navigation">
+              <span class="btn-icon">🧭</span>
+              <span class="btn-text">Navigointi</span>
+            </button>
+            <button class="action-btn" id="ais" data-layer="ais">
+              <span class="btn-icon">📡</span>
+              <span class="btn-text">AIS</span>
+            </button>
+            <button class="action-btn" id="enc" data-layer="enc">
+              <span class="btn-icon">🗺️</span>
+              <span class="btn-text">ENC</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- Weather Layers -->
+        <section class="panel-section">
+          <h3>Sää</h3>
+          <div class="layer-group">
+            <div class="layer-item">
+              <button class="layer-toggle" id="satellite" data-layer="satellite">
+                <span class="toggle-icon"></span>
+                <span class="layer-name">Satelliitti</span>
+              </button>
+            </div>
+            <div class="layer-item">
+              <button class="layer-toggle" id="radar" data-layer="radar">
+                <span class="toggle-icon"></span>
+                <span class="layer-name">Säätutka</span>
+              </button>
+            </div>
+            <div class="layer-item">
+              <button class="layer-toggle" id="wind" data-layer="wind">
+                <span class="toggle-icon"></span>
+                <span class="layer-name">Keskituuli</span>
+              </button>
+            </div>
+            <div class="layer-item">
+              <button class="layer-toggle" id="gust" data-layer="gust">
+                <span class="toggle-icon"></span>
+                <span class="layer-name">Tuulenpuuska</span>
+              </button>
+            </div>
+            <div class="layer-item">
+              <button class="layer-toggle" id="temperature" data-layer="temperature">
+                <span class="toggle-icon"></span>
+                <span class="layer-name">Ilmanlämpötila</span>
+              </button>
+            </div>
+            <div class="layer-item">
+              <button class="layer-toggle" id="sea_surface_height" data-layer="sea_surface_height">
+                <span class="toggle-icon"></span>
+                <span class="layer-name">Merivedenkorkeus</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Points of Interest -->
+        <section class="panel-section">
+          <h3>Kohteet (POI)</h3>
+          <div class="layer-group">
+            <div class="layer-item">
+              <button class="layer-toggle" id="uimarannat" data-layer="uimarannat">
+                <span class="toggle-icon"></span>
+                <span class="layer-name">Uimarannat</span>
+              </button>
+            </div>
+            <div class="layer-item">
+              <button class="layer-toggle" id="venesatamat" data-layer="venesatamat">
+                <span class="toggle-icon"></span>
+                <span class="layer-name">Venesatamat</span>
+              </button>
+            </div>
+            <div class="layer-item">
+              <button class="layer-toggle" id="kohtaamispaikat" data-layer="kohtaamispaikat">
+                <span class="toggle-icon"></span>
+                <span class="layer-name">Kohtaamispaikat</span>
+              </button>
+            </div>
+            <div class="layer-item">
+              <button class="layer-toggle" id="ulkoilusaaret" data-layer="ulkoilusaaret">
+                <span class="toggle-icon"></span>
+                <span class="layer-name">Ulkoilusaaret</span>
+              </button>
+            </div>
+            <div class="layer-item">
+              <button class="layer-toggle" id="turvalaiteviat" data-layer="turvalaiteviat">
+                <span class="toggle-icon"></span>
+                <span class="layer-name">Turvalaiteviat</span>
+              </button>
+            </div>
+            <div class="layer-item">
+              <button class="layer-toggle" id="septit" data-layer="septit">
+                <span class="toggle-icon"></span>
+                <span class="layer-name">Septit</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Waterway -->
+        <section class="panel-section">
+          <h3>Väylä</h3>
+          <div class="layer-group">
+            <div class="layer-item">
+              <button class="layer-toggle" id="vesiliikennemerkit" data-layer="vesiliikennemerkit">
+                <span class="toggle-icon"></span>
+                <span class="layer-name">Vesiliikennemerkit</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Help Section -->
+        <section class="panel-section">
+          <h3>Pikanäppäimet</h3>
+          <div class="shortcuts">
+            <div class="shortcut-item">
+              <kbd>L</kbd>
+              <span>Sijainti</span>
+            </div>
+            <div class="shortcut-item">
+              <kbd>N</kbd>
+              <span>Navigointi</span>
+            </div>
+            <div class="shortcut-item">
+              <kbd>A</kbd>
+              <span>AIS</span>
+            </div>
+            <div class="shortcut-item">
+              <kbd>E</kbd>
+              <span>ENC</span>
+            </div>
+            <div class="shortcut-item">
+              <kbd>ESC</kbd>
+              <span>Piilota tasot</span>
+            </div>
+          </div>
+        </section>
+      </div>
+    </aside>
+
+    <!-- Panel Overlay (for mobile) -->
+    <div class="panel-overlay" id="panel-overlay"></div>
+
+    <!-- Mouse Position Display -->
     <div id="mouse-position" class="mouse-position"></div>
-    <div id="map"></div>
+    
+    <!-- Map Container -->
+    <div id="map" class="map-container"></div>
     <script src="index.js" type="module"></script>
   </body>
 </html>

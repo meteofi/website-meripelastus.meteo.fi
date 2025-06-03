@@ -1,6 +1,4 @@
 import "ol/ol.css";
-import 'bootstrap/dist/css/bootstrap.css';
-import * as bootstrap from 'bootstrap';
 import sync from 'ol-hashed';
 import { Map, View } from "ol";
 import Geolocation from 'ol/Geolocation';
@@ -1328,39 +1326,31 @@ const main = () => {
     navigointilinjaLayer.setVisible(true);
     turvalaiteLayer.setVisible(true);
     syvyysLayer.setVisible(true);
+    
+    // Update UI state
+    document.querySelectorAll('.action-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('nav').classList.add('active');
   });
 
   document.getElementById('ais').addEventListener('mouseup', function() {
     setAllVisible(false);
     syvyysLayer.setVisible(true);
     aisLayer.setVisible(true);
+    
+    // Update UI state
+    document.querySelectorAll('.action-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('ais').classList.add('active');
   });
 
-  document.getElementById('wind').addEventListener('mouseup', function() {
+  document.getElementById('enc').addEventListener('mouseup', function() {
     setAllVisible(false);
     aisLayer.setVisible(true);
-    windLayer.setVisible(true);
+    encLayer.setVisible(true);
+    
+    // Update UI state
+    document.querySelectorAll('.action-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('enc').classList.add('active');
   });
-
-  document.getElementById('gust').addEventListener('mouseup', function() {
-    setAllVisible(false);
-    aisLayer.setVisible(true);
-    gustLayer.setVisible(true);
-  });
-
-  document.getElementById('temperature').addEventListener('mouseup', function() {
-    setAllVisible(false);
-    aisLayer.setVisible(true);
-    temperatureLayer.setVisible(true);
-  });
-
-  document.getElementById('sea_surface_height').addEventListener('mouseup', function() {
-    setAllVisible(false);
-    aisLayer.setVisible(true);
-    seaheightLayer.setVisible(true);
-  });
-
-
 
   // Keyboard shortcuts
   document.addEventListener('keydown', function(event) {
@@ -1396,6 +1386,10 @@ const main = () => {
 addMenuEventListener('vesiliikennemerkit',vesiliikennemerkitLayer);
 addMenuEventListener('radar',radarLayer);
 addMenuEventListener('satellite',satelliteLayer);
+addMenuEventListener('wind',windLayer);
+addMenuEventListener('gust',gustLayer);
+addMenuEventListener('temperature',temperatureLayer);
+addMenuEventListener('sea_surface_height',seaheightLayer);
 addMenuEventListener('uimarannat',pksUimarannatLayer);
 addMenuEventListener('ulkoilusaaret',pksUlkoilusaaretLayer);
 addMenuEventListener('venesatamat',pksVenesatamatLayer);
@@ -1404,11 +1398,92 @@ addMenuEventListener('septit',septiLayer);
 addMenuEventListener('enc',encLayer);
 addMenuEventListener('turvalaiteviat',turvalaiteviatLayer);
 
+// Enhanced menu system functionality
+function initializeMenuSystem() {
+  const menuToggle = document.getElementById('menu-toggle');
+  const sidePanel = document.getElementById('side-panel');
+  const panelOverlay = document.getElementById('panel-overlay');
+  
+  // Menu toggle functionality
+  menuToggle.addEventListener('click', () => {
+    const isOpen = sidePanel.classList.contains('open');
+    if (isOpen) {
+      closePanel();
+    } else {
+      openPanel();
+    }
+  });
+  
+  // Panel overlay click to close (mobile)
+  panelOverlay.addEventListener('click', () => {
+    closePanel();
+  });
+  
+  // ESC key to close panel
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && sidePanel.classList.contains('open')) {
+      closePanel();
+    }
+  });
+  
+  function openPanel() {
+    sidePanel.classList.add('open');
+    panelOverlay.classList.add('active');
+    menuToggle.classList.add('active');
+  }
+  
+  function closePanel() {
+    sidePanel.classList.remove('open');
+    panelOverlay.classList.remove('active');
+    menuToggle.classList.remove('active');
+  }
+  
+  // Enhanced layer toggle functionality
+  function initializeLayerToggles() {
+    const layerToggles = document.querySelectorAll('.layer-toggle');
+    
+    layerToggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const isActive = toggle.classList.contains('active');
+        // Remove active from all layer toggles in the same section
+        const section = toggle.closest('.panel-section');
+        if (section) {
+          section.querySelectorAll('.layer-toggle.active').forEach(btn => {
+            btn.classList.remove('active');
+          });
+        }
+        
+        if (!isActive) {
+          toggle.classList.add('active');
+        }
+      });
+    });
+  }
+  
+  initializeLayerToggles();
+}
+
+// Initialize the new menu system
+initializeMenuSystem();
+
   function addMenuEventListener(id, layer) {
-    document.getElementById(id).addEventListener('mouseup', function () {
+    const element = document.getElementById(id);
+    if (!element) return;
+    
+    element.addEventListener('mouseup', function () {
       setAllVisible(false);
       aisLayer.setVisible(true);
       layer.setVisible(true);
+      
+      // Update visual state for layer toggles
+      if (element.classList.contains('layer-toggle')) {
+        // Remove active from all layer toggles
+        document.querySelectorAll('.layer-toggle').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        element.classList.add('active');
+      }
+      
       debug("Set " + id + " visible");
     });
   }
