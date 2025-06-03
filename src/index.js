@@ -598,42 +598,55 @@ const turvalaiteLayer = new VectorLayer({
 // Optimized style cache for navigointilinja layer
 const navigointilinjaStyleCache = new Map();
 
+// Safety check function for cache operations
+function clearNavigationCache() {
+  try {
+    if (navigointilinjaStyleCache && typeof navigointilinjaStyleCache.clear === 'function') {
+      navigointilinjaStyleCache.clear();
+    }
+  } catch (error) {
+    console.warn('Error clearing navigation cache:', error);
+  }
+}
+
 const navigointilinjaLayer = new VectorLayer({
   source: new vaylaSource({ 
     name: "navigointilinjat",
   }),
   minZoom: 10,
   maxZoom: 16,
-  // Balanced performance settings for better initial load and zoom
-  declutter: false,
-  renderBuffer: 250,
-  updateWhileAnimating: true, // Re-enable for smoother zoom
-  updateWhileInteracting: true, // Re-enable for smoother pan
+  // Optimized performance settings
+  declutter: true, // Enable decluttering to reduce overlapping features
+  renderBuffer: 150, // Reduced render buffer for better performance
+  updateWhileAnimating: false, // Disable updates during animation for better performance
+  updateWhileInteracting: false, // Disable updates during interaction for better performance
   style: function (feature) {
     const tosisuunta = feature.get('tosisuunta');
     const length = feature.getGeometry().getLength();
     
-    if (tosisuunta != null && length > 0.4 * 1853) {
-      // Simplified but effective caching
-      const featureId = feature.getId() || feature.ol_uid;
-      const currentZoom = Math.round(map.getView().getZoom());
-      const cacheKey = `${featureId}_${currentZoom}`;
-      
-      // Check cache first, but limit cache size
-      if (navigointilinjaStyleCache.size > 500) {
-        navigointilinjaStyleCache.clear();
-      }
-      
-      let style = navigointilinjaStyleCache.get(cacheKey);
-      if (!style) {
-        style = navigointilinjaIcon(feature);
-        if (style) {
-          navigointilinjaStyleCache.set(cacheKey, style);
-        }
-      }
-      return style;
+    // Early return for features that shouldn't be styled
+    if (tosisuunta == null || length <= 0.4 * 1853) {
+      return null;
     }
-    return null;
+    
+    // Simplified but effective caching with safety checks
+    const featureId = feature.getId() || feature.ol_uid;
+    const currentZoom = Math.round(map.getView().getZoom());
+    const cacheKey = `${featureId}_${currentZoom}`;
+    
+    // Check cache first, but limit cache size with safety checks
+    if (navigointilinjaStyleCache && navigointilinjaStyleCache.size > 500) {
+      clearNavigationCache();
+    }
+    
+    let style = navigointilinjaStyleCache && navigointilinjaStyleCache.get(cacheKey);
+    if (!style) {
+      style = navigointilinjaIcon(feature);
+      if (style && navigointilinjaStyleCache && typeof navigointilinjaStyleCache.set === 'function') {
+        navigointilinjaStyleCache.set(cacheKey, style);
+      }
+    }
+    return style;
   },
 });
         
@@ -1135,26 +1148,40 @@ map.renderSync();
 // Ensure map is properly sized and ready
 map.updateSize();
 
-// Simplified render optimization
+// Improved render optimization with debouncing
 let renderTimeout = null;
+let isRendering = false;
 
 function scheduleRender() {
+  if (isRendering) return; // Prevent overlapping renders
+  
   if (renderTimeout) {
     clearTimeout(renderTimeout);
   }
   renderTimeout = setTimeout(() => {
-    map.render();
-    renderTimeout = null;
-  }, 16); // ~60fps
+    isRendering = true;
+    try {
+      map.render();
+    } catch (error) {
+      console.warn('Render error:', error);
+    } finally {
+      isRendering = false;
+      renderTimeout = null;
+    }
+  }, 50); // Increased debounce time for better performance during zoom
 }
 
-// Handle zoom changes with moderate cache clearing
+// Handle zoom changes with optimized cache clearing
+let lastCacheCleanZoom = null;
 map.getView().on('change:resolution', function() {
-  // Clear cache every few zoom levels instead of every zoom
   const currentZoom = Math.round(map.getView().getZoom());
-  if (currentZoom % 2 === 0) { // Clear cache on even zoom levels
-    navigointilinjaStyleCache.clear();
+  
+  // Only clear cache when zoom level changes significantly
+  if (lastCacheCleanZoom === null || Math.abs(currentZoom - lastCacheCleanZoom) >= 2) {
+    clearNavigationCache();
+    lastCacheCleanZoom = currentZoom;
   }
+  
   scheduleRender();
 });
 
