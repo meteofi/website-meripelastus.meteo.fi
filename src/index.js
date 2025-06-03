@@ -424,8 +424,8 @@ function aisIcon(feature) {
   }
   const svg =
     '<svg width="150" height="150" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-    '<g stroke="green" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill-opacity="0">' +
-    '<path d="M 100,75 L 50,90 L 50,60 z" style="fill:rgb(255,255,255);fill-opacity:0;fill-rule:evenodd;stroke-linejoin:round" />' +
+    '<g stroke="green" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill-opacity="1">' +
+    '<path d="M 100,75 L 50,90 L 50,60 z" style="fill:rgb(255,255,255);fill-opacity:1;fill-rule:evenodd;stroke-linejoin:round" />' +
     headingline +
     '</g>' +
     '</svg>';
@@ -1125,12 +1125,28 @@ const map = new Map({
   ],
   controls: defaultControls().extend([
     new MousePosition({
-      coordinateFormat: createStringXY(4),
+      coordinateFormat: function(coordinate) {
+        // Convert decimal degrees to degrees and minutes with decimals
+        const lon = coordinate[0];
+        const lat = coordinate[1];
+        
+        const lonDeg = Math.floor(Math.abs(lon));
+        const lonMin = (Math.abs(lon) - lonDeg) * 60;
+        const lonDir = lon >= 0 ? 'E' : 'W';
+        
+        const latDeg = Math.floor(Math.abs(lat));
+        const latMin = (Math.abs(lat) - latDeg) * 60;
+        const latDir = lat >= 0 ? 'N' : 'S';
+        
+        return `${latDeg}°${latMin.toFixed(3)}'${latDir} ${lonDeg}°${lonMin.toFixed(3)}'${lonDir}`;
+      },
       projection: 'EPSG:4326',
       className: 'custom-mouse-position',
       target: 'mouse-position',
     }),
-    new ScaleLine(),
+    new ScaleLine({
+      units: 'nautical',
+    }),
   ]),
   interactions: defaultInteractions(),
   view: new View({
