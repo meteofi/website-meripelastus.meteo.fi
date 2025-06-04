@@ -91,38 +91,107 @@ window.debugRescueVessels = function() {
   }
 };
 
+// Notification System
+class NotificationManager {
+  constructor() {
+    this.notifications = [];
+    this.container = null;
+    this.init();
+  }
+
+  init() {
+    // Create notification container
+    this.container = document.createElement('div');
+    this.container.id = 'notification-container';
+    this.container.style.cssText = `
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    `;
+    document.body.appendChild(this.container);
+  }
+
+  show(message, type = 'info', duration = 3000) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+      background: ${this.getBackgroundColor(type)};
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      transform: translateY(-20px);
+      transition: all 0.3s ease;
+      pointer-events: auto;
+      text-align: center;
+      min-width: 200px;
+      max-width: 400px;
+    `;
+    
+    notification.textContent = message;
+    this.container.appendChild(notification);
+    this.notifications.push(notification);
+
+    // Animate in
+    requestAnimationFrame(() => {
+      notification.style.opacity = '1';
+      notification.style.transform = 'translateY(0)';
+    });
+
+    // Auto-remove after duration
+    if (duration > 0) {
+      setTimeout(() => {
+        this.remove(notification);
+      }, duration);
+    }
+
+    return notification;
+  }
+
+  remove(notification) {
+    if (!notification || !notification.parentNode) return;
+
+    // Animate out
+    notification.style.opacity = '0';
+    notification.style.transform = 'translateY(-20px)';
+    
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+      const index = this.notifications.indexOf(notification);
+      if (index > -1) {
+        this.notifications.splice(index, 1);
+      }
+    }, 300);
+  }
+
+  getBackgroundColor(type) {
+    switch (type) {
+      case 'success': return 'rgba(34, 197, 94, 0.95)';
+      case 'error': return 'rgba(239, 68, 68, 0.95)';
+      case 'warning': return 'rgba(251, 146, 60, 0.95)';
+      case 'info':
+      default: return 'rgba(59, 130, 246, 0.95)';
+    }
+  }
+}
+
+// Initialize notification manager
+const notificationManager = new NotificationManager();
+
 // Log when window loads
 window.addEventListener('load', function() {
   console.log('=== WINDOW LOADED ===');
   console.log('Page fully loaded - rescue vessel manager should initialize when MQTT connects');
-  
-  // Add status indicator to page
-  const statusDiv = document.createElement('div');
-  statusDiv.id = 'app-status';
-  statusDiv.style.cssText = `
-    position: fixed; top: 10px; left: 10px; z-index: 10000;
-    background: rgba(0,0,0,0.8); color: white; padding: 10px;
-    border-radius: 5px; font-size: 12px; max-width: 300px;
-  `;
-  statusDiv.innerHTML = `
-    <div>App Status: Loaded</div>
-    <div>MQTT: ${client?.connected ? 'Connected' : 'Connecting...'}</div>
-    <div>Rescue Vessels: ${rescueVesselManager?.loaded ? 'Loaded' : 'Loading...'}</div>
-    <div><button onclick="window.debugRescueVessels()" style="background:#007cba;color:white;border:none;padding:5px;border-radius:3px;cursor:pointer;">Debug</button></div>
-  `;
-  document.body.appendChild(statusDiv);
-  
-  // Update status every 2 seconds
-  setInterval(() => {
-    if (statusDiv) {
-      statusDiv.innerHTML = `
-        <div>App Status: Running</div>
-        <div>MQTT: ${client?.connected ? 'Connected' : 'Connecting...'}</div>
-        <div>Rescue Vessels: ${rescueVesselManager?.loaded ? `Loaded (${Object.keys(trackedVessels || {}).length})` : 'Loading...'}</div>
-        <div><button onclick="window.debugRescueVessels()" style="background:#007cba;color:white;border:none;padding:5px;border-radius:3px;cursor:pointer;">Debug</button></div>
-      `;
-    }
-  }, 2000);
 });
 
 function debug(str) {
@@ -485,7 +554,8 @@ function navigointilinjaIcon(feature) {
 
 function aisIcon(feature) {
   var headingline;
-  var cogsvg;
+  var cogsvg = ""; // Initialize empty COG svg
+  
   if (feature.get('sog') == 0) {
     headingline = "";
   } else if (feature.get('rot') < 0) {
@@ -496,12 +566,15 @@ function aisIcon(feature) {
     headingline = '<path d="M 100,75 L 148,75 z" />';
   }
 
-  if (feature.get("sog") != null) {
+  // Only show COG line if we have speed over ground data
+  if (feature.get("sog") != null && feature.get("sog") > 0) {
     cogsvg = 
     '<svg width="150" height="150" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
     '<path d="M 75,75 L 148,75 z" style="stroke-dasharray:5; stroke:green; stroke-width:4;" />' +
     '</svg>';
   }
+  
+  // Main vessel shape with white triangle and heading line
   const svg =
     '<svg width="150" height="150" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
     '<g stroke="green" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill-opacity="1">' +
@@ -509,34 +582,44 @@ function aisIcon(feature) {
     headingline +
     '</g>' +
     '</svg>';
+    
   const mmsi = feature.get("mmsi") + "";
-  return [new Style({
-    image: new Icon({
-      opacity: 1,
-      src: "data:image/svg+xml;utf8," + svg,
-      scale: 0.5,
-      rotation: (feature.get('heading')-90) * (Math.PI/180),
-      anchor: [0.5, 0.5],
-    }),
-    text: new Text({
-      font: '10px Calibri,sans-serif',
-      fill: new Fill({ color: '#fff' }),
-      stroke: new Stroke({ color: '#000', width: 1 }),
-      offsetX: 0,
-      offsetY: 45,
-      text: typeof trackedVessels[mmsi].metadata !== "undefined" ? trackedVessels[mmsi].metadata.name : mmsi
-  }),
-}),
-  new Style({
-    image: new Icon({
-      opacity: 1,
-      src: "data:image/svg+xml;utf8," + cogsvg,
-      scale: 0.5,
-      rotation: (feature.get('cog')-90) * (Math.PI/180),
-      anchor: [0.5, 0.5],
-    }),
-  }),
-]
+  
+  const styles = [
+    // Main vessel icon
+    new Style({
+      image: new Icon({
+        opacity: 1,
+        src: "data:image/svg+xml;utf8," + svg,
+        scale: 0.5,
+        rotation: (feature.get('heading')-90) * (Math.PI/180),
+        anchor: [0.5, 0.5],
+      }),
+      text: new Text({
+        font: '10px Calibri,sans-serif',
+        fill: new Fill({ color: '#fff' }),
+        stroke: new Stroke({ color: '#000', width: 1 }),
+        offsetX: 0,
+        offsetY: 45,
+        text: getVesselName(mmsi) // Use the getVesselName function instead of direct access
+      }),
+    })
+  ];
+  
+  // Add COG style only if we have COG data
+  if (cogsvg && feature.get('cog') != null) {
+    styles.push(new Style({
+      image: new Icon({
+        opacity: 1,
+        src: "data:image/svg+xml;utf8," + cogsvg,
+        scale: 0.5,
+        rotation: (feature.get('cog')-90) * (Math.PI/180),
+        anchor: [0.5, 0.5],
+      }),
+    }));
+  }
+  
+  return styles;
 }
 
 function venesatamatIcon(feature) {
@@ -1143,16 +1226,8 @@ async function initializeRescueVessels() {
 	try {
 		console.log('Loading rescue vessels from Digitraffic API...');
 		
-		// Show loading status to user
-		const statusMessage = document.createElement('div');
-		statusMessage.id = 'rescue-loading-status';
-		statusMessage.style.cssText = `
-			position: fixed; top: 10px; right: 10px; z-index: 10000;
-			background: rgba(0,0,0,0.8); color: white; padding: 10px;
-			border-radius: 5px; font-size: 14px;
-		`;
-		statusMessage.textContent = 'Loading rescue vessels...';
-		document.body.appendChild(statusMessage);
+		// Show loading notification to user
+		const loadingNotification = notificationManager.show('Loading rescue vessels...', 'info', 0); // 0 = don't auto-dismiss
 		
 		console.log("Calling rescueVesselManager.initialize()...");
 		await rescueVesselManager.initialize();
@@ -1175,13 +1250,9 @@ async function initializeRescueVessels() {
 		const vesselCount = Object.keys(trackedVessels).length;
 		console.log(`Successfully loaded and subscribed to ${vesselCount} rescue vessels`);
 		
-		// Update status message
-		statusMessage.textContent = `Loaded ${vesselCount} rescue vessels`;
-		setTimeout(() => {
-			if (statusMessage.parentNode) {
-				statusMessage.parentNode.removeChild(statusMessage);
-			}
-		}, 3000);
+		// Remove loading notification and show success
+		notificationManager.remove(loadingNotification);
+		notificationManager.show(`Loaded ${vesselCount} rescue vessels`, 'success', 3000);
 		
 		// Log vessel names for debugging
 		console.log('Rescue vessels:', Object.values(trackedVessels).map(v => v.metadata?.name).filter(Boolean));
@@ -1191,21 +1262,8 @@ async function initializeRescueVessels() {
 		console.error('Failed to load rescue vessels:', error);
 		console.error('Error stack:', error.stack);
 		
-		// Show error to user
-		const errorMessage = document.createElement('div');
-		errorMessage.style.cssText = `
-			position: fixed; top: 10px; right: 10px; z-index: 10000;
-			background: rgba(255,0,0,0.8); color: white; padding: 10px;
-			border-radius: 5px; font-size: 14px;
-		`;
-		errorMessage.textContent = 'Failed to load rescue vessels - using offline mode';
-		document.body.appendChild(errorMessage);
-		
-		setTimeout(() => {
-			if (errorMessage.parentNode) {
-				errorMessage.parentNode.removeChild(errorMessage);
-			}
-		}, 5000);
+		// Show error notification
+		notificationManager.show('Failed to load rescue vessels - using offline mode', 'error', 5000);
 		
 		// Fall back to empty vessels list
 		trackedVessels = {};
@@ -1220,6 +1278,9 @@ let rescueVesselsInitialized = false;
 client.on("connect", function () {
   console.log("=== MQTT CONNECTION ESTABLISHED ===");
   debug("Connected to Digitraffic MQTT");
+  
+  // Show connection notification
+  notificationManager.show('Connected to vessel tracking system', 'success', 2000);
   
   // Initialize rescue vessels when connected
   if (!rescueVesselsInitialized) {
@@ -1286,20 +1347,40 @@ function getVesselName(mmsi) {
  
 
 client.on("message", function (topic, payload) {
+  try {
+    const parsedPayload = JSON.parse(payload);
+    
+    vesselManager.handleWebsocketMessage(topic, parsedPayload);
 
-  vesselManager.handleWebsocketMessage(topic,JSON.parse(payload));
+    var format = new GeoJSON({
+      dataProjection: 'EPSG:4326',
+      featureProjection: "EPSG:3857"
+    });
 
-	var format = new GeoJSON({
-		dataProjection: 'EPSG:4326',
-		featureProjection: "EPSG:3857"
-	});
-
-	aisLayer.getSource().clear(true);
-	Object.keys(trackedVessels).forEach(function (item) {
-		if ( vesselManager.getGeoJSONForVessel(item) !== null) {
-			aisLayer.getSource().addFeature(format.readFeature(vesselManager.getGeoJSONForVessel(item)));
-		}
-	});
+    // Clear existing features
+    aisLayer.getSource().clear(true);
+    
+    // Add all vessels that have location data
+    let addedFeatures = 0;
+    Object.keys(trackedVessels).forEach(function (mmsi) {
+      const geoJSON = vesselManager.getGeoJSONForVessel(mmsi);
+      if (geoJSON !== null) {
+        try {
+          const feature = format.readFeature(geoJSON);
+          aisLayer.getSource().addFeature(feature);
+          addedFeatures++;
+        } catch (error) {
+          console.error(`Error adding feature for vessel ${mmsi}:`, error);
+        }
+      }
+    });
+    
+    // Force map to re-render
+    map.render();
+    
+  } catch (error) {
+    console.error('Error processing MQTT message:', error, 'Topic:', topic, 'Payload:', payload.toString());
+  }
 });
 
 const map = new Map({
@@ -1890,6 +1971,7 @@ class VesselPanelManager {
       this.locationBtn.classList.add('active');
       this.mmsiInputSection.style.display = 'none';
       this.currentMMSI = null;
+      notificationManager.show('GPS tracking activated', 'info', 2000);
     } else if (source === 'ais') {
       // Stop geolocation if it was active
       geolocation.setTracking(false);
@@ -1912,12 +1994,14 @@ class VesselPanelManager {
       this.currentMMSI = mmsi;
       this.mmsiInput.value = '';
       
-      // Check if it's a rescue vessel for better status message
+      // Check if it's a rescue vessel for better status message and notification
       if (rescueVesselManager.isRescueVessel(mmsi)) {
         const vesselName = rescueVesselManager.getVesselName(mmsi);
         this.updateStatus(`Tracking rescue vessel: ${vesselName}`, 'active');
+        notificationManager.show(`Now tracking rescue vessel: ${vesselName}`, 'success', 2500);
       } else {
         this.updateStatus('Tracking vessel...', 'active');
+        notificationManager.show(`Now tracking vessel: ${mmsi}`, 'info', 2000);
       }
       
       // Subscribe to the vessel if not already tracked
@@ -1930,6 +2014,7 @@ class VesselPanelManager {
       this.updateVesselInfo();
     } else {
       this.updateStatus('Invalid MMSI format', 'error');
+      notificationManager.show('Invalid MMSI format. Please enter 7-9 digits.', 'error', 3000);
       setTimeout(() => this.updateVesselInfo(), 3000);
     }
   }
@@ -2063,10 +2148,9 @@ class VesselPanelManager {
         document.getElementById('vessel-position').textContent = formattedPos;
       }
       
-      // Speed (convert from m/s to knots if needed)
+      // Speed (AIS data is already in knots)
       if (props.sog !== undefined) {
-        const speedKnots = (props.sog * 1.94384).toFixed(1); // m/s to knots
-        document.getElementById('vessel-speed').textContent = `${speedKnots} kn`;
+        document.getElementById('vessel-speed').textContent = `${props.sog.toFixed(1)} kn`;
       } else if (props.speed !== undefined) {
         document.getElementById('vessel-speed').textContent = `${props.speed.toFixed(1)} kn`;
       }

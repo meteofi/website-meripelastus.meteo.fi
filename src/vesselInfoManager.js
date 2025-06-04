@@ -45,7 +45,7 @@ export class VesselInfoManager {
             }
         }
 
-        return {
+        const geoJSON = {
             "type": "Feature",
             "geometry": {
                 "type": "Point",
@@ -57,6 +57,8 @@ export class VesselInfoManager {
                 "mmsi": mmsi
             }
         };
+        
+        return geoJSON;
     }
 
     handleWebsocketMessage(topic, message) {
@@ -67,7 +69,10 @@ export class VesselInfoManager {
         }
 
         const mmsi = topicParts[1];
-        if (!this.isFollowed(mmsi)) return; // Ignore if not followed
+        
+        if (!this.isFollowed(mmsi)) {
+            return; // Ignore if not followed
+        }
 
         if (topicParts[2] === 'location') {
             this.updateLocationData(mmsi, message);
