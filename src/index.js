@@ -1604,6 +1604,11 @@ class VesselPanelManager {
     this.currentMMSI = null;
     this.isOpen = false;
     
+    // For calculated heading based on position changes
+    this.lastPosition = null;
+    this.lastPositionTime = null;
+    this.calculatedHeading = null;
+    
     this.initializeEventListeners();
     this.startLocationUpdates();
   }
@@ -1716,7 +1721,7 @@ class VesselPanelManager {
     const position = geolocation.getPosition();
     const accuracy = geolocation.getAccuracy();
     const speed = geolocation.getSpeed(); // Speed in m/s
-    const heading = geolocation.getHeading(); // Heading in degrees
+    const heading = geolocation.getHeading(); // May be in radians or degrees
     
     if (position) {
       // Convert position to lat/lon
@@ -1734,11 +1739,27 @@ class VesselPanelManager {
         document.getElementById('vessel-speed').textContent = '-- kn';
       }
       
-      // Heading
+      // Heading - GPS heading should be in degrees (0-360)
       if (heading !== null && heading !== undefined && heading >= 0) {
-        document.getElementById('vessel-heading').textContent = `${heading.toFixed(0)}°`;
+        // Log for debugging
+        console.log('GPS heading value:', heading, 'type:', typeof heading);
+        
+        // Normalize to 0-360 range and ensure it's a proper number
+        let headingDegrees = Number(heading);
+        headingDegrees = ((headingDegrees % 360) + 360) % 360;
+        
+        // Display with proper formatting
+        document.getElementById('vessel-heading').textContent = `${Math.round(headingDegrees)}°`;
       } else {
-        document.getElementById('vessel-heading').textContent = '--°';
+        console.log('GPS heading not available:', heading);
+        // Try to calculate heading from position changes if GPS heading is not available
+        const calculatedHeading = this.calculateHeadingFromMovement(position);
+        if (calculatedHeading !== null) {
+          console.log('Using calculated heading:', calculatedHeading);
+          document.getElementById('vessel-heading').textContent = `${Math.round(calculatedHeading)}°`;
+        } else {
+          document.getElementById('vessel-heading').textContent = '--°';
+        }
       }
       
       // Hide vessel name and MMSI for GPS
@@ -1750,6 +1771,44 @@ class VesselPanelManager {
       this.updateStatus('GPS not available', 'error');
       this.clearDisplayValues();
     }
+  }
+  
+  calculateHeadingFromMovement(currentPosition) {
+    const currentTime = Date.now();
+    
+    if (this.lastPosition && this.lastPositionTime) {
+      const timeDiff = currentTime - this.lastPositionTime;
+      
+      // Only calculate if we have moved and enough time has passed (at least 5 seconds)
+      if (timeDiff > 5000) {
+        const [currentLon, currentLat] = toLonLat(currentPosition);
+        const [lastLon, lastLat] = toLonLat(this.lastPosition);
+        
+        // Calculate distance moved (in degrees)
+        const deltaLat = currentLat - lastLat;
+        const deltaLon = currentLon - lastLon;
+        const distance = Math.sqrt(deltaLat * deltaLat + deltaLon * deltaLon);
+        
+        // Only calculate heading if we've moved a significant distance (at least 10 meters in degrees)
+        if (distance > 0.0001) { // Roughly 10 meters
+          // Calculate bearing/heading
+          const y = Math.sin(deltaLon * Math.PI / 180) * Math.cos(currentLat * Math.PI / 180);
+          const x = Math.cos(lastLat * Math.PI / 180) * Math.sin(currentLat * Math.PI / 180) - 
+                   Math.sin(lastLat * Math.PI / 180) * Math.cos(currentLat * Math.PI / 180) * Math.cos(deltaLon * Math.PI / 180);
+          
+          let bearing = Math.atan2(y, x) * 180 / Math.PI;
+          bearing = (bearing + 360) % 360; // Normalize to 0-360
+          
+          this.calculatedHeading = bearing;
+        }
+      }
+    }
+    
+    // Update position tracking
+    this.lastPosition = currentPosition;
+    this.lastPositionTime = currentTime;
+    
+    return this.calculatedHeading;
   }
   
   updateAISInfo() {
