@@ -28,22 +28,102 @@ import {
   Text,
 } from "ol/style.js";
 import { VesselInfoManager } from './vesselInfoManager.js';
+import { RescueVesselManager } from './rescueVesselManager.js';
 import vaylaSource from "./vaylaSource.js";
-import trackedVessels from "./vessels.json"
 import pksUimarannatJSON from "./pks-uimarannat.json"
 import pksUlkoilusaaretJSON from "./pks-ulkoilusaaret.json"
 import pksVenesatamatJSON from "./pks-venesatamat.json"
 import pksKohtaamispaikatJSON from "./kohtaamispaikat.json"
 import septiJSON from "./septic.json"
 
+// Initialize rescue vessel manager
+console.log("=== APPLICATION STARTING ===");
+console.log("Initializing rescue vessel manager...");
 
-const vesselManager = new VesselInfoManager(trackedVessels);
+let rescueVesselManager, trackedVessels, vesselManager;
+
+try {
+  rescueVesselManager = new RescueVesselManager();
+  console.log("Rescue vessel manager created");
+  trackedVessels = {}; // Will be populated from API
+  vesselManager = new VesselInfoManager(trackedVessels, rescueVesselManager);
+  console.log("Vessel manager created");
+} catch (error) {
+  console.error("=== ERROR CREATING MANAGERS ===", error);
+  throw error;
+}
 let geolocation;
 let DEBUG = true;
 let positionFeature;
 let accuracyFeature;
 
+console.log("Connecting to MQTT...");
 const client = mqtt.connect('wss://meri.digitraffic.fi:443/mqtt',{username: 'digitraffic', password: 'digitrafficPassword'});
+
+// Add detailed MQTT connection monitoring
+client.on('connecting', function() {
+  console.log('=== MQTT CONNECTING... ===');
+});
+
+client.on('reconnect', function() {
+  console.log('=== MQTT RECONNECTING... ===');
+});
+
+client.on('close', function() {
+  console.log('=== MQTT CONNECTION CLOSED ===');
+});
+
+client.on('disconnect', function() {
+  console.log('=== MQTT DISCONNECTED ===');
+});
+
+// Add debugging functions to window for testing
+window.debugRescueVessels = function() {
+  console.log('=== RESCUE VESSEL DEBUG INFO ===');
+  console.log('RescueVesselManager loaded:', rescueVesselManager?.loaded);
+  console.log('RescueVesselManager loading:', rescueVesselManager?.loading);
+  console.log('TrackedVessels count:', Object.keys(trackedVessels || {}).length);
+  console.log('MQTT client connected:', client?.connected);
+  if (rescueVesselManager) {
+    console.log('Stats:', rescueVesselManager.getStatistics());
+  } else {
+    console.log('RescueVesselManager not available');
+  }
+};
+
+// Log when window loads
+window.addEventListener('load', function() {
+  console.log('=== WINDOW LOADED ===');
+  console.log('Page fully loaded - rescue vessel manager should initialize when MQTT connects');
+  
+  // Add status indicator to page
+  const statusDiv = document.createElement('div');
+  statusDiv.id = 'app-status';
+  statusDiv.style.cssText = `
+    position: fixed; top: 10px; left: 10px; z-index: 10000;
+    background: rgba(0,0,0,0.8); color: white; padding: 10px;
+    border-radius: 5px; font-size: 12px; max-width: 300px;
+  `;
+  statusDiv.innerHTML = `
+    <div>App Status: Loaded</div>
+    <div>MQTT: ${client?.connected ? 'Connected' : 'Connecting...'}</div>
+    <div>Rescue Vessels: ${rescueVesselManager?.loaded ? 'Loaded' : 'Loading...'}</div>
+    <div><button onclick="window.debugRescueVessels()" style="background:#007cba;color:white;border:none;padding:5px;border-radius:3px;cursor:pointer;">Debug</button></div>
+  `;
+  document.body.appendChild(statusDiv);
+  
+  // Update status every 2 seconds
+  setInterval(() => {
+    if (statusDiv) {
+      statusDiv.innerHTML = `
+        <div>App Status: Running</div>
+        <div>MQTT: ${client?.connected ? 'Connected' : 'Connecting...'}</div>
+        <div>Rescue Vessels: ${rescueVesselManager?.loaded ? `Loaded (${Object.keys(trackedVessels || {}).length})` : 'Loading...'}</div>
+        <div><button onclick="window.debugRescueVessels()" style="background:#007cba;color:white;border:none;padding:5px;border-radius:3px;cursor:pointer;">Debug</button></div>
+      `;
+    }
+  }, 2000);
+});
 
 function debug(str) {
   if (DEBUG) {
@@ -1057,22 +1137,148 @@ Object.keys(trackedVessels).forEach(function (item) {
 	client.subscribe("vessels-v2/" + item + "/+");
 });
 
+// Initialize rescue vessel loading
+async function initializeRescueVessels() {
+	console.log("=== INITIALIZING RESCUE VESSELS ===");
+	try {
+		console.log('Loading rescue vessels from Digitraffic API...');
+		
+		// Show loading status to user
+		const statusMessage = document.createElement('div');
+		statusMessage.id = 'rescue-loading-status';
+		statusMessage.style.cssText = `
+			position: fixed; top: 10px; right: 10px; z-index: 10000;
+			background: rgba(0,0,0,0.8); color: white; padding: 10px;
+			border-radius: 5px; font-size: 14px;
+		`;
+		statusMessage.textContent = 'Loading rescue vessels...';
+		document.body.appendChild(statusMessage);
+		
+		console.log("Calling rescueVesselManager.initialize()...");
+		await rescueVesselManager.initialize();
+		console.log("RescueVesselManager initialized successfully");
+		
+		// Update tracked vessels with rescue vessels
+		trackedVessels = rescueVesselManager.getRescueVessels();
+		console.log("Updated trackedVessels with", Object.keys(trackedVessels).length, "rescue vessels");
+		
+		// Update vessel manager with new followed list
+		vesselManager.followedList = trackedVessels;
+		console.log("Updated vesselManager.followedList");
+		
+		// Subscribe to rescue vessel MQTT topics
+		Object.keys(trackedVessels).forEach(function (mmsi) {
+			debug("Subscribed rescue vessel " + mmsi + " (" + rescueVesselManager.getVesselName(mmsi) + ") locations");
+			client.subscribe("vessels-v2/" + mmsi + "/+");
+		});
+		
+		const vesselCount = Object.keys(trackedVessels).length;
+		console.log(`Successfully loaded and subscribed to ${vesselCount} rescue vessels`);
+		
+		// Update status message
+		statusMessage.textContent = `Loaded ${vesselCount} rescue vessels`;
+		setTimeout(() => {
+			if (statusMessage.parentNode) {
+				statusMessage.parentNode.removeChild(statusMessage);
+			}
+		}, 3000);
+		
+		// Log vessel names for debugging
+		console.log('Rescue vessels:', Object.values(trackedVessels).map(v => v.metadata?.name).filter(Boolean));
+		
+	} catch (error) {
+		console.error('=== RESCUE VESSEL INITIALIZATION ERROR ===');
+		console.error('Failed to load rescue vessels:', error);
+		console.error('Error stack:', error.stack);
+		
+		// Show error to user
+		const errorMessage = document.createElement('div');
+		errorMessage.style.cssText = `
+			position: fixed; top: 10px; right: 10px; z-index: 10000;
+			background: rgba(255,0,0,0.8); color: white; padding: 10px;
+			border-radius: 5px; font-size: 14px;
+		`;
+		errorMessage.textContent = 'Failed to load rescue vessels - using offline mode';
+		document.body.appendChild(errorMessage);
+		
+		setTimeout(() => {
+			if (errorMessage.parentNode) {
+				errorMessage.parentNode.removeChild(errorMessage);
+			}
+		}, 5000);
+		
+		// Fall back to empty vessels list
+		trackedVessels = {};
+		vesselManager.followedList = trackedVessels;
+	}
+}
+
+// Start loading rescue vessels when MQTT connects
+let rescueVesselsInitialized = false;
+
 // Enhanced MQTT connection handling
 client.on("connect", function () {
+  console.log("=== MQTT CONNECTION ESTABLISHED ===");
   debug("Connected to Digitraffic MQTT");
+  
+  // Initialize rescue vessels when connected
+  if (!rescueVesselsInitialized) {
+    console.log("Starting rescue vessel initialization...");
+    rescueVesselsInitialized = true;
+    initializeRescueVessels().then(() => {
+      console.log('Rescue vessels initialization completed');
+      
+      // Add global test function for debugging
+      window.testRescueVessels = function() {
+        console.log('=== Rescue Vessel Manager Test ===');
+        const stats = rescueVesselManager.getStatistics();
+        console.log('Statistics:', stats);
+        
+        // Test known rescue vessel
+        const testMMSI = '265571640';
+        console.log(`\nTesting MMSI ${testMMSI}:`);
+        console.log('- Is rescue vessel:', rescueVesselManager.isRescueVessel(testMMSI));
+        console.log('- Vessel name:', rescueVesselManager.getVesselName(testMMSI));
+        console.log('- Call sign:', rescueVesselManager.getVesselCallSign(testMMSI));
+        
+        // Show first 5 rescue vessels
+        const rescueVessels = rescueVesselManager.getRescueVessels();
+        const mmsis = Object.keys(rescueVessels).slice(0, 5);
+        console.log('\nFirst 5 rescue vessels:');
+        mmsis.forEach(mmsi => {
+          const vessel = rescueVessels[mmsi];
+          console.log(`- ${mmsi}: ${vessel.metadata.name} (${vessel.metadata.callsign || 'No callsign'})`);
+        });
+        
+        return stats;
+      };
+      
+    }).catch(error => {
+      console.error('Rescue vessels initialization failed:', error);
+    });
+  }
 });
 
 client.on("error", function (error) {
+  console.error("=== MQTT CONNECTION ERROR ===", error);
   debug("MQTT connection error:", error);
 });
 
 client.on("offline", function () {
+  console.log("=== MQTT CONNECTION OFFLINE ===");
   debug("MQTT connection offline");
 });
 
 function getVesselName(mmsi) {
-	if (typeof trackedVessels[mmsi].metadata !== "undefined") {
-			return trackedVessels[mmsi].metadata.name;
+	// First try to get from rescue vessel manager for faster lookup
+	const rescueName = rescueVesselManager.getVesselName(mmsi);
+	if (rescueName && rescueName !== mmsi) {
+		return rescueName;
+	}
+	
+	// Fall back to tracked vessels metadata if available
+	if (typeof trackedVessels[mmsi]?.metadata !== "undefined") {
+		return trackedVessels[mmsi].metadata.name;
 	} else {
 		return mmsi;
 	}
@@ -1526,18 +1732,25 @@ main();
 // Enhanced vessel information display
 function showVesselInfo(feature) {
   const mmsi = feature.get("mmsi");
-  const vessel = trackedVessels[mmsi];
-  if (vessel && vessel.metadata) {
-    const info = `
-      Vessel: ${vessel.metadata.name}
-      MMSI: ${mmsi}
-      Speed: ${feature.get('sog')} knots
-      Course: ${feature.get('cog')}°
-      Heading: ${feature.get('heading')}°
-    `;
-    console.log(info);
-    // You could show this in a popup or info panel
+  
+  // Try to get vessel name from rescue vessel manager first
+  let vesselName = rescueVesselManager.getVesselName(mmsi);
+  
+  // Fall back to tracked vessels if not found
+  if (vesselName === mmsi && trackedVessels[mmsi]?.metadata?.name) {
+    vesselName = trackedVessels[mmsi].metadata.name;
   }
+  
+  const info = `
+    Vessel: ${vesselName}
+    MMSI: ${mmsi}
+    Speed: ${feature.get('sog')} knots
+    Course: ${feature.get('cog')}°
+    Heading: ${feature.get('heading')}°
+    ${rescueVesselManager.isRescueVessel(mmsi) ? 'Type: RESCUE VESSEL' : ''}
+  `;
+  console.log(info);
+  // You could show this in a popup or info panel
 }
 
 // Enhanced click handler for map features
@@ -1698,7 +1911,14 @@ class VesselPanelManager {
     if (mmsi.length >= 7 && mmsi.length <= 9) {
       this.currentMMSI = mmsi;
       this.mmsiInput.value = '';
-      this.updateStatus('Tracking vessel...', 'active');
+      
+      // Check if it's a rescue vessel for better status message
+      if (rescueVesselManager.isRescueVessel(mmsi)) {
+        const vesselName = rescueVesselManager.getVesselName(mmsi);
+        this.updateStatus(`Tracking rescue vessel: ${vesselName}`, 'active');
+      } else {
+        this.updateStatus('Tracking vessel...', 'active');
+      }
       
       // Subscribe to the vessel if not already tracked
       if (!trackedVessels[mmsi]) {
@@ -1831,7 +2051,7 @@ class VesselPanelManager {
       this.clearDisplayValues();
       return;
     }
-    
+
     const vesselData = vesselManager.getGeoJSONForVessel(this.currentMMSI);
     
     if (vesselData && vesselData.properties) {
@@ -1851,24 +2071,35 @@ class VesselPanelManager {
         document.getElementById('vessel-speed').textContent = `${props.speed.toFixed(1)} kn`;
       }
       
-      // Heading
-      if (props.cog !== undefined) {
-        document.getElementById('vessel-heading').textContent = `${props.cog.toFixed(0)}°`;
-      } else if (props.heading !== undefined) {
+      // Heading (prioritize heading over COG for AIS data)
+      if (props.heading !== undefined) {
         document.getElementById('vessel-heading').textContent = `${props.heading.toFixed(0)}°`;
+      } else if (props.cog !== undefined) {
+        document.getElementById('vessel-heading').textContent = `${props.cog.toFixed(0)}°`;
       }
       
-      // Vessel name
-      if (props.name) {
-        document.getElementById('vessel-name').textContent = props.name;
+      // Vessel name - try rescue vessel manager first for faster access
+      let vesselName = rescueVesselManager.getVesselName(this.currentMMSI);
+      if (vesselName === this.currentMMSI && props.name) {
+        // Fall back to props if not found in rescue manager
+        vesselName = props.name;
+      }
+      
+      if (vesselName && vesselName !== this.currentMMSI) {
+        document.getElementById('vessel-name').textContent = vesselName;
         document.getElementById('vessel-name-item').style.display = 'flex';
       } else {
         document.getElementById('vessel-name-item').style.display = 'none';
       }
       
-      // Call sign
-      if (props.callsign || props.callSign) {
-        document.getElementById('call-sign').textContent = props.callsign || props.callSign;
+      // Call sign - try rescue vessel manager first
+      let callSign = rescueVesselManager.getVesselCallSign(this.currentMMSI);
+      if (!callSign && (props.callsign || props.callSign)) {
+        callSign = props.callsign || props.callSign;
+      }
+      
+      if (callSign) {
+        document.getElementById('call-sign').textContent = callSign;
         document.getElementById('call-sign-item').style.display = 'flex';
       } else {
         document.getElementById('call-sign-item').style.display = 'none';
@@ -1881,16 +2112,43 @@ class VesselPanelManager {
       // Calculate data age
       const timestamp = props.timestamp || props.lastUpdate;
       let status = 'AIS data active';
+      
+      // Add indicator if this is a rescue vessel
+      if (rescueVesselManager.isRescueVessel(this.currentMMSI)) {
+        status = 'Rescue vessel - ' + status;
+      }
+      
       if (timestamp) {
         const age = Date.now() - new Date(timestamp).getTime();
         const ageMinutes = Math.floor(age / 60000);
         if (ageMinutes > 0) {
-          status = `AIS data (${ageMinutes}m old)`;
+          status = status.replace('active', `(${ageMinutes}m old)`);
         }
       }
       
       this.updateStatus(status, 'active');
     } else {
+      // Even if no AIS data, try to show rescue vessel info
+      if (rescueVesselManager.isRescueVessel(this.currentMMSI)) {
+        const rescueVessel = rescueVesselManager.getRescueVessel(this.currentMMSI);
+        if (rescueVessel && rescueVessel.metadata) {
+          // Show vessel name and call sign from rescue data
+          document.getElementById('vessel-name').textContent = rescueVessel.metadata.name;
+          document.getElementById('vessel-name-item').style.display = 'flex';
+          
+          if (rescueVessel.metadata.callsign) {
+            document.getElementById('call-sign').textContent = rescueVessel.metadata.callsign;
+            document.getElementById('call-sign-item').style.display = 'flex';
+          }
+          
+          document.getElementById('mmsi-display').textContent = this.currentMMSI;
+          document.getElementById('mmsi-display-item').style.display = 'flex';
+          
+          this.updateStatus('Rescue vessel - Waiting for location data', 'active');
+          return;
+        }
+      }
+      
       this.updateStatus('No AIS data available', 'error');
       this.clearDisplayValues();
     }

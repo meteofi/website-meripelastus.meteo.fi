@@ -1,7 +1,12 @@
 export class VesselInfoManager {
-    constructor(followedList) {
+    constructor(followedList, rescueVesselManager = null) {
         this.followedList = followedList;  // Updated to use the provided list
         this.vesselsCache = {};
+        this.rescueVesselManager = rescueVesselManager; // Optional rescue vessel manager
+    }
+
+    setRescueVesselManager(rescueVesselManager) {
+        this.rescueVesselManager = rescueVesselManager;
     }
 
     isFollowed(mmsi) {
@@ -30,9 +35,14 @@ export class VesselInfoManager {
         const location = this.vesselsCache[mmsi].location;
         let metadata = this.vesselsCache[mmsi].metadata;
 
-        // If metadata hasn't been received yet, use from the followed list.
-        if (!metadata && this.followedList[mmsi]) {
-            metadata = this.followedList[mmsi].metadata;
+        // If metadata hasn't been received yet, try rescue vessel manager first, then followed list
+        if (!metadata) {
+            if (this.rescueVesselManager && this.rescueVesselManager.isRescueVessel(mmsi)) {
+                const rescueVessel = this.rescueVesselManager.getRescueVessel(mmsi);
+                metadata = rescueVessel?.metadata;
+            } else if (this.followedList[mmsi]) {
+                metadata = this.followedList[mmsi].metadata;
+            }
         }
 
         return {
