@@ -358,11 +358,15 @@ html, body {
   bottom: 0;
   background-color: var(--dark-background-color);
   cursor: crosshair;
-  transition: left var(--animation-speed) ease;
+  transition: left var(--animation-speed) ease, right var(--animation-speed) ease;
 }
 
 .side-panel.open ~ .map-container {
   left: var(--panel-width);
+}
+
+.vessel-panel.open ~ .map-container {
+  right: var(--panel-width);
 }
 
 /* Mouse Position Display */
@@ -424,6 +428,224 @@ html, body {
   color: var(--accent-color);
 }
 
+/* Custom Scrollbar */
+.side-panel::-webkit-scrollbar {
+  width: 4px;
+}
+
+.side-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.side-panel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+}
+
+.side-panel::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Right Panel - Vessel Information */
+.vessel-panel {
+  position: fixed;
+  top: var(--header-height);
+  right: 0;
+  width: var(--panel-width);
+  height: calc(100vh - var(--header-height));
+  background: var(--panel-background);
+  backdrop-filter: blur(20px);
+  border-left: 1px solid var(--panel-border);
+  transform: translateX(100%);
+  transition: transform var(--animation-speed) ease;
+  overflow-y: auto;
+  z-index: 998;
+  box-shadow: var(--shadow-panel);
+}
+
+.vessel-panel.open {
+  transform: translateX(0);
+}
+
+.vessel-panel .panel-content {
+  padding: 20px 0;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 20px 15px;
+}
+
+.section-header h3 {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+  opacity: 0.8;
+}
+
+.toggle-btn {
+  background: var(--accent-color);
+  border: none;
+  color: var(--dark-background-color);
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  transition: all var(--animation-speed) ease;
+}
+
+.toggle-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.source-indicator {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* MMSI Input Section */
+.mmsi-input-section {
+  padding: 0 20px 20px;
+  border-bottom: 1px solid var(--panel-border);
+  margin-bottom: 20px;
+}
+
+.input-group {
+  display: flex;
+  gap: 8px;
+}
+
+.input-group input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--panel-border);
+  color: var(--text-primary);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.input-group input::placeholder {
+  color: var(--text-secondary);
+}
+
+.submit-btn {
+  background: var(--accent-color);
+  border: none;
+  color: var(--dark-background-color);
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all var(--animation-speed) ease;
+}
+
+.submit-btn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+
+.submit-btn:disabled {
+  background: var(--text-secondary);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Vessel Information Display */
+.vessel-info {
+  padding: 0 20px;
+}
+
+.info-grid {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  transition: all var(--animation-speed) ease;
+}
+
+.info-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.info-label {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-value {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Monaco', 'Menlo', monospace;
+}
+
+/* Status Indicator */
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  transition: background-color var(--animation-speed) ease;
+}
+
+.status-indicator.active .status-dot {
+  background: var(--success-color);
+  animation: pulse 2s infinite;
+}
+
+.status-indicator.error .status-dot {
+  background: var(--warning-color);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.status-text {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   :root {
@@ -447,6 +669,10 @@ html, body {
   .panel-content {
     padding-bottom: 60px;
   }
+
+  .vessel-panel {
+    width: 280px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -461,22 +687,13 @@ html, body {
   .header-controls {
     gap: 10px;
   }
-}
 
-/* Custom Scrollbar */
-.side-panel::-webkit-scrollbar {
-  width: 4px;
-}
-
-.side-panel::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.side-panel::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
-}
-
-.side-panel::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.3);
+  .vessel-panel {
+    width: 100vw;
+    transform: translateX(100%);
+  }
+  
+  .vessel-panel.open {
+    transform: translateX(0);
+  }
 }

@@ -1587,3 +1587,280 @@ function handleMapClick(evt) {
     }
   }
 }
+
+// Vessel Panel Management
+class VesselPanelManager {
+  constructor() {
+    this.panel = document.getElementById('vessel-panel');
+    this.sourceToggle = document.getElementById('vessel-source-toggle');
+    this.sourceIndicator = document.getElementById('source-indicator');
+    this.mmsiInputSection = document.getElementById('mmsi-input-section');
+    this.mmsiInput = document.getElementById('mmsi-input');
+    this.mmsiSubmit = document.getElementById('mmsi-submit');
+    this.vesselInfoBtn = document.getElementById('vessel-info-btn');
+    
+    // Data source: 'gps' or 'ais'
+    this.currentSource = 'gps';
+    this.currentMMSI = null;
+    this.isOpen = false;
+    
+    this.initializeEventListeners();
+    this.startLocationUpdates();
+  }
+  
+  initializeEventListeners() {
+    // Panel toggle
+    this.vesselInfoBtn.addEventListener('click', () => {
+      this.togglePanel();
+    });
+    
+    // Close panel when clicking overlay (mobile)
+    const overlay = document.getElementById('panel-overlay');
+    if (overlay) {
+      overlay.addEventListener('click', () => {
+        if (this.isOpen) {
+          this.togglePanel();
+        }
+      });
+    }
+    
+    // Source toggle
+    this.sourceToggle.addEventListener('click', () => {
+      this.toggleSource();
+    });
+    
+    // MMSI input
+    this.mmsiSubmit.addEventListener('click', () => {
+      this.submitMMSI();
+    });
+    
+    this.mmsiInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        this.submitMMSI();
+      }
+    });
+    
+    // Only allow numbers in MMSI input
+    this.mmsiInput.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/[^0-9]/g, '');
+    });
+    
+    // Keyboard shortcut for vessel info panel
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'v' || e.key === 'V') {
+        this.togglePanel();
+      }
+    });
+  }
+  
+  togglePanel() {
+    this.isOpen = !this.isOpen;
+    this.panel.classList.toggle('open', this.isOpen);
+    this.vesselInfoBtn.classList.toggle('active', this.isOpen);
+    
+    // Update map size when panel is toggled
+    setTimeout(() => {
+      map.updateSize();
+    }, 300); // Wait for CSS transition to complete
+  }
+  
+  toggleSource() {
+    if (this.currentSource === 'gps') {
+      this.currentSource = 'ais';
+      this.sourceIndicator.textContent = 'AIS';
+      this.mmsiInputSection.style.display = 'block';
+    } else {
+      this.currentSource = 'gps';
+      this.sourceIndicator.textContent = 'GPS';
+      this.mmsiInputSection.style.display = 'none';
+      this.currentMMSI = null;
+    }
+    this.updateVesselInfo();
+  }
+  
+  submitMMSI() {
+    const mmsi = this.mmsiInput.value.trim();
+    if (mmsi.length >= 7 && mmsi.length <= 9) {
+      this.currentMMSI = mmsi;
+      this.mmsiInput.value = '';
+      this.updateStatus('Tracking vessel...', 'active');
+      
+      // Subscribe to the vessel if not already tracked
+      if (!trackedVessels[mmsi]) {
+        client.subscribe(`vessels-v2/${mmsi}/+`);
+        trackedVessels[mmsi] = { metadata: { name: `VESSEL ${mmsi}` } };
+      }
+    } else {
+      this.updateStatus('Invalid MMSI format', 'error');
+      setTimeout(() => this.updateVesselInfo(), 3000);
+    }
+  }
+  
+  updateVesselInfo() {
+    if (this.currentSource === 'gps') {
+      this.updateGPSInfo();
+    } else if (this.currentSource === 'ais' && this.currentMMSI) {
+      this.updateAISInfo();
+    } else {
+      this.clearVesselInfo();
+    }
+  }
+  
+  updateGPSInfo() {
+    if (!geolocation || !geolocation.getPosition()) {
+      this.updateStatus('GPS not available', 'error');
+      this.clearDisplayValues();
+      return;
+    }
+    
+    const position = geolocation.getPosition();
+    const accuracy = geolocation.getAccuracy();
+    const speed = geolocation.getSpeed(); // Speed in m/s
+    const heading = geolocation.getHeading(); // Heading in degrees
+    
+    if (position) {
+      // Convert position to lat/lon
+      const [lon, lat] = toLonLat(position);
+      
+      // Format position
+      const formattedPos = this.formatPosition(lat, lon);
+      document.getElementById('vessel-position').textContent = formattedPos;
+      
+      // Speed (convert from m/s to knots if available)
+      if (speed !== null && speed !== undefined && speed >= 0) {
+        const speedKnots = (speed * 1.94384).toFixed(1); // m/s to knots
+        document.getElementById('vessel-speed').textContent = `${speedKnots} kn`;
+      } else {
+        document.getElementById('vessel-speed').textContent = '-- kn';
+      }
+      
+      // Heading
+      if (heading !== null && heading !== undefined && heading >= 0) {
+        document.getElementById('vessel-heading').textContent = `${heading.toFixed(0)}°`;
+      } else {
+        document.getElementById('vessel-heading').textContent = '--°';
+      }
+      
+      // Hide vessel name and MMSI for GPS
+      document.getElementById('vessel-name-item').style.display = 'none';
+      document.getElementById('mmsi-display-item').style.display = 'none';
+      
+      this.updateStatus(`GPS active (±${accuracy?.toFixed(0)}m)`, 'active');
+    } else {
+      this.updateStatus('GPS not available', 'error');
+      this.clearDisplayValues();
+    }
+  }
+  
+  updateAISInfo() {
+    if (!this.currentMMSI) {
+      this.updateStatus('No MMSI specified', 'error');
+      this.clearDisplayValues();
+      return;
+    }
+    
+    const vesselData = vesselManager.getGeoJSONForVessel(this.currentMMSI);
+    
+    if (vesselData && vesselData.properties) {
+      const props = vesselData.properties;
+      
+      // Position
+      if (props.lat && props.lon) {
+        const formattedPos = this.formatPosition(props.lat, props.lon);
+        document.getElementById('vessel-position').textContent = formattedPos;
+      }
+      
+      // Speed (convert from m/s to knots if needed)
+      if (props.sog !== undefined) {
+        const speedKnots = (props.sog * 1.94384).toFixed(1); // m/s to knots
+        document.getElementById('vessel-speed').textContent = `${speedKnots} kn`;
+      } else if (props.speed !== undefined) {
+        document.getElementById('vessel-speed').textContent = `${props.speed.toFixed(1)} kn`;
+      }
+      
+      // Heading
+      if (props.cog !== undefined) {
+        document.getElementById('vessel-heading').textContent = `${props.cog.toFixed(0)}°`;
+      } else if (props.heading !== undefined) {
+        document.getElementById('vessel-heading').textContent = `${props.heading.toFixed(0)}°`;
+      }
+      
+      // Vessel name
+      if (props.name) {
+        document.getElementById('vessel-name').textContent = props.name;
+        document.getElementById('vessel-name-item').style.display = 'flex';
+      } else {
+        document.getElementById('vessel-name-item').style.display = 'none';
+      }
+      
+      // MMSI
+      document.getElementById('mmsi-display').textContent = this.currentMMSI;
+      document.getElementById('mmsi-display-item').style.display = 'flex';
+      
+      // Calculate data age
+      const timestamp = props.timestamp || props.lastUpdate;
+      let status = 'AIS data active';
+      if (timestamp) {
+        const age = Date.now() - new Date(timestamp).getTime();
+        const ageMinutes = Math.floor(age / 60000);
+        if (ageMinutes > 0) {
+          status = `AIS data (${ageMinutes}m old)`;
+        }
+      }
+      
+      this.updateStatus(status, 'active');
+    } else {
+      this.updateStatus('No AIS data available', 'error');
+      this.clearDisplayValues();
+    }
+  }
+  
+  clearVesselInfo() {
+    this.clearDisplayValues();
+    document.getElementById('vessel-name-item').style.display = 'none';
+    document.getElementById('mmsi-display-item').style.display = 'none';
+    this.updateStatus('No data source selected', '');
+  }
+  
+  clearDisplayValues() {
+    document.getElementById('vessel-position').textContent = '--';
+    document.getElementById('vessel-speed').textContent = '-- kn';
+    document.getElementById('vessel-heading').textContent = '--°';
+  }
+  
+  formatPosition(lat, lon) {
+    // Format to degrees and decimal minutes
+    const latDeg = Math.floor(Math.abs(lat));
+    const latMin = (Math.abs(lat) - latDeg) * 60;
+    const latDir = lat >= 0 ? 'N' : 'S';
+    
+    const lonDeg = Math.floor(Math.abs(lon));
+    const lonMin = (Math.abs(lon) - lonDeg) * 60;
+    const lonDir = lon >= 0 ? 'E' : 'W';
+    
+    return `${latDeg}°${latMin.toFixed(3)}'${latDir} ${lonDeg}°${lonMin.toFixed(3)}'${lonDir}`;
+  }
+  
+  updateStatus(text, type = '') {
+    const statusIndicator = document.getElementById('status-indicator');
+    const statusText = statusIndicator.querySelector('.status-text');
+    
+    statusText.textContent = text;
+    statusIndicator.className = `status-indicator ${type}`;
+  }
+  
+  startLocationUpdates() {
+    // Update every 2 seconds
+    setInterval(() => {
+      this.updateVesselInfo();
+    }, 2000);
+  }
+}
+
+// Initialize vessel panel when DOM is loaded
+let vesselPanelManager;
+
+// Initialize vessel panel after the map setup
+setTimeout(() => {
+  vesselPanelManager = new VesselPanelManager();
+}, 1000);
