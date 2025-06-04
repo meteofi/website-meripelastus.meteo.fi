@@ -500,6 +500,53 @@ html, body {
   transition: all var(--animation-speed) ease;
 }
 
+/* Data Source Selection */
+.data-source-selection {
+  display: flex;
+  gap: 8px;
+}
+
+.source-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--panel-border);
+  color: var(--text-secondary);
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.source-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.source-btn.active {
+  background: var(--accent-color);
+  color: var(--dark-background-color);
+  border-color: var(--accent-color);
+}
+
+.source-btn.active:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.source-btn svg {
+  opacity: 0.8;
+}
+
+.source-btn.active svg {
+  opacity: 1;
+}
+
 .toggle-btn:hover {
   background: var(--accent-hover);
   transform: translateY(-1px);

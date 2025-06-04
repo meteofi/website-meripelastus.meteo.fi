@@ -1345,25 +1345,8 @@ const main = () => {
   // Add click to feature info
   map.on('singleclick', handleMapClick);
 
-  // Location button functionality
-  document.getElementById('location-btn').addEventListener('mouseup', function() {
-    if (geolocation.getTracking()) {
-      geolocation.setTracking(false);
-      document.getElementById('location-btn').classList.remove('active');
-    } else {
-      geolocation.setTracking(true);
-      document.getElementById('location-btn').classList.add('active');
-      
-      // Center map on user location when available
-      geolocation.once('change:position', function() {
-        const coordinates = geolocation.getPosition();
-        if (coordinates) {
-          map.getView().setCenter(coordinates);
-          map.getView().setZoom(14);
-        }
-      });
-    }
-  });
+  // Note: Location button functionality is now handled by VesselPanelManager
+  // The location button now toggles the vessel panel instead of location tracking
 
   document.getElementById('nav').addEventListener('mouseup', function() {
     setAllVisible(false);
@@ -1402,11 +1385,6 @@ const main = () => {
   // Keyboard shortcuts
   document.addEventListener('keydown', function(event) {
     switch(event.key) {
-      case 'l':
-      case 'L':
-        // Toggle location tracking
-        document.getElementById('location-btn').click();
-        break;
       case 'n':
       case 'N':
         // Show navigation view
@@ -1592,15 +1570,15 @@ function handleMapClick(evt) {
 class VesselPanelManager {
   constructor() {
     this.panel = document.getElementById('vessel-panel');
-    this.sourceToggle = document.getElementById('vessel-source-toggle');
-    this.sourceIndicator = document.getElementById('source-indicator');
+    this.gpsBtn = document.getElementById('gps-btn');
+    this.aisBtn = document.getElementById('ais-btn');
     this.mmsiInputSection = document.getElementById('mmsi-input-section');
     this.mmsiInput = document.getElementById('mmsi-input');
     this.mmsiSubmit = document.getElementById('mmsi-submit');
-    this.vesselInfoBtn = document.getElementById('vessel-info-btn');
+    this.locationBtn = document.getElementById('location-btn');
     
-    // Data source: 'gps' or 'ais'
-    this.currentSource = 'gps';
+    // Data source: 'none', 'gps' or 'ais'
+    this.currentSource = 'none';
     this.currentMMSI = null;
     this.isOpen = false;
     
@@ -1614,8 +1592,8 @@ class VesselPanelManager {
   }
   
   initializeEventListeners() {
-    // Panel toggle
-    this.vesselInfoBtn.addEventListener('click', () => {
+    // Panel toggle from location button
+    this.locationBtn.addEventListener('click', () => {
       this.togglePanel();
     });
     
@@ -1629,9 +1607,14 @@ class VesselPanelManager {
       });
     }
     
-    // Source toggle
-    this.sourceToggle.addEventListener('click', () => {
-      this.toggleSource();
+    // GPS button
+    this.gpsBtn.addEventListener('click', () => {
+      this.selectSource('gps');
+    });
+    
+    // AIS button
+    this.aisBtn.addEventListener('click', () => {
+      this.selectSource('ais');
     });
     
     // MMSI input
@@ -1650,9 +1633,9 @@ class VesselPanelManager {
       e.target.value = e.target.value.replace(/[^0-9]/g, '');
     });
     
-    // Keyboard shortcut for vessel info panel
+    // Keyboard shortcut for vessel info panel (now L key)
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'v' || e.key === 'V') {
+      if (e.key === 'l' || e.key === 'L') {
         this.togglePanel();
       }
     });
@@ -1661,7 +1644,7 @@ class VesselPanelManager {
   togglePanel() {
     this.isOpen = !this.isOpen;
     this.panel.classList.toggle('open', this.isOpen);
-    this.vesselInfoBtn.classList.toggle('active', this.isOpen);
+    this.locationBtn.classList.toggle('active', this.isOpen);
     
     // Update map size when panel is toggled
     setTimeout(() => {
@@ -1669,18 +1652,45 @@ class VesselPanelManager {
     }, 300); // Wait for CSS transition to complete
   }
   
-  toggleSource() {
-    if (this.currentSource === 'gps') {
-      this.currentSource = 'ais';
-      this.sourceIndicator.textContent = 'AIS';
-      this.mmsiInputSection.style.display = 'block';
-    } else {
-      this.currentSource = 'gps';
-      this.sourceIndicator.textContent = 'GPS';
+  selectSource(source) {
+    // If clicking the same source that's already active, deactivate it
+    if (this.currentSource === source) {
+      this.currentSource = 'none';
+      this.updateSourceButtons();
+      this.clearVesselInfo();
+      
+      // If deactivating GPS, also stop geolocation
+      if (source === 'gps') {
+        geolocation.setTracking(false);
+        this.locationBtn.classList.remove('active');
+      }
+      return;
+    }
+    
+    // Activate the selected source
+    this.currentSource = source;
+    this.updateSourceButtons();
+    
+    if (source === 'gps') {
+      // Activate geolocation
+      geolocation.setTracking(true);
+      this.locationBtn.classList.add('active');
       this.mmsiInputSection.style.display = 'none';
       this.currentMMSI = null;
+    } else if (source === 'ais') {
+      // Stop geolocation if it was active
+      geolocation.setTracking(false);
+      this.locationBtn.classList.remove('active');
+      this.mmsiInputSection.style.display = 'block';
     }
+    
     this.updateVesselInfo();
+  }
+  
+  updateSourceButtons() {
+    // Update button states
+    this.gpsBtn.classList.toggle('active', this.currentSource === 'gps');
+    this.aisBtn.classList.toggle('active', this.currentSource === 'ais');
   }
   
   submitMMSI() {

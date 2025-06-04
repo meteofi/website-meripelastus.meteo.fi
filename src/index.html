@@ -27,14 +27,9 @@
             <span></span>
           </span>
         </button>
-        <button id="location-btn" class="header-btn location-btn" title="Sijainti (L)">
+        <button id="location-btn" class="header-btn location-btn" title="Location & Vessel Info (L)">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-          </svg>
-        </button>
-        <button id="vessel-info-btn" class="header-btn vessel-info-btn" title="Vessel Info (V)">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20 21c-1.39 0-2.78-.47-4-1.32-2.44 1.71-5.56 1.71-8 0C6.78 20.53 5.39 21 4 21H2v-2h2c1.38 0 2.74-.35 4-.99 2.52 1.29 5.48 1.29 8 0C17.26 18.65 18.62 19 20 19h2v2h-2zM3.95 19H2v-2h2c1.38 0 2.74-.35 4-.99.69.3 1.39.5 2.1.6C9.45 17.4 8.76 18.2 7.95 19H3.95zM12 17c-1.06 0-2.07-.28-3-.78V14c.93.5 1.94.78 3 .78s2.07-.28 3-.78v2.22c-.93.5-1.94.78-3 .78z"/>
           </svg>
         </button>
       </div>
@@ -167,10 +162,6 @@
           <div class="shortcuts">
             <div class="shortcut-item">
               <kbd>L</kbd>
-              <span>Sijainti</span>
-            </div>
-            <div class="shortcut-item">
-              <kbd>V</kbd>
               <span>Alustiedot</span>
             </div>
             <div class="shortcut-item">
@@ -203,9 +194,14 @@
         <section class="panel-section">
           <div class="section-header">
             <h3>Own Vessel</h3>
-            <button class="toggle-btn" id="vessel-source-toggle" title="Switch between GPS and AIS">
-              <span class="source-indicator" id="source-indicator">GPS</span>
-            </button>
+            <div class="data-source-selection">
+              <button class="source-btn" id="gps-btn" data-source="gps" title="Use GPS location">
+                GPS
+              </button>
+              <button class="source-btn" id="ais-btn" data-source="ais" title="Use AIS data">
+                AIS
+              </button>
+            </div>
           </div>
           
           <!-- MMSI Input (hidden by default) -->
