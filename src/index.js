@@ -574,14 +574,14 @@ function aisIcon(feature) {
     '</svg>';
   }
   
-  // Main vessel shape with transparent triangle and heading line (outline only)
+  // Main vessel shape with semi-transparent triangle and heading line
   const svg =
     '<svg width="150" height="150" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-    '<g stroke="green" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none">' +
-    '<path d="M 100,75 L 50,90 L 50,60 z" />' +
-    '</g>' +
-    '<g stroke="green" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">' +
+    '<g stroke="green" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
     headingline +
+    '</g>' +
+    '<g stroke="green" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="green" fill-opacity="0.3">' +
+    '<path d="M 100,75 L 50,90 L 50,60 z" />' +
     '</g>' +
     '</svg>';
     
