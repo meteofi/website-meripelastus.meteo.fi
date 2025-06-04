@@ -2265,6 +2265,146 @@ class VesselPanelManager {
       document.getElementById('mmsi-display').textContent = this.currentMMSI;
       document.getElementById('mmsi-display-item').style.display = 'flex';
       
+      // Navigation fields
+      // COG (Course Over Ground)
+      if (props.cog !== undefined) {
+        document.getElementById('vessel-cog').textContent = `${props.cog.toFixed(0)}°`;
+        document.getElementById('vessel-cog-item').style.display = 'flex';
+      } else {
+        document.getElementById('vessel-cog-item').style.display = 'none';
+      }
+      
+      // ROT (Rate of Turn)
+      if (props.rot !== undefined) {
+        document.getElementById('vessel-rot').textContent = `${props.rot.toFixed(1)}°/min`;
+        document.getElementById('vessel-rot-item').style.display = 'flex';
+      } else {
+        document.getElementById('vessel-rot-item').style.display = 'none';
+      }
+      
+      // Navigation Status
+      if (props.navStat !== undefined || props.navigationalStatus !== undefined) {
+        const navStatus = props.navStat || props.navigationalStatus;
+        const statusText = this.getNavigationStatusText(navStatus);
+        document.getElementById('vessel-nav-status').textContent = statusText;
+        document.getElementById('vessel-nav-status-item').style.display = 'flex';
+      } else {
+        document.getElementById('vessel-nav-status-item').style.display = 'none';
+      }
+      
+      // Vessel Information fields
+      // IMO
+      if (props.imo) {
+        document.getElementById('vessel-imo').textContent = props.imo;
+        document.getElementById('vessel-imo-item').style.display = 'flex';
+      } else {
+        document.getElementById('vessel-imo-item').style.display = 'none';
+      }
+      
+      // Vessel Type
+      if (props.vesselType !== undefined) {
+        document.getElementById('vessel-type').textContent = props.vesselType;
+        document.getElementById('vessel-type-item').style.display = 'flex';
+      } else {
+        document.getElementById('vessel-type-item').style.display = 'none';
+      }
+      
+      // Ship Type
+      if (props.shipType !== undefined) {
+        document.getElementById('ship-type').textContent = props.shipType;
+        document.getElementById('ship-type-item').style.display = 'flex';
+      } else {
+        document.getElementById('ship-type-item').style.display = 'none';
+      }
+      
+      // Ship and Cargo Type
+      if (props.shipAndCargoType !== undefined) {
+        document.getElementById('ship-cargo-type').textContent = props.shipAndCargoType;
+        document.getElementById('ship-cargo-type-item').style.display = 'flex';
+      } else {
+        document.getElementById('ship-cargo-type-item').style.display = 'none';
+      }
+      
+      // Voyage Information fields
+      // Destination
+      if (props.destination) {
+        document.getElementById('vessel-destination').textContent = props.destination;
+        document.getElementById('vessel-destination-item').style.display = 'flex';
+      } else {
+        document.getElementById('vessel-destination-item').style.display = 'none';
+      }
+      
+      // ETA
+      if (props.eta) {
+        const formattedETA = this.formatETA(props.eta);
+        document.getElementById('vessel-eta').textContent = formattedETA;
+        document.getElementById('vessel-eta-item').style.display = 'flex';
+      } else {
+        document.getElementById('vessel-eta-item').style.display = 'none';
+      }
+      
+      // Draught
+      if (props.draught !== undefined) {
+        document.getElementById('vessel-draught').textContent = `${props.draught} m`;
+        document.getElementById('vessel-draught-item').style.display = 'flex';
+      } else {
+        document.getElementById('vessel-draught-item').style.display = 'none';
+      }
+      
+      // Dimensions
+      if (props.dimensions) {
+        const dim = props.dimensions;
+        if (dim.length !== undefined && dim.width !== undefined) {
+          document.getElementById('vessel-length').textContent = `${dim.length} m`;
+          document.getElementById('vessel-width').textContent = `${dim.width} m`;
+          document.getElementById('vessel-length-item').style.display = 'flex';
+          document.getElementById('vessel-width-item').style.display = 'flex';
+          
+          // Detailed dimensions (A, B, C, D)
+          if (dim.dimToBow !== undefined) {
+            document.getElementById('vessel-dim-a').textContent = `${dim.dimToBow} m`;
+            document.getElementById('vessel-dim-a-item').style.display = 'flex';
+          } else {
+            document.getElementById('vessel-dim-a-item').style.display = 'none';
+          }
+          
+          if (dim.dimToStern !== undefined) {
+            document.getElementById('vessel-dim-b').textContent = `${dim.dimToStern} m`;
+            document.getElementById('vessel-dim-b-item').style.display = 'flex';
+          } else {
+            document.getElementById('vessel-dim-b-item').style.display = 'none';
+          }
+          
+          if (dim.dimToPort !== undefined) {
+            document.getElementById('vessel-dim-c').textContent = `${dim.dimToPort} m`;
+            document.getElementById('vessel-dim-c-item').style.display = 'flex';
+          } else {
+            document.getElementById('vessel-dim-c-item').style.display = 'none';
+          }
+          
+          if (dim.dimToStarboard !== undefined) {
+            document.getElementById('vessel-dim-d').textContent = `${dim.dimToStarboard} m`;
+            document.getElementById('vessel-dim-d-item').style.display = 'flex';
+          } else {
+            document.getElementById('vessel-dim-d-item').style.display = 'none';
+          }
+        } else {
+          document.getElementById('vessel-length-item').style.display = 'none';
+          document.getElementById('vessel-width-item').style.display = 'none';
+          document.getElementById('vessel-dim-a-item').style.display = 'none';
+          document.getElementById('vessel-dim-b-item').style.display = 'none';
+          document.getElementById('vessel-dim-c-item').style.display = 'none';
+          document.getElementById('vessel-dim-d-item').style.display = 'none';
+        }
+      } else {
+        document.getElementById('vessel-length-item').style.display = 'none';
+        document.getElementById('vessel-width-item').style.display = 'none';
+        document.getElementById('vessel-dim-a-item').style.display = 'none';
+        document.getElementById('vessel-dim-b-item').style.display = 'none';
+        document.getElementById('vessel-dim-c-item').style.display = 'none';
+        document.getElementById('vessel-dim-d-item').style.display = 'none';
+      }
+      
       // Calculate data age
       const timestamp = props.timestamp || props.lastUpdate;
       let status = 'AIS data active';
@@ -2331,9 +2471,52 @@ class VesselPanelManager {
   }
   
   clearDisplayValues() {
+    // Basic navigation fields
     document.getElementById('vessel-position').textContent = '--';
     document.getElementById('vessel-speed').textContent = '-- kn';
     document.getElementById('vessel-heading').textContent = '--°';
+    
+    // Additional navigation fields
+    document.getElementById('vessel-cog').textContent = '--°';
+    document.getElementById('vessel-rot').textContent = '--°/min';
+    document.getElementById('vessel-nav-status').textContent = '--';
+    
+    // Vessel information fields
+    document.getElementById('vessel-imo').textContent = '--';
+    document.getElementById('vessel-type').textContent = '--';
+    document.getElementById('ship-type').textContent = '--';
+    document.getElementById('ship-cargo-type').textContent = '--';
+    
+    // Voyage fields
+    document.getElementById('vessel-destination').textContent = '--';
+    document.getElementById('vessel-eta').textContent = '--';
+    document.getElementById('vessel-draught').textContent = '-- m';
+    
+    // Dimension fields
+    document.getElementById('vessel-length').textContent = '-- m';
+    document.getElementById('vessel-width').textContent = '-- m';
+    document.getElementById('vessel-dim-a').textContent = '-- m';
+    document.getElementById('vessel-dim-b').textContent = '-- m';
+    document.getElementById('vessel-dim-c').textContent = '-- m';
+    document.getElementById('vessel-dim-d').textContent = '-- m';
+    
+    // Hide all optional items
+    document.getElementById('vessel-cog-item').style.display = 'none';
+    document.getElementById('vessel-rot-item').style.display = 'none';
+    document.getElementById('vessel-nav-status-item').style.display = 'none';
+    document.getElementById('vessel-imo-item').style.display = 'none';
+    document.getElementById('vessel-type-item').style.display = 'none';
+    document.getElementById('ship-type-item').style.display = 'none';
+    document.getElementById('ship-cargo-type-item').style.display = 'none';
+    document.getElementById('vessel-destination-item').style.display = 'none';
+    document.getElementById('vessel-eta-item').style.display = 'none';
+    document.getElementById('vessel-draught-item').style.display = 'none';
+    document.getElementById('vessel-length-item').style.display = 'none';
+    document.getElementById('vessel-width-item').style.display = 'none';
+    document.getElementById('vessel-dim-a-item').style.display = 'none';
+    document.getElementById('vessel-dim-b-item').style.display = 'none';
+    document.getElementById('vessel-dim-c-item').style.display = 'none';
+    document.getElementById('vessel-dim-d-item').style.display = 'none';
   }
   
   formatPosition(lat, lon) {
@@ -2347,6 +2530,60 @@ class VesselPanelManager {
     const lonDir = lon >= 0 ? 'E' : 'W';
     
     return `${latDeg}°${latMin.toFixed(3)}'${latDir} ${lonDeg}°${lonMin.toFixed(3)}'${lonDir}`;
+  }
+  
+  getNavigationStatusText(status) {
+    const statusMap = {
+      0: 'Under way using engine',
+      1: 'At anchor',
+      2: 'Not under command',
+      3: 'Restricted maneuverability',
+      4: 'Constrained by her draught',
+      5: 'Moored',
+      6: 'Aground',
+      7: 'Engaged in fishing',
+      8: 'Under way sailing',
+      9: 'Reserved (DG/HS/MP, HSC)',
+      10: 'Reserved (DG/HS/MP, WIG)',
+      11: 'Power-driven vessel towing astern',
+      12: 'Power-driven vessel pushing ahead/alongside',
+      13: 'Reserved for future use',
+      14: 'AIS-SART/MOB-AIS/EPIRB-AIS (active)',
+      15: 'Default'
+    };
+    
+    return statusMap[status] || `Unknown (${status})`;
+  }
+  
+  formatETA(eta) {
+    if (!eta) return 'N/A';
+    
+    // ETA format can vary, handle different formats
+    if (typeof eta === 'string') {
+      // Try to parse ISO string or other formats
+      const date = new Date(eta);
+      if (!isNaN(date.getTime())) {
+        return date.toLocaleString();
+      }
+      return eta; // Return as-is if can't parse
+    } else if (typeof eta === 'object' && eta.month && eta.day) {
+      // Handle structured ETA format (month, day, hour, minute)
+      const month = eta.month || 0;
+      const day = eta.day || 0;
+      const hour = eta.hour || 0;
+      const minute = eta.minute || 0;
+      
+      if (month === 0 || day === 0) {
+        return 'N/A';
+      }
+      
+      // Construct date (using current year)
+      const currentYear = new Date().getFullYear();
+      const etaDate = new Date(currentYear, month - 1, day, hour, minute);
+      return etaDate.toLocaleString();
+    }
+    
+    return 'N/A';
   }
   
   updateStatus(text, type = '') {

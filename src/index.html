@@ -214,30 +214,119 @@
           
           <!-- Vessel Information Display -->
           <div class="vessel-info" id="vessel-info">
-            <div class="info-grid">
-              <div class="info-item">
-                <span class="info-label">Position</span>
-                <span class="info-value" id="vessel-position">--</span>
+            <!-- Basic Navigation Data -->
+            <div class="info-section">
+              <h4 class="section-title">Navigation</h4>
+              <div class="info-grid">
+                <div class="info-item">
+                  <span class="info-label">Position</span>
+                  <span class="info-value" id="vessel-position">--</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Speed (SOG)</span>
+                  <span class="info-value" id="vessel-speed">-- kn</span>
+                </div>
+                <div class="info-item">
+                  <span class="info-label">Heading</span>
+                  <span class="info-value" id="vessel-heading">--°</span>
+                </div>
+                <div class="info-item" id="vessel-cog-item" style="display: none;">
+                  <span class="info-label">Course (COG)</span>
+                  <span class="info-value" id="vessel-cog">--°</span>
+                </div>
+                <div class="info-item" id="vessel-rot-item" style="display: none;">
+                  <span class="info-label">Turn Rate</span>
+                  <span class="info-value" id="vessel-rot">--°/min</span>
+                </div>
+                <div class="info-item" id="vessel-nav-status-item" style="display: none;">
+                  <span class="info-label">Nav Status</span>
+                  <span class="info-value" id="vessel-nav-status">--</span>
+                </div>
               </div>
-              <div class="info-item">
-                <span class="info-label">Speed</span>
-                <span class="info-value" id="vessel-speed">-- kn</span>
+            </div>
+
+            <!-- Vessel Identification -->
+            <div class="info-section">
+              <h4 class="section-title">Vessel Info</h4>
+              <div class="info-grid">
+                <div class="info-item" id="vessel-name-item" style="display: none;">
+                  <span class="info-label">Vessel Name</span>
+                  <span class="info-value" id="vessel-name">--</span>
+                </div>
+                <div class="info-item" id="call-sign-item" style="display: none;">
+                  <span class="info-label">Call Sign</span>
+                  <span class="info-value" id="call-sign">--</span>
+                </div>
+                <div class="info-item" id="mmsi-display-item" style="display: none;">
+                  <span class="info-label">MMSI</span>
+                  <span class="info-value" id="mmsi-display">--</span>
+                </div>
+                <div class="info-item" id="vessel-imo-item" style="display: none;">
+                  <span class="info-label">IMO</span>
+                  <span class="info-value" id="vessel-imo">--</span>
+                </div>
+                <div class="info-item" id="vessel-type-item" style="display: none;">
+                  <span class="info-label">Vessel Type</span>
+                  <span class="info-value" id="vessel-type">--</span>
+                </div>
+                <div class="info-item" id="ship-type-item" style="display: none;">
+                  <span class="info-label">Ship Type</span>
+                  <span class="info-value" id="ship-type">--</span>
+                </div>
+                <div class="info-item" id="ship-cargo-type-item" style="display: none;">
+                  <span class="info-label">Ship & Cargo Type</span>
+                  <span class="info-value" id="ship-cargo-type">--</span>
+                </div>
               </div>
-              <div class="info-item">
-                <span class="info-label">Heading</span>
-                <span class="info-value" id="vessel-heading">--°</span>
+            </div>
+
+            <!-- Voyage Information -->
+            <div class="info-section" id="voyage-section" style="display: none;">
+              <h4 class="section-title">Voyage</h4>
+              <div class="info-grid">
+                <div class="info-item" id="vessel-destination-item" style="display: none;">
+                  <span class="info-label">Destination</span>
+                  <span class="info-value" id="vessel-destination">--</span>
+                </div>
+                <div class="info-item" id="vessel-eta-item" style="display: none;">
+                  <span class="info-label">ETA</span>
+                  <span class="info-value" id="vessel-eta">--</span>
+                </div>
+                <div class="info-item" id="vessel-draught-item" style="display: none;">
+                  <span class="info-label">Draught</span>
+                  <span class="info-value" id="vessel-draught">-- m</span>
+                </div>
               </div>
-              <div class="info-item" id="vessel-name-item" style="display: none;">
-                <span class="info-label">Vessel</span>
-                <span class="info-value" id="vessel-name">--</span>
-              </div>
-              <div class="info-item" id="call-sign-item" style="display: none;">
-                <span class="info-label">Call Sign</span>
-                <span class="info-value" id="call-sign">--</span>
-              </div>
-              <div class="info-item" id="mmsi-display-item" style="display: none;">
-                <span class="info-label">MMSI</span>
-                <span class="info-value" id="mmsi-display">--</span>
+            </div>
+
+            <!-- Vessel Dimensions -->
+            <div class="info-section" id="dimensions-section" style="display: none;">
+              <h4 class="section-title">Dimensions</h4>
+              <div class="info-grid">
+                <div class="info-item" id="vessel-length-item" style="display: none;">
+                  <span class="info-label">Length</span>
+                  <span class="info-value" id="vessel-length">-- m</span>
+                </div>
+                <div class="info-item" id="vessel-width-item" style="display: none;">
+                  <span class="info-label">Width</span>
+                  <span class="info-value" id="vessel-width">-- m</span>
+                </div>
+                <div class="info-item" id="vessel-dim-a-item" style="display: none;">
+                  <span class="info-label">Dim A (To Bow)</span>
+                  <span class="info-value" id="vessel-dim-a">-- m</span>
+                </div>
+                <div class="info-item" id="vessel-dim-b-item" style="display: none;">
+                  <span class="info-label">Dim B (To Stern)</span>
+                  <span class="info-value" id="vessel-dim-b">-- m</span>
+                </div>
+                <div class="info-item" id="vessel-dim-c-item" style="display: none;">
+                  <span class="info-label">Dim C (To Port)</span>
+                  <span class="info-value" id="vessel-dim-c">-- m</span>
+                </div>
+                <div class="info-item" id="vessel-dim-d-item" style="display: none;">
+                  <span class="info-label">Dim D (To Starboard)</span>
+                  <span class="info-value" id="vessel-dim-d">-- m</span>
+                </div>
               </div>
             </div>
             
