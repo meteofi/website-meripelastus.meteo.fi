@@ -574,11 +574,11 @@ function aisIcon(feature) {
     '</svg>';
   }
   
-  // Main vessel shape with white triangle and heading line
+  // Main vessel shape with transparent triangle and heading line (outline only)
   const svg =
     '<svg width="150" height="150" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
     '<g stroke="green" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill-opacity="1">' +
-    '<path d="M 100,75 L 50,90 L 50,60 z" style="fill:rgb(255,255,255);fill-opacity:1;fill-rule:evenodd;stroke-linejoin:round" />' +
+    '<path d="M 100,75 L 50,90 L 50,60 z" style="fill:none;fill-opacity:0;fill-rule:evenodd;stroke-linejoin:round" />' +
     headingline +
     '</g>' +
     '</svg>';
@@ -2010,15 +2010,85 @@ class VesselPanelManager {
         trackedVessels[mmsi] = {};
       }
       
+      // Center map on vessel location if available
+      this.centerMapOnVessel(mmsi);
+      
       // Immediately update vessel info display
       this.updateVesselInfo();
     } else {
       this.updateStatus('Invalid MMSI format', 'error');
       notificationManager.show('Invalid MMSI format. Please enter 7-9 digits.', 'error', 3000);
       setTimeout(() => this.updateVesselInfo(), 3000);
+    }  }
+  
+  centerMapOnVessel(mmsi) {
+    // Check if vessel has location data
+    const vesselData = vesselManager.getGeoJSONForVessel(mmsi);
+    
+    if (vesselData && vesselData.properties && vesselData.properties.lat && vesselData.properties.lon) {
+      const lat = vesselData.properties.lat;
+      const lon = vesselData.properties.lon;
+      
+      // Convert lat/lon to map projection and center the map with zoom
+      const coordinates = fromLonLat([lon, lat]);
+      const view = map.getView();
+      view.setCenter(coordinates);
+      view.setZoom(14); // Zoom in to a good level for vessel tracking
+      
+      console.log(`Map centered and zoomed on vessel ${mmsi} at coordinates: ${lat}, ${lon}`);
+      
+      // Show notification about centering and zooming
+      if (rescueVesselManager.isRescueVessel(mmsi)) {
+        const vesselName = rescueVesselManager.getVesselName(mmsi);
+        notificationManager.show(`Map centered and zoomed on rescue vessel: ${vesselName}`, 'info', 2000);
+      } else {
+        notificationManager.show(`Map centered and zoomed on vessel: ${mmsi}`, 'info', 2000);
+      }
+    } else {
+      console.log(`No location data available for vessel ${mmsi} yet`);
+      // We could add a listener to center the map when location data becomes available
+      this.scheduleMapCenteringWhenDataAvailable(mmsi);
     }
   }
   
+  scheduleMapCenteringWhenDataAvailable(mmsi) {
+    // Set up a periodic check for location data (max 30 seconds)
+    let attempts = 0;
+    const maxAttempts = 30; // 30 seconds with 1-second intervals
+    
+    const checkForLocation = () => {
+      attempts++;
+      const vesselData = vesselManager.getGeoJSONForVessel(mmsi);
+      
+      if (vesselData && vesselData.properties && vesselData.properties.lat && vesselData.properties.lon) {
+        // Location data is now available, center and zoom the map
+        const lat = vesselData.properties.lat;
+        const lon = vesselData.properties.lon;
+        const coordinates = fromLonLat([lon, lat]);
+        const view = map.getView();
+        view.setCenter(coordinates);
+        view.setZoom(12); // Zoom in to a good level for vessel tracking
+        
+        console.log(`Map centered and zoomed on vessel ${mmsi} (delayed) at coordinates: ${lat}, ${lon}`);
+        
+        if (rescueVesselManager.isRescueVessel(mmsi)) {
+          const vesselName = rescueVesselManager.getVesselName(mmsi);
+          notificationManager.show(`Map centered and zoomed on rescue vessel: ${vesselName}`, 'info', 2000);
+        } else {
+          notificationManager.show(`Map centered and zoomed on vessel: ${mmsi}`, 'info', 2000);
+        }
+      } else if (attempts < maxAttempts) {
+        // Try again in 1 second
+        setTimeout(checkForLocation, 1000);
+      } else {
+        console.log(`No location data received for vessel ${mmsi} after ${maxAttempts} seconds`);
+      }
+    };
+    
+    // Start checking after 1 second
+    setTimeout(checkForLocation, 1000);
+  }
+
   updateVesselInfo() {
     if (this.currentSource === 'gps') {
       this.updateGPSInfo();
