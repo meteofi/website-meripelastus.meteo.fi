@@ -2343,9 +2343,17 @@ class VesselPanelManager {
         document.getElementById('vessel-eta-item').style.display = 'none';
       }
       
-      // Draught
-      if (props.draught !== undefined) {
-        document.getElementById('vessel-draught').textContent = `${props.draught} m`;
+      // Draught - check AIS data first, then rescue vessel data
+      let draught = props.draught;
+      if (draught === undefined && rescueVesselManager.isRescueVessel(this.currentMMSI)) {
+        const rescueVessel = rescueVesselManager.getRescueVessel(this.currentMMSI);
+        if (rescueVessel && rescueVessel.metadata && rescueVessel.metadata.draught !== undefined) {
+          draught = rescueVessel.metadata.draught;
+        }
+      }
+      
+      if (draught !== undefined) {
+        document.getElementById('vessel-draught').textContent = `${draught} m`;
         document.getElementById('vessel-draught-item').style.display = 'flex';
       } else {
         document.getElementById('vessel-draught-item').style.display = 'none';
@@ -2446,17 +2454,27 @@ class VesselPanelManager {
             document.getElementById('call-sign-item').style.display = 'none';
           }
           
+          // Show draught from rescue vessel data if available
+          if (rescueVessel.metadata.draught !== undefined) {
+            document.getElementById('vessel-draught').textContent = `${rescueVessel.metadata.draught} m`;
+            document.getElementById('vessel-draught-item').style.display = 'flex';
+          } else {
+            document.getElementById('vessel-draught-item').style.display = 'none';
+          }
+          
           this.updateStatus('Rescue vessel - Waiting for location data', 'active');
         } else {
-          // Hide name and call sign if rescue vessel data not available
+          // Hide name, call sign, and draught if rescue vessel data not available
           document.getElementById('vessel-name-item').style.display = 'none';
           document.getElementById('call-sign-item').style.display = 'none';
+          document.getElementById('vessel-draught-item').style.display = 'none';
           this.updateStatus('Rescue vessel - Waiting for data', 'active');
         }
       } else {
-        // For non-rescue vessels, hide name and call sign until MQTT data arrives
+        // For non-rescue vessels, hide name, call sign, and draught until MQTT data arrives
         document.getElementById('vessel-name-item').style.display = 'none';
         document.getElementById('call-sign-item').style.display = 'none';
+        document.getElementById('vessel-draught-item').style.display = 'none';
         this.updateStatus('Waiting for AIS data...', 'active');
       }
     }
@@ -2467,6 +2485,7 @@ class VesselPanelManager {
     document.getElementById('vessel-name-item').style.display = 'none';
     document.getElementById('call-sign-item').style.display = 'none';
     document.getElementById('mmsi-display-item').style.display = 'none';
+    document.getElementById('vessel-draught-item').style.display = 'none';
     this.updateStatus('No data source selected', '');
   }
   
@@ -2566,6 +2585,23 @@ class VesselPanelManager {
         return date.toLocaleString();
       }
       return eta; // Return as-is if can't parse
+    } else if (typeof eta === 'number') {
+      // Handle numeric ETA format (e.g., 691456)
+      // This could be a packed format: MMDDHHMM
+      const etaStr = eta.toString().padStart(8, '0');
+      if (etaStr.length >= 6) {
+        const month = parseInt(etaStr.substring(0, 2));
+        const day = parseInt(etaStr.substring(2, 4));
+        const hour = parseInt(etaStr.substring(4, 6));
+        const minute = etaStr.length >= 8 ? parseInt(etaStr.substring(6, 8)) : 0;
+        
+        if (month > 0 && month <= 12 && day > 0 && day <= 31) {
+          const currentYear = new Date().getFullYear();
+          const etaDate = new Date(currentYear, month - 1, day, hour, minute);
+          return etaDate.toLocaleString();
+        }
+      }
+      return `ETA: ${eta}`;
     } else if (typeof eta === 'object' && eta.month && eta.day) {
       // Handle structured ETA format (month, day, hour, minute)
       const month = eta.month || 0;
