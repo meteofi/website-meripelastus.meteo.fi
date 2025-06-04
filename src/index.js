@@ -117,7 +117,7 @@ class NotificationManager {
     document.body.appendChild(this.container);
   }
 
-  show(message, type = 'info', duration = 3000) {
+  show(message, type = 'info', duration = 4000) {
     const notification = document.createElement('div');
     notification.style.cssText = `
       background: ${this.getBackgroundColor(type)};
@@ -553,75 +553,178 @@ function navigointilinjaIcon(feature) {
 }
 
 function aisIcon(feature) {
-  var headingline;
-  var cogsvg = ""; // Initialize empty COG svg
-  
-  if (feature.get('sog') == 0) {
-    headingline = "";
-  } else if (feature.get('rot') < 0) {
-      headingline = '<path d="M 100,75 L 148,75 L 148,60" />';
-  } else if (feature.get('rot') > 0) {
-      headingline = '<path d="M 100,75 L 148,75 L 148,90" />';
-  } else {
-    headingline = '<path d="M 100,75 L 148,75 z" />';
-  }
-
-  // Only show COG line if we have speed over ground data
-  if (feature.get("sog") != null && feature.get("sog") > 0) {
-    cogsvg = 
-    '<svg width="150" height="150" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-    '<path d="M 75,75 L 148,75 z" style="stroke-dasharray:5; stroke:green; stroke-width:4;" />' +
-    '</svg>';
-  }
-  
-  // Main vessel shape with semi-transparent triangle and heading line
-  const svg =
-    '<svg width="150" height="150" version="1.1" xmlns="http://www.w3.org/2000/svg">' +
-    '<g stroke="green" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
-    headingline +
-    '</g>' +
-    '<g stroke="green" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="green" fill-opacity="0.3">' +
-    '<path d="M 100,75 L 50,90 L 50,60 z" />' +
-    '</g>' +
-    '</svg>';
-    
   const mmsi = feature.get("mmsi") + "";
+  const sog = feature.get('sog') || 0; // Speed over ground
+  const heading = feature.get('heading') || 0;
+  const cog = feature.get('cog'); // Course over ground
+  const rot = feature.get('rot') || 0; // Rate of turn
+  
+  // Determine if this is a rescue vessel for different styling
+  const isRescueVessel = rescueVesselManager.isRescueVessel(mmsi);
+  // Check if this is the user's own tracked vessel
+  const isOwnVessel = vesselPanelManager && vesselPanelManager.currentMMSI === mmsi;
+  const triangleColor = isOwnVessel ? '#ff6b35' : '#00b04f'; // Orange for own vessel, green for all others
+  const cogColor = isOwnVessel ? '#ff6b35' : '#00b04f'; // COG vector matches vessel color
+  
+  const markerSize = 80;
+  const centerX = markerSize / 2;
+  const centerY = markerSize / 2;
+  
+  // Main vessel triangle (pointing right, will be rotated by heading)
+  const triangleSize = 12;
+  const vesselTriangle = `<polygon points="${centerX + triangleSize},${centerY} ${centerX - triangleSize/2},${centerY - triangleSize/2} ${centerX - triangleSize/2},${centerY + triangleSize/2}" 
+                          fill="${triangleColor}" fill-opacity="0.6" 
+                          stroke="${triangleColor}" stroke-width="1"/>`;
+  
+  // COG vector (independent of vessel heading)
+  let cogVector = '';
+  if (sog > 0 && cog != null) {
+    const cogLength = 25;
+    const cogEndX = centerX + cogLength;
+    const cogEndY = centerY;
+    
+    // Calculate turn indicator based on ROT
+    const maxRotLength = 15; // Maximum length for turn indicator
+    const rotLength = Math.min(Math.abs(rot) * 2, maxRotLength); // Scale ROT to indicator length
+    
+    let turnIndicator = '';
+    if (Math.abs(rot) > 1) { // Only show turn indicator if ROT is significant
+      if (rot > 0) {
+        // Right turn - 90 degree bend downward (to the right relative to COG direction)
+        turnIndicator = `<path d="M ${cogEndX},${cogEndY} L ${cogEndX},${cogEndY + rotLength}" 
+                         stroke="${cogColor}" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+      } else {
+        // Left turn - 90 degree bend upward (to the left relative to COG direction)
+        turnIndicator = `<path d="M ${cogEndX},${cogEndY} L ${cogEndX},${cogEndY - rotLength}" 
+                         stroke="${cogColor}" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+      }
+    }
+    
+    // COG vector line with turn indicator (fix rotation - COG is already in degrees)
+    cogVector = `<g transform="rotate(${cog - 90} ${centerX} ${centerY})">
+                   <line x1="${centerX}" y1="${centerY}" x2="${cogEndX}" y2="${cogEndY}" 
+                         stroke="${cogColor}" stroke-width="2" stroke-dasharray="4,2" opacity="0.9" stroke-linecap="round"/>
+                   ${turnIndicator}
+                 </g>`;
+  }
+  
+  // Determine text position based on COG to avoid overlap with COG vector
+  // If COG is between 90° and 270°, place text above marker to avoid COG vector
+  const textAbove = sog > 0 && cog != null && cog > 90 && cog < 270;
+  const speedTextY = textAbove ? centerY - 22 : centerY + 22;
+  const courseTextY = textAbove ? centerY - 34 : centerY + 34;
+  
+  // Speed text
+  const speedText = sog.toFixed(1);
+  const fontSize = '11';
+  const speedTextColor = isOwnVessel ? '#ff6b35' : '#00b04f'; // Speed text matches vessel color
+  
+  // Course text (only if speed > 0 and COG is available)
+  let courseText = '';
+  if (sog > 0 && cog != null) {
+    courseText = `<text x="${centerX}" y="${courseTextY}" 
+                       font-family="Arial, sans-serif" font-size="10" font-weight="normal"
+                       text-anchor="middle" dominant-baseline="central" 
+                       fill="${speedTextColor}">${cog.toFixed(0)}°</text>`;
+  }
+  
+  const svg = `<svg width="${markerSize}" height="${markerSize}" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <!-- COG vector (rendered first, independent rotation) -->
+    ${cogVector}
+    
+    <!-- Vessel triangle (rotated by heading) -->
+    <g transform="rotate(${heading - 90} ${centerX} ${centerY})">
+      ${vesselTriangle}
+    </g>
+    
+    <!-- Speed text -->
+    <text x="${centerX}" y="${speedTextY}" 
+          font-family="Arial, sans-serif" font-size="${fontSize}" font-weight="normal"
+          text-anchor="middle" dominant-baseline="central" 
+          fill="${speedTextColor}">${speedText} kn</text>
+    
+    <!-- Course text (if moving) -->
+    ${courseText}
+  </svg>`;
   
   const styles = [
-    // Main vessel icon
     new Style({
       image: new Icon({
         opacity: 1,
-        src: "data:image/svg+xml;utf8," + svg,
-        scale: 0.5,
-        rotation: (feature.get('heading')-90) * (Math.PI/180),
+        src: "data:image/svg+xml;utf8," + encodeURIComponent(svg),
+        scale: 1.0,
         anchor: [0.5, 0.5],
-      }),
-      text: new Text({
-        font: '10px Calibri,sans-serif',
-        fill: new Fill({ color: '#fff' }),
-        stroke: new Stroke({ color: '#000', width: 1 }),
-        offsetX: 0,
-        offsetY: 45,
-        text: getVesselName(mmsi) // Use the getVesselName function instead of direct access
       }),
     })
   ];
   
-  // Add COG style only if we have COG data
-  if (cogsvg && feature.get('cog') != null) {
-    styles.push(new Style({
-      image: new Icon({
-        opacity: 1,
-        src: "data:image/svg+xml;utf8," + cogsvg,
-        scale: 0.5,
-        rotation: (feature.get('cog')-90) * (Math.PI/180),
-        anchor: [0.5, 0.5],
-      }),
-    }));
+  return styles;
+}
+
+// Enhanced vessel name display on hover/click
+function showVesselNameOnHover(feature, pixel) {
+  const mmsi = feature.get("mmsi") + "";
+  const vesselName = getVesselName(mmsi);
+  const sog = feature.get('sog') || 0;
+  const heading = feature.get('heading') || 0;
+  const cog = feature.get('cog');
+  const rot = feature.get('rot') || 0;
+  
+  // Create hover tooltip
+  const tooltip = document.getElementById('vessel-tooltip') || createVesselTooltip();
+  
+  let tooltipContent = `<strong>${vesselName}</strong><br/>`;
+  tooltipContent += `Speed: ${sog.toFixed(1)} kn<br/>`;
+  tooltipContent += `Heading: ${heading.toFixed(0)}°`;
+  
+  if (cog != null && sog > 0) {
+    tooltipContent += `<br/>Course: ${cog.toFixed(0)}°`;
   }
   
-  return styles;
+  if (Math.abs(rot) > 0.1) {
+    tooltipContent += `<br/>Turn Rate: ${rot.toFixed(1)}°/min`;
+  }
+  
+  if (vesselPanelManager && vesselPanelManager.currentMMSI === mmsi) {
+    tooltipContent += `<br/><span style="color: #ff6b35; font-weight: bold;">YOUR VESSEL</span>`;
+  } else if (rescueVesselManager.isRescueVessel(mmsi)) {
+    tooltipContent += `<br/><span style="color: #ff6b35; font-weight: bold;">RESCUE VESSEL</span>`;
+  }
+  
+  tooltip.innerHTML = tooltipContent;
+  tooltip.style.display = 'block';
+  tooltip.style.left = (pixel[0] + 10) + 'px';
+  tooltip.style.top = (pixel[1] - 10) + 'px';
+}
+
+function hideVesselTooltip() {
+  const tooltip = document.getElementById('vessel-tooltip');
+  if (tooltip) {
+    tooltip.style.display = 'none';
+  }
+}
+
+function createVesselTooltip() {
+  const tooltip = document.createElement('div');
+  tooltip.id = 'vessel-tooltip';
+  tooltip.style.cssText = `
+    position: absolute;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    line-height: 1.4;
+    pointer-events: none;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.2);
+    max-width: 200px;
+  `;
+  document.body.appendChild(tooltip);
+  return tooltip;
 }
 
 function venesatamatIcon(feature) {
@@ -1181,22 +1284,49 @@ var seaheightLayer = new ImageLayer({
 });
 
  
+// GPS icon function using same triangle style as AIS vessels
+function gpsIcon(heading = 0, speed = 0) {
+  const triangleColor = '#ff6b35'; // Orange for GPS own vessel
+  const markerSize = 80;
+  const centerX = markerSize / 2;
+  const centerY = markerSize / 2;
+  
+  // Main vessel triangle (pointing right, will be rotated by heading)
+  const triangleSize = 12;
+  const vesselTriangle = `<polygon points="${centerX + triangleSize},${centerY} ${centerX - triangleSize/2},${centerY - triangleSize/2} ${centerX - triangleSize/2},${centerY + triangleSize/2}" 
+                          fill="${triangleColor}" fill-opacity="0.6" 
+                          stroke="${triangleColor}" stroke-width="1"/>`;
+  
+  // Speed text (always show for GPS)
+  const speedText = `<text x="${centerX}" y="${centerY + 22}" 
+                     text-anchor="middle" dominant-baseline="middle" 
+                     font-family="Arial, sans-serif" font-size="11px" 
+                     fill="${triangleColor}" font-weight="normal">
+                     ${speed.toFixed(1)} kn
+                   </text>`;
+  
+  const svgContent = `
+    <svg width="${markerSize}" height="${markerSize}" xmlns="http://www.w3.org/2000/svg">
+      <g transform="rotate(${heading - 90} ${centerX} ${centerY})">
+        ${vesselTriangle}
+      </g>
+      ${speedText}
+    </svg>
+  `;
+  
+  return new Style({
+    image: new Icon({
+      src: 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgContent),
+      scale: 1,
+      anchor: [0.5, 0.5]
+    })
+  });
+}
+
 // Create features for geolocation
 positionFeature = new Feature();
-positionFeature.setStyle(
-  new Style({
-    image: new CircleStyle({
-      radius: 6,
-      fill: new Fill({
-        color: '#3399CC',
-      }),
-      stroke: new Stroke({
-        color: '#fff',
-        width: 2,
-      }),
-    }),
-  })
-);
+// Initial style - will be updated dynamically
+positionFeature.setStyle(gpsIcon(0, 0));
 
 accuracyFeature = new Feature();
 
@@ -1255,10 +1385,7 @@ async function initializeRescueVessels() {
 		// Remove loading notification and show success
 		notificationManager.remove(loadingNotification);
 		notificationManager.show(`Loaded ${vesselCount} rescue vessels`, 'success', 3000);
-		
-		// Log vessel names for debugging
-		console.log('Rescue vessels:', Object.values(trackedVessels).map(v => v.metadata?.name).filter(Boolean));
-		
+				
 	} catch (error) {
 		console.error('=== RESCUE VESSEL INITIALIZATION ERROR ===');
 		console.error('Failed to load rescue vessels:', error);
@@ -1535,6 +1662,30 @@ function onChangeAccuracyGeometry(event) {
 function onChangePosition(event) {
   const coordinates = event.target.getPosition();
   positionFeature.setGeometry(coordinates ? new Point(coordinates) : null);
+  
+  // Update GPS icon style with current heading and speed
+  if (coordinates && vesselPanelManager) {
+    const speed = geolocation.getSpeed(); // Speed in m/s
+    let heading = geolocation.getHeading(); // GPS heading
+    
+    // Convert speed from m/s to knots
+    const speedKnots = speed ? (speed * 1.94384) : 0;
+    
+    // If GPS heading is not available, try to use calculated heading
+    if (heading === null || heading === undefined) {
+      heading = vesselPanelManager.calculatedHeading || 0;
+    } else {
+      // GPS heading might be in radians, convert to degrees if needed
+      if (Math.abs(heading) <= Math.PI * 2) {
+        heading = heading * 180 / Math.PI; // Convert from radians
+      }
+      // Normalize to 0-360
+      heading = ((heading % 360) + 360) % 360;
+    }
+    
+    // Update the GPS position marker style
+    positionFeature.setStyle(gpsIcon(heading, speedKnots));
+  }
 }
 
 function setAllVisible(status) {
@@ -1633,6 +1784,44 @@ const main = () => {
 
   // Add click to feature info
   map.on('singleclick', handleMapClick);
+
+  // Add hover functionality for vessel tooltips
+  map.on('pointermove', function(evt) {
+    const pixel = map.getEventPixel(evt.originalEvent);
+    const features = [];
+    
+    map.forEachFeatureAtPixel(pixel, function (feature, layer) {
+      if (layer === aisLayer) {
+        features.push({ feature, layer });
+      }
+    });
+    
+    const mapTarget = map.getTarget();
+    const mapElement = typeof mapTarget === 'string' ? document.getElementById(mapTarget) : mapTarget;
+    
+    if (features.length > 0) {
+      const { feature } = features[0];
+      showVesselNameOnHover(feature, pixel);
+      if (mapElement) {
+        mapElement.style.cursor = 'pointer';
+      }
+    } else {
+      hideVesselTooltip();
+      if (mapElement) {
+        mapElement.style.cursor = 'crosshair';
+      }
+    }
+  });
+
+  // Hide tooltip when pointer leaves the map
+  map.on('pointerleave', function() {
+    hideVesselTooltip();
+    const mapTarget = map.getTarget();
+    const mapElement = typeof mapTarget === 'string' ? document.getElementById(mapTarget) : mapTarget;
+    if (mapElement) {
+      mapElement.style.cursor = 'crosshair';
+    }
+  });
 
   // Note: Location button functionality is now handled by VesselPanelManager
   // The location button now toggles the vessel panel instead of location tracking
@@ -2462,13 +2651,13 @@ class VesselPanelManager {
             document.getElementById('vessel-draught-item').style.display = 'none';
           }
           
-          this.updateStatus('Rescue vessel - Waiting for location data', 'active');
+          this.updateStatus('Waiting for location data', 'active');
         } else {
           // Hide name, call sign, and draught if rescue vessel data not available
           document.getElementById('vessel-name-item').style.display = 'none';
           document.getElementById('call-sign-item').style.display = 'none';
           document.getElementById('vessel-draught-item').style.display = 'none';
-          this.updateStatus('Rescue vessel - Waiting for data', 'active');
+          this.updateStatus('Waiting for data', 'active');
         }
       } else {
         // For non-rescue vessels, hide name, call sign, and draught until MQTT data arrives
