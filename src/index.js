@@ -1703,8 +1703,11 @@ class VesselPanelManager {
       // Subscribe to the vessel if not already tracked
       if (!trackedVessels[mmsi]) {
         client.subscribe(`vessels-v2/${mmsi}/+`);
-        trackedVessels[mmsi] = { metadata: { name: `VESSEL ${mmsi}` } };
+        trackedVessels[mmsi] = {};
       }
+      
+      // Immediately update vessel info display
+      this.updateVesselInfo();
     } else {
       this.updateStatus('Invalid MMSI format', 'error');
       setTimeout(() => this.updateVesselInfo(), 3000);
@@ -1772,8 +1775,9 @@ class VesselPanelManager {
         }
       }
       
-      // Hide vessel name and MMSI for GPS
+      // Hide vessel name, call sign and MMSI for GPS
       document.getElementById('vessel-name-item').style.display = 'none';
+      document.getElementById('call-sign-item').style.display = 'none';
       document.getElementById('mmsi-display-item').style.display = 'none';
       
       this.updateStatus(`GPS active (±${accuracy?.toFixed(0)}m)`, 'active');
@@ -1862,6 +1866,14 @@ class VesselPanelManager {
         document.getElementById('vessel-name-item').style.display = 'none';
       }
       
+      // Call sign
+      if (props.callsign || props.callSign) {
+        document.getElementById('call-sign').textContent = props.callsign || props.callSign;
+        document.getElementById('call-sign-item').style.display = 'flex';
+      } else {
+        document.getElementById('call-sign-item').style.display = 'none';
+      }
+      
       // MMSI
       document.getElementById('mmsi-display').textContent = this.currentMMSI;
       document.getElementById('mmsi-display-item').style.display = 'flex';
@@ -1887,6 +1899,7 @@ class VesselPanelManager {
   clearVesselInfo() {
     this.clearDisplayValues();
     document.getElementById('vessel-name-item').style.display = 'none';
+    document.getElementById('call-sign-item').style.display = 'none';
     document.getElementById('mmsi-display-item').style.display = 'none';
     this.updateStatus('No data source selected', '');
   }
