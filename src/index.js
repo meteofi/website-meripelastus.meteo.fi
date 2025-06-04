@@ -2282,6 +2282,13 @@ class VesselPanelManager {
       
       this.updateStatus(status, 'active');
     } else {
+      // Always show MMSI immediately, even without vessel data
+      document.getElementById('mmsi-display').textContent = this.currentMMSI;
+      document.getElementById('mmsi-display-item').style.display = 'flex';
+      
+      // Clear position, speed, and heading until data arrives
+      this.clearDisplayValues();
+      
       // Even if no AIS data, try to show rescue vessel info
       if (rescueVesselManager.isRescueVessel(this.currentMMSI)) {
         const rescueVessel = rescueVesselManager.getRescueVessel(this.currentMMSI);
@@ -2293,18 +2300,23 @@ class VesselPanelManager {
           if (rescueVessel.metadata.callsign) {
             document.getElementById('call-sign').textContent = rescueVessel.metadata.callsign;
             document.getElementById('call-sign-item').style.display = 'flex';
+          } else {
+            document.getElementById('call-sign-item').style.display = 'none';
           }
           
-          document.getElementById('mmsi-display').textContent = this.currentMMSI;
-          document.getElementById('mmsi-display-item').style.display = 'flex';
-          
           this.updateStatus('Rescue vessel - Waiting for location data', 'active');
-          return;
+        } else {
+          // Hide name and call sign if rescue vessel data not available
+          document.getElementById('vessel-name-item').style.display = 'none';
+          document.getElementById('call-sign-item').style.display = 'none';
+          this.updateStatus('Rescue vessel - Waiting for data', 'active');
         }
+      } else {
+        // For non-rescue vessels, hide name and call sign until MQTT data arrives
+        document.getElementById('vessel-name-item').style.display = 'none';
+        document.getElementById('call-sign-item').style.display = 'none';
+        this.updateStatus('Waiting for AIS data...', 'active');
       }
-      
-      this.updateStatus('No AIS data available', 'error');
-      this.clearDisplayValues();
     }
   }
   
